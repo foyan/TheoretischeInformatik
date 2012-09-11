@@ -397,11 +397,11 @@ Beispiel: abc ist Teilwort von aabcc, aa ist Präfix und Suffix von aabcaa. $\ep
 \end{bemerkung}
 
 \begin{definition}[Sprache]
-$L$ über Alphabet $\Sigma$ ist eine Teilmenge von $\Sigma^*$, $L \subset \Sigma^*$. Sprache ist Menge von Wörtern, kann unendlich gross sein. Leere Sprache: $\emptyset$ enthält keine Wörter, ist über jedem Alphabet definiert. Spezielle Sprache: $L_\epsilon$ ist die Sprache, die nur das leeere Wort enthält. $L_\epsilon \neq \emptyset$.
+$L$ über Alphabet $\Sigma$ ist eine Teilmenge von $\Sigma^*$, $L \subseteq \Sigma^*$. Sprache ist Menge von Wörtern, kann unendlich gross sein. Leere Sprache: $\emptyset$ enthält keine Wörter, ist über jedem Alphabet definiert. Spezielle Sprache: $L_\epsilon$ ist die Sprache, die nur das leeere Wort enthält. $L_\epsilon \neq \emptyset$.
 \end{definition}
 
 \begin{definition}[Konkatenation von Sprachen] 
-$L_1, L_2 \subset \Sigma^* \Rightarrow L_1 \cdot L_2 = L_1L_2 = \{ v\cdot w | v\in L_1, w\in L_2 \}$
+$L_1, L_2 \subseteq \Sigma^* \Rightarrow L_1 \cdot L_2 = L_1L_2 = \{ v\cdot w | v\in L_1, w\in L_2 \}$
 \end{definition}
 \begin{definition}[Potenzen von Sprachen]
 \begin{eqnarray*}
@@ -424,7 +424,7 @@ $L_1\cdot L_2 = \{ \epsilon, a,b,ab,aab,abb,aaab,\dots \} = \{a^ib^j | i \ge 0, 
 \end{beispiel}
 
 \begin{ubung}
-Seien $L_1, L_2, L_3 \subset \Sigma^*$. 
+Seien $L_1, L_2, L_3 \subseteq \Sigma^*$. 
 
 (a) Gilt $(L_1\cdot L_2)\cdot L_3 =L_1\cdot(L_2\cdot L_3 )$? Ja.
 
@@ -481,5 +481,138 @@ Eine Zahl $p \in N$ ist Primzahl genau dann, wenn $Bin(p) \in L$.
 
 Identifizierung von Sprachen als Probleme.
 \end{beispiel}
+
+\section{Kurze Einführung in formale Beweise}
+
+Behauptungen\footnote{11. September 2012} mit Unanfechtbarkeitsanspruch wollen bewiesen werden. Insbesondere negative Aussagen der Form "Dieses Rechenmodell kann diese Aufgabe nicht lösen" brauchen eine präzise Formulierung und Begründung, um glaubwürdig zu sein\footnote{Hopcraft et al., Abschnitt 1.2--1.4}\marginpar{Unkontrollierte Hausaufgabe}.
+
+Als Beweismethoden haben wir im Angebot:
+
+\begin{description}
+\item[Deduktion (zum Beweis einer Implikation)] Zum Beweis von Wenn-Dann-Aussagen, z.B.
+\[
+\textrm{Wenn } \underbrace{x \ge 4}_{\textrm{Hypothese}}\textrm{ , dann } \underbrace{x^2\ge 16}_{\textrm{Konklusion}}
+\]
+
+Vorgehen: Hypothese als wahr annehmen, dann Folgerungen darauf anwenden, bis die Konklusion folgt.
+
+\begin{beispiel}
+Sei $x \ge 4$. Es gilt $4^2 = 16$ und die Quadratfunktion ist steigend. Daraus folgt: $x^2 \ge 4^2 = 16$
+\end{beispiel}
+
+Hierfür ist es oft hilfreich, Definitionen von Begriffen einzusetzen.
+\begin{beispiel}
+Wenn $L = \{ w \in \{a,b\}^* | |w| \textrm{ gerade}\}$, dann gilt für alle $x \in L^2$, dass $|x|$ gerade ist.
+\end{beispiel}
+
+\begin{beweis}
+Sei $x \in L^2$.
+
+Definition von $L^2$ einsetzen. Es existieren $u,v \in L$, so dass $x = uv$.
+
+Definition von $L$ einsetzen. $|u|$ ist gerade, $|v|$ ist gerade.
+
+$\Rightarrow |x| = |u| + |v| \Rightarrow |x|$ ist gerade.
+\end{beweis}
+
+\item[Doppelte Deduktion (zum Beweis einer Äquivalenz)] Zerlegung in zwei Wenn-Dann-Aussagen, wird getrennt bewiesen.
+
+\begin{beispiel}[Gleichheit von Mengen]
+\[
+A = B \Rightarrow A \subseteq B \land B \subseteq A \Rightarrow A = B
+\]
+
+\end{beispiel}
+
+\begin{beispiel}
+Sprachen sind ja auch Mengen. Also: seien $L_1, L_2 \in \Sigma^*$. Dann gilt:
+\[
+L_1\cdot(L_1 \cup L_2) = L_1^2 \cup L_1 \cdot L_2
+\]
+\end{beispiel}
+
+\begin{beweis}
+\begin{itemize}
+Zweimal:
+\item "$\subseteq$":
+
+Sei $x \in L_1\cdot(L_1\cup L_2) \Rightarrow \exists x = uv, u \in L_1, v \in L_1 \cup L_2$.
+
+Fallunterscheidung: (a) $v \in L_1 \Rightarrow x = uv, u \in L_1, v \in L_1 \Rightarrow x \in L_1^2$.
+
+(b) $v \in L_2 \Rightarrow x = uv, u \in L_1, v \in L_2 \Rightarrow x \in L_1\cdot L_2$.
+
+\item "$\supseteq$":
+
+Sei $x \in L_1^2 \cup L_1\cdot L_2$.
+
+Fallunterscheidung: (a) $x \in L_1^2 \Rightarrow x = uv, u, v \in L_1 $
+
+$\Rightarrow v \in L_1 \cup L_2$
+
+$\Rightarrow x \in L_1\cdot(L_1 \cup L_2)$.
+
+(b) $x \in L_1\cdot L_2 \Rightarrow x = uv, u \in L_1, v \in L_2$
+
+$\Rightarrow v \in (L_1 \cup L_2)$
+
+$\Rightarrow x \in L_1\cdot(L_1 \cup L_2)$
+\end{itemize}
+\end{beweis}
+
+\item[Widerspruchsbeweis] Es wird eine Annahme getroffen und dann solange gefolgert, bis Quatsch herauskommt. Daraus folgt, dass die Annahme auch falsch sein muss.
+
+\begin{beispiel}
+Seien $a,b \in \mathbb{N}$ und $a,b \ge 2$. Dann gilt: $a$ teilt nicht $ab + 1$.
+\end{beispiel}
+\begin{beweis}
+Seien $a,b \in \mathbb{N}$. Angenommen, $a$ teilt $ab + 1$.
+
+Ziel: Annahme zum Widerspruch führen, dann folgt daraus Negation, also die gewünschte Konklusion.
+
+$a$ teilt $ab \Rightarrow a$ teilt $ab$ und $ab + 1$.
+
+$\Rightarrow a$ teilt $(ab + 1)-(ab) = 1$
+
+$\Rightarrow a = 1$. Bonk! Widerspruch zu $a \ge 2$.
+\end{beweis}
+
+\begin{beispiel}
+Es gibt unendlich viele Primzahl (äquivalente Formulierung: Es gibt keine grösste Primzahl).
+\end{beispiel}
+
+\begin{beweis}
+Angenommen, es gäbe eine grösste Primzahl. Wir nennen die Anzahl der Primzahlen $k$.
+
+Seien $p_1 < p_2 < \dots < p_k$ die Primzahlen. Betrachten wir $x = p_1\cdot p_2 \cdot \dots \cdot p_k + 1$. Da $p_k$ die grösste Primzahl ist und $x > p_k$, kann $x$ keine Primzahl sein.
+
+Also gibt es eine Primfaktorzerlegung von $x$, und $p_l$ sei die kleinste Primzahl in dieser Zerlegung.
+
+Dann gilt: $p_l$ teilt $p_1\cdot p_2 \cdot dots \cdot p_k$ und $p_l$ teilt darum auch $x$.
+
+Daraus folgt: $p_l$ teilt  $p_1\cdot p_2 \cdot dots \cdot p_k+1$. Aus dem vorhergehenden Beweis ($a$ teilt $ab+1$) folgt, dass das ein Widerspruch ist.
+\end{beweis}
+
+\item[Induktion] Vor allem verwendet für Beweise über natürliche Zahlen. Ziel: Zeige, dass die Aussage $S(n)$ für alle $n \ge n_0$ gilt.
+
+Methode:
+\begin{enumerate}
+\item Induktionsanfang (Anker). Zeige $S(n_0)$.
+\item Induktionsschritt. Zeige $S(i) \Rightarrow S(i+1)$.
+\end{enumerate}
+
+Idee: Wenn $S(n_0)$ gilt und $S(i) \Rightarrow S(i+1)$ für alle $i \ge n_0$, dann folgt aus $S(n_0)$ und $S(n_0) \Rightarrow S(n_0+1)$, dann gilt $S(n_0+1)$. Undsoweiter, undsofort.
+
+\begin{beispiel}[Der kleine Gauss].
+Für alle $n \ge 1$ gilt: $\sum\limits_{i=1}^n i = \frac {n(n+1)} 2$
+\end{beispiel}
+\begin{beweis}
+Anker: $\sum\limits_{i=1}^1 = \frac{1+(1+1)}2$
+
+Schritt: es gelte $\sum\limits_{i=1}^k i = \frac{k(k+1)} 2$ (Induktionsvoraussetzung).
+\end{beweis}
+
+\end{description}
+
 
 \end{document}
