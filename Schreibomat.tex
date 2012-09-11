@@ -436,7 +436,7 @@ Seien $L_1, L_2, L_3 \subseteq \Sigma^*$.
 
 \end{ubung}
 
-\begin{beweis}
+\begin{proof}[Beweis]
 (a)
 \begin{eqnarray*}
 (L_1\cdot L_2) \cdot L_3 &=& \{ vw | v \in L_1\cdot L_2, w \in L_3 \} \\
@@ -459,7 +459,7 @@ L_1 L_2 = \{aa\} &\Rightarrow& (L_1 L_2)\cup L_3 = \{aa,b \} \\
 L_1 \cup L_3 = \{a,b\} = L_2 \cup L_3 &=& \Rightarrow ...
 \end{eqnarray*}
 
-\end{beweis}
+\end{proof}
 
 \begin{bemerkung}
 (d) gilt aber für $|\Sigma|$ = 1.
@@ -505,7 +505,7 @@ Hierfür ist es oft hilfreich, Definitionen von Begriffen einzusetzen.
 Wenn $L = \{ w \in \{a,b\}^* | |w| \textrm{ gerade}\}$, dann gilt für alle $x \in L^2$, dass $|x|$ gerade ist.
 \end{beispiel}
 
-\begin{beweis}
+\begin{proof}[Beweis]
 Sei $x \in L^2$.
 
 Definition von $L^2$ einsetzen. Es existieren $u,v \in L$, so dass $x = uv$.
@@ -513,7 +513,7 @@ Definition von $L^2$ einsetzen. Es existieren $u,v \in L$, so dass $x = uv$.
 Definition von $L$ einsetzen. $|u|$ ist gerade, $|v|$ ist gerade.
 
 $\Rightarrow |x| = |u| + |v| \Rightarrow |x|$ ist gerade.
-\end{beweis}
+\end{proof}
 
 \item[Doppelte Deduktion (zum Beweis einer Äquivalenz)] Zerlegung in zwei Wenn-Dann-Aussagen, wird getrennt bewiesen.
 
@@ -531,7 +531,7 @@ L_1\cdot(L_1 \cup L_2) = L_1^2 \cup L_1 \cdot L_2
 \]
 \end{beispiel}
 
-\begin{beweis}
+\begin{proof}[Beweis]
 \begin{itemize}
 Zweimal:
 \item "$\subseteq$":
@@ -558,14 +558,14 @@ $\Rightarrow v \in (L_1 \cup L_2)$
 
 $\Rightarrow x \in L_1\cdot(L_1 \cup L_2)$
 \end{itemize}
-\end{beweis}
+\end{proof}
 
 \item[Widerspruchsbeweis] Es wird eine Annahme getroffen und dann solange gefolgert, bis Quatsch herauskommt. Daraus folgt, dass die Annahme auch falsch sein muss.
 
 \begin{beispiel}
 Seien $a,b \in \mathbb{N}$ und $a,b \ge 2$. Dann gilt: $a$ teilt nicht $ab + 1$.
 \end{beispiel}
-\begin{beweis}
+\begin{proof}[Beweis]
 Seien $a,b \in \mathbb{N}$. Angenommen, $a$ teilt $ab + 1$.
 
 Ziel: Annahme zum Widerspruch führen, dann folgt daraus Negation, also die gewünschte Konklusion.
@@ -575,13 +575,13 @@ $a$ teilt $ab \Rightarrow a$ teilt $ab$ und $ab + 1$.
 $\Rightarrow a$ teilt $(ab + 1)-(ab) = 1$
 
 $\Rightarrow a = 1$. Bonk! Widerspruch zu $a \ge 2$.
-\end{beweis}
+\end{proof}
 
 \begin{beispiel}
 Es gibt unendlich viele Primzahl (äquivalente Formulierung: Es gibt keine grösste Primzahl).
 \end{beispiel}
 
-\begin{beweis}
+\begin{proof}[Beweis]
 Angenommen, es gäbe eine grösste Primzahl. Wir nennen die Anzahl der Primzahlen $k$.
 
 Seien $p_1 < p_2 < \dots < p_k$ die Primzahlen. Betrachten wir $x = p_1\cdot p_2 \cdot \dots \cdot p_k + 1$. Da $p_k$ die grösste Primzahl ist und $x > p_k$, kann $x$ keine Primzahl sein.
@@ -591,7 +591,7 @@ Also gibt es eine Primfaktorzerlegung von $x$, und $p_l$ sei die kleinste Primza
 Dann gilt: $p_l$ teilt $p_1\cdot p_2 \cdot dots \cdot p_k$ und $p_l$ teilt darum auch $x$.
 
 Daraus folgt: $p_l$ teilt  $p_1\cdot p_2 \cdot dots \cdot p_k+1$. Aus dem vorhergehenden Beweis ($a$ teilt $ab+1$) folgt, dass das ein Widerspruch ist.
-\end{beweis}
+\end{proof}
 
 \item[Induktion] Vor allem verwendet für Beweise über natürliche Zahlen. Ziel: Zeige, dass die Aussage $S(n)$ für alle $n \ge n_0$ gilt.
 
@@ -606,13 +606,57 @@ Idee: Wenn $S(n_0)$ gilt und $S(i) \Rightarrow S(i+1)$ für alle $i \ge n_0$, da
 \begin{beispiel}[Der kleine Gauss].
 Für alle $n \ge 1$ gilt: $\sum\limits_{i=1}^n i = \frac {n(n+1)} 2$
 \end{beispiel}
-\begin{beweis}
+\begin{proof}[Beweis]
 Anker: $\sum\limits_{i=1}^1 = \frac{1+(1+1)}2$
 
 Schritt: es gelte $\sum\limits_{i=1}^k i = \frac{k(k+1)} 2$ (Induktionsvoraussetzung).
-\end{beweis}
+
+Zeige: $\sum\limits_{i=1}^{k+1} i = \frac{(k+1)(k+1+1)} 2$ (Induktionsbehauptung).
+
+\begin{eqnarray*}
+\sum\limits_{i=1}^{k+1} i &=& \sum\limits_{i=1}^{k} i + (k+1) \\
+&=& \frac{k(k+1)} 2 + (k+1) \\
+&=& \frac{k(k+1) + 2(k+1)}2 \\
+&=& \frac{(k+2)(k+1)}2 \\
+&=& \frac{(k+1+1)(k+1)}2
+\end{eqnarray*}
+\end{proof}
+
+\item[Rekursive Definitionen und strukturelle Induktion]
+\begin{beispiel}[Rekursive Definition von arithmetischen Ausdrücken]
+Basis: Jede Zahl und jede Variable ist ein arithmetischer Ausdruck: $(a+3)\cdot 5$ ist ein arithmetischer Ausdruck, $(a +3\cdot 5$ [sic] ist keiner (Klammerfehler).
+
+Rekursion: Wenn $E$ und $F$ Ausdrücke sind, dann definieren wir, dass dann auch $E+F$, $E\cdot F$, $(E)$ arithmetische Ausdrücke sind.
+
+Behauptung: Jeder Ausdruck enthält gleichviele linke wie rechte Klammern.
+\end{beispiel}
+
+\begin{proof}[Beweis] Mit struktureller Induktion:
+
+\begin{enumerate}
+\item I.A.: Basisausdrücke haben keine Klammern. Daraus folgt: gleichviele linke wie rechte Klammern (0).
+\item Sei $G$ ein arithmetischer Ausdruck ($G = E+F, E\cdot F, (G)$). Fallunterscheidung:
+\begin{enumerate}
+\item $G=E+F$: Induktionsvoraussetzung: $E$ und $F$ haben gleich viele linke wie rechte Klammern. Gilt also auch für $G$, da keine Klammern hinzukommen.
+\item $G=E\cdot F$: analog.
+\item $(G)$: Induktionsvoraussetzung: $E$ hat gleich viele linke wie rechte Klammern. Gilt also auch für $G$, da 1 linke und 1 rechte Klammer hinzukommt.
+\end{enumerate}
+\end{enumerate}
+\end{proof}
 
 \end{description}
+
+\section{Unendlichkeit}
+
+\begin{proof}[Beweis für 3.7]
+Behauptung: $|A| < |B| \Leftarrow |A| = |C| \land C \subset B$
+
+$A = B = \mathbb{N} = \{0,1,2,3,\dots\}$
+$C = \{1,2,3,4,\dots\}$
+$(0,1), (1,2), \dots, (k,k+1)$
+\end{proof}
+
+Aufgaben: 3.7, 3.8, 3.11, 3.17, 3.18, 3.19
 
 
 \end{document}
