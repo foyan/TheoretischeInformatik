@@ -731,4 +731,112 @@ Ein DEA $A$ wird beschrieben durch $A = (Q, \Sigma, \delta, q_0, F)$, wobei:
 \end{itemize}
 \end{definition}
 
+\begin{beispiel}[von vorher]
+\[
+A = \left( \{q_0, q_1, q_2, q_3\}, \{ a,b\}, \delta, q_0, \{q_3 \} \right),
+\]
+
+wobei $\delta$ gegeben ist durch:
+
+\begin{eqnarray*}
+\delta(q_0, a) = q_1, \\
+\delta(q_0, b) = q_0, \\
+\delta(q_1, a) = q_1, \\
+\delta(q_1, b) = q_2, \\
+\delta(q_2, a) = q_3, \\
+\delta(q_2, b) = q_0, \\
+\delta(q_3, a) = q_3, \\
+\delta(q_3, b) = q_3 \\
+\end{eqnarray*}
+
+(oder als Transitionstabelle aufgeschrieben):
+
+\begin{tabular}{r|cc}
+ & $a$ & $b$ \\
+\hline 
+$\mapsto q_0$ & $q_1$ & $q_0$ \\
+$q_1$ & $q_1$ & $q_2$ \\
+$q_2$ & $q_3$ & $q_0$ \\
+$*q_3$ & $q_3$ & $q_3$
+\end{tabular}
+
+\end{beispiel}
+
+Die Transitionstabelle enthält alle Informationen über einen DEA, meistens ist aber die graphische Darstellung übersichtlicher.
+
+Ziel: Automaten zur Beschreibung von Sprachen verwenden.
+
+\begin{definition}[Berechnung]
+Sei $A = (Q, \Sigma, \delta, q_0, F)$ ein DEA, $w \in \Sigma^*$ ein Wort.
+
+Die Berechnung von $A$ auf $w$ ist die Folge von Zuständen, die $A$ beim Lesen von $w$ durchläuft, also, gilt für $w = a_1a_2\dots a_k$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (8,-18.2) circle (3);
+\draw (8,-18.2) node {$q0$};
+\draw [black] (21,-18.2) circle (3);
+\draw (21,-18.2) node {$\delta(q0,a1)$};
+\draw [black] (34.5,-18.2) circle (3);
+\draw (34.5,-18.2) node {$\delta(\delta(q0,a1),a2)$};
+\draw [black] (64.1,-18.2) circle (3);
+\draw (64.1,-18.2) node {$\delta(...\delta(\delta(q0,a1),a2)...)$};
+\draw [black] (10.336,-16.342) arc (118.61376:61.38624:8.694);
+\fill [black] (18.66,-16.34) -- (18.2,-15.52) -- (17.72,-16.4);
+\draw (14.5,-14.78) node [above] {$a1$};
+\draw [black] (23.337,-16.341) arc (119.0469:60.9531:9.089);
+\fill [black] (32.16,-16.34) -- (31.71,-15.52) -- (31.22,-16.39);
+\draw (27.75,-14.7) node [above] {$a2$};
+\draw [black] (36.987,-16.526) arc (120.41027:59.58973:24.325);
+\fill [black] (61.61,-16.53) -- (61.18,-15.69) -- (60.67,-16.55);
+\draw (49.3,-12.68) node [above] {$...$};
+\end{tikzpicture}
+\end{center}
+\end{definition}
+
+\begin{beispiel}
+Berechnung von $A$ auf $w=babbaba$:
+
+\[
+q_0 =>b=>q_0 =>a=>q_1 =>b=> q_2 =>b=>q_0 =>a=>q_1 =>b=> q_2 =>a=>q_3
+\]
+\end{beispiel}
+
+Sinnvollerweise: Erweiterung von $\delta$ af Wörter (erweiterte Übergangsfunktion).
+
+\begin{definition}[Erweiterte Übergangsfunktion]
+
+$\hat{\delta} : Q \times \Sigma^* \mapsto Q$ ist rekursiv definiert wie folgt:
+\begin{itemize}
+\item $\hat{\delta}(q,a) = \delta(q,a)$ für alle $q\in Q, a \in \Sigma$
+\item $\hat{\delta}(q, xa) = \delta(\hat{\delta}(q, x), a)$ für alle $q \in Q, x \in \Sigma^*, a \in \Sigma$.
+\end{itemize}
+
+\end{definition}
+
+\begin{bemerkung}
+Anschaulich: $\hat{\delta}(q,w)$ betstimmt, in welchem Zustand $A$ endet, wenn er vom Zustand $q$ aus das Wort $w$ liest.
+\end{bemerkung}
+
+\begin{beispiel}
+$\hat{\delta}(q_0, babbaba)$
+\end{beispiel}
+
+\begin{definition}
+Sei $A = (Q, \Sigma, \delta, q_0, F)$ ein DEA. Die von $A$ akzeptierte Sprache $L(A) \subseteq \Sigma^*$ ist die Menge aller $w \in \Sigma^*$, so dass $\hat{\delta}(q_0, w) \in F$.
+\end{definition}
+
+\begin{bemerkung}
+Anschaulich: Die Menge aller Wörter, die den DEA vom Anfangszustand aus in einen Endzustand führen.
+\end{bemerkung}
+
+\begin{beispiel}
+$\hat{\delta}(q_0, babbaba) = q_3\in F \Rightarrow w \in L(A)$ ($w$ wird von $A$ akzeptiert.)
+\end{beispiel}
+
+\begin{definition}[Reguläre Sprachen]
+$\mathcal{L}($DEA$) = \{L(A) | A $ ist ein DEA$ \}$ ist die Klasse der Sprachen, die von DEAs akzeptiert werden. Man nennt sie die Klasse der regulären Sprachen und $L \in \mathcal{L}($DEA$)$ wird regulär genannt.
+\end{definition}
+
 \end{document}
