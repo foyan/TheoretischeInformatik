@@ -798,9 +798,48 @@ Die Berechnung von $A$ auf $w$ ist die Folge von Zuständen, die $A$ beim Lesen 
 \begin{beispiel}
 Berechnung von $A$ auf $w=babbaba$:
 
-\[
-q_0 =>b=>q_0 =>a=>q_1 =>b=> q_2 =>b=>q_0 =>a=>q_1 =>b=> q_2 =>a=>q_3
-\]
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (4.7,-18.3) circle (3);
+\draw (4.7,-18.3) node {$q0$};
+\draw [black] (13.3,-18.3) circle (3);
+\draw (13.3,-18.3) node {$q0$};
+\draw [black] (21.6,-18.3) circle (3);
+\draw (21.6,-18.3) node {$q1$};
+\draw [black] (30.4,-18.3) circle (3);
+\draw (30.4,-18.3) node {$q2$};
+\draw [black] (39.1,-18.3) circle (3);
+\draw (39.1,-18.3) node {$q0$};
+\draw [black] (47.4,-18.3) circle (3);
+\draw (47.4,-18.3) node {$q1$};
+\draw [black] (55.9,-18.3) circle (3);
+\draw (55.9,-18.3) node {$q2$};
+\draw [black] (64.8,-18.3) circle (3);
+\draw (64.8,-18.3) node {$q3$};
+\draw [black] (5.641,-15.515) arc (-218.64615:-321.35385:4.301);
+\fill [black] (12.36,-15.52) -- (12.25,-14.58) -- (11.47,-15.2);
+\draw (9,-13.4) node [above] {$b$};
+\draw [black] (14.437,-15.594) arc (136.5048:43.4952:4.153);
+\fill [black] (20.46,-15.59) -- (20.27,-14.67) -- (19.55,-15.36);
+\draw (17.45,-13.8) node [above] {$a$};
+\draw [black] (23.215,-15.837) arc (127.82494:52.17506:4.541);
+\fill [black] (28.78,-15.84) -- (28.46,-14.95) -- (27.85,-15.74);
+\draw (26,-14.38) node [above] {$b$};
+\draw [black] (31.682,-15.653) arc (134.51058:45.48942:4.376);
+\fill [black] (37.82,-15.65) -- (37.6,-14.74) -- (36.9,-15.45);
+\draw (34.75,-13.9) node [above] {$b$};
+\draw [black] (40.506,-15.722) arc (130.882:49.118:4.192);
+\fill [black] (45.99,-15.72) -- (45.72,-14.82) -- (45.06,-15.58);
+\draw (43.25,-14.2) node [above] {$a$};
+\draw [black] (48.776,-15.703) arc (132.05645:47.94355:4.291);
+\fill [black] (54.52,-15.7) -- (54.27,-14.8) -- (53.6,-15.54);
+\draw (51.65,-14.1) node [above] {$b$};
+\draw [black] (57.606,-15.896) arc (126.16016:53.83984:4.65);
+\fill [black] (63.09,-15.9) -- (62.74,-15.02) -- (62.15,-15.83);
+\draw (60.35,-14.5) node [above] {$a$};
+\end{tikzpicture}
+\end{center}
 \end{beispiel}
 
 Sinnvollerweise: Erweiterung von $\delta$ af Wörter (erweiterte Übergangsfunktion).
@@ -838,5 +877,198 @@ $\hat{\delta}(q_0, babbaba) = q_3\in F \Rightarrow w \in L(A)$ ($w$ wird von $A$
 \begin{definition}[Reguläre Sprachen]
 $\mathcal{L}($DEA$) = \{L(A) | A $ ist ein DEA$ \}$ ist die Klasse der Sprachen, die von DEAs akzeptiert werden. Man nennt sie die Klasse der regulären Sprachen und $L \in \mathcal{L}($DEA$)$ wird regulär genannt.
 \end{definition}
+
+\begin{beispiel}
+DEA $A$ entwerfen, der die Sprache 
+\[L = \{w \in \{0, 1\}^* | w \textrm{ enthält eine gerade Anzahl
+Nullen und eine gerade Anzahl Einsen} \}
+\]
+akzeptiert.
+
+Idee: 4 Zustände, die speichern, wieviele Nullen und Einseln modulo 2 bereits gelesen wurden.
+
+\begin{itemize}
+\item $q_{00}$: gerade Anzahl Nullen, gerade Anzahl Einsen
+\item $q_{01}$: gerade Anzahl Nullen, ungerade Anzahl Einsen
+\item $q_{10}$: ungerade Anzahl Nullen, gerade Anzahl Einsen
+\item $q_{11}$: ungerade Anzahl Nullen, ungerade Anzahl Einsen
+\end{itemize}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (10.7,-14.2) circle (3);
+\draw (10.7,-14.2) node {$q00$};
+\draw [black] (10.7,-14.2) circle (2.4);
+\draw [black] (28.4,-14.2) circle (3);
+\draw (28.4,-14.2) node {$q01$};
+\draw [black] (10.7,-31) circle (3);
+\draw (10.7,-31) node {$q10$};
+\draw [black] (28.4,-31) circle (3);
+\draw (28.4,-31) node {$q11$};
+\draw [black] (3.5,-14.2) -- (7.7,-14.2);
+\fill [black] (7.7,-14.2) -- (6.9,-13.7) -- (6.9,-14.7);
+\draw [black] (12.94,-12.217) arc (124.21511:55.78489:11.755);
+\fill [black] (26.16,-12.22) -- (25.78,-11.35) -- (25.22,-12.18);
+\draw (19.55,-9.68) node [above] {$1$};
+\draw [black] (25.831,-15.739) arc (-64.89143:-115.10857:14.801);
+\fill [black] (13.27,-15.74) -- (13.78,-16.53) -- (14.21,-15.63);
+\draw (19.55,-17.64) node [below] {$1$};
+\draw [black] (12.207,-16.788) arc (24.16062:-24.16062:14.201);
+\fill [black] (12.21,-16.79) -- (12.08,-17.72) -- (12.99,-17.31);
+\draw (13.95,-22.6) node [right] {$0$};
+\draw [black] (9.305,-28.349) arc (-157.8769:-202.1231:15.267);
+\fill [black] (9.31,-28.35) -- (9.47,-27.42) -- (8.54,-27.8);
+\draw (7.68,-22.6) node [left] {$0$};
+\draw [black] (26.743,-28.507) arc (-153.00161:-206.99839:13.012);
+\fill [black] (26.74,-28.51) -- (26.83,-27.57) -- (25.93,-28.02);
+\draw (24.83,-22.6) node [left] {$0$};
+\draw [black] (29.791,-16.852) arc (22.06226:-22.06226:15.302);
+\fill [black] (29.79,-28.35) -- (30.56,-27.79) -- (29.63,-27.42);
+\draw (31.41,-22.6) node [right] {$0$};
+\draw [black] (25.999,-32.788) arc (-59.99074:-120.00926:12.895);
+\fill [black] (26,-32.79) -- (25.06,-32.75) -- (25.56,-33.62);
+\draw (19.55,-35.02) node [below] {$1$};
+\draw [black] (13.279,-29.478) arc (114.79814:65.20186:14.951);
+\fill [black] (13.28,-29.48) -- (14.22,-29.6) -- (13.8,-28.69);
+\draw (19.55,-27.6) node [above] {$1$};
+\end{tikzpicture}
+\end{center}
+
+Tabelle:
+
+\begin{tabular}{r|cc}
+ & $0$ & $1$ \\
+\hline 
+$\mapsto *q_{00}$ & $q_{10}$ & $q_{01}$ \\
+$q_{01}$ & $q_{11}$ & $q_{00}$ \\
+$q_{10}$ & $q_{00}$ & $q_{11}$ \\
+$q_{11}$ & $q_{01}$ & $q_{10}$
+\end{tabular}
+
+Berechnung von $A$ auf $w = 011011$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (7.6,-19) circle (3);
+\draw (7.6,-19) node {$q00$};
+\draw [black] (18.1,-19) circle (3);
+\draw (18.1,-19) node {$q10$};
+\draw [black] (28.6,-19) circle (3);
+\draw (28.6,-19) node {$q11$};
+\draw [black] (38.7,-19) circle (3);
+\draw (38.7,-19) node {$q10$};
+\draw [black] (48.9,-19) circle (3);
+\draw (48.9,-19) node {$q00$};
+\draw [black] (57.6,-19) circle (3);
+\draw (57.6,-19) node {$q01$};
+\draw [black] (66.4,-19) circle (3);
+\draw (66.4,-19) node {$q00$};
+\draw [black] (8.307,-16.126) arc (-210.18403:-329.81597:5.255);
+\fill [black] (17.39,-16.13) -- (17.42,-15.18) -- (16.56,-15.69);
+\draw (12.85,-13.01) node [above] {$0$};
+\draw [black] (19.195,-16.25) arc (141.98894:38.01106:5.274);
+\fill [black] (27.5,-16.25) -- (27.41,-15.31) -- (26.62,-15.93);
+\draw (23.35,-13.72) node [above] {$1$};
+\draw [black] (29.837,-16.314) arc (138.41679:41.58321:5.098);
+\fill [black] (37.46,-16.31) -- (37.31,-15.38) -- (36.56,-16.05);
+\draw (33.65,-14.1) node [above] {$1$};
+\draw [black] (40.128,-16.408) arc (134.68822:45.31178:5.222);
+\fill [black] (47.47,-16.41) -- (47.26,-15.49) -- (46.55,-16.2);
+\draw (43.8,-14.4) node [above] {$0$};
+\draw [black] (50.245,-16.383) arc (133.21908:46.78092:4.389);
+\fill [black] (56.26,-16.38) -- (56.01,-15.47) -- (55.33,-16.2);
+\draw (53.25,-14.69) node [above] {$1$};
+\draw [black] (58.932,-16.375) arc (133.72667:46.27333:4.438);
+\fill [black] (65.07,-16.38) -- (64.84,-15.46) -- (64.14,-16.18);
+\draw (62,-14.64) node [above] {$1$};
+\end{tikzpicture}
+\end{center}
+
+$\Rightarrow w \in L(A), \hat{\delta}(q_{00},011011) = q_0$
+
+\end{beispiel}
+
+Lösung der Aufgaben
+
+1a:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (8.6,-18.6) circle (3);
+\draw (8.6,-18.6) node {$q0$};
+\draw [black] (22.7,-18.6) circle (3);
+\draw (22.7,-18.6) node {$q1$};
+\draw [black] (38.2,-18.6) circle (3);
+\draw (38.2,-18.6) node {$q2$};
+\draw [black] (53.4,-18.6) circle (3);
+\draw (53.4,-18.6) node {$q3$};
+\draw [black] (68.6,-18.6) circle (3);
+\draw (68.6,-18.6) node {$q4$};
+\draw [black] (68.6,-18.6) circle (2.4);
+\draw [black] (2.9,-18.6) -- (5.6,-18.6);
+\fill [black] (5.6,-18.6) -- (4.8,-18.1) -- (4.8,-19.1);
+\draw [black] (67.67,-15.76) arc (225.8699:-62.1301:2.25);
+\draw (70.14,-11.26) node [above] {$a,b$};
+\fill [black] (70.29,-16.13) -- (71.2,-15.91) -- (70.49,-15.21);
+\draw [black] (56.4,-18.6) -- (65.6,-18.6);
+\fill [black] (65.6,-18.6) -- (64.8,-18.1) -- (64.8,-19.1);
+\draw (61,-19.1) node [below] {$a$};
+\draw [black] (40.881,-17.266) arc (110.36794:69.63206:14.133);
+\fill [black] (50.72,-17.27) -- (50.14,-16.52) -- (49.8,-17.46);
+\draw (45.8,-15.88) node [above] {$a$};
+\draw [black] (50.688,-19.871) arc (-70.70699:-109.29301:14.794);
+\fill [black] (40.91,-19.87) -- (41.5,-20.61) -- (41.83,-19.66);
+\draw (45.8,-21.2) node [below] {$b$};
+\draw [black] (25.398,-17.3) arc (109.92753:70.07247:14.822);
+\fill [black] (35.5,-17.3) -- (34.92,-16.56) -- (34.58,-17.5);
+\draw (30.45,-15.91) node [above] {$b$};
+\draw [black] (11.168,-17.065) arc (113.28858:66.71142:11.338);
+\fill [black] (20.13,-17.07) -- (19.6,-16.29) -- (19.2,-17.21);
+\draw (15.65,-15.64) node [above] {$a$};
+\draw [black] (35.738,-20.311) arc (-58.81659:-121.18341:23.828);
+\fill [black] (11.06,-20.31) -- (11.49,-21.15) -- (12.01,-20.3);
+\draw (23.4,-24.25) node [below] {$b$};
+\end{tikzpicture}
+\end{center}
+
+1b:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (19.6,-18.7) circle (3);
+\draw (19.6,-18.7) node {$q0$};
+\draw [black] (19.6,-18.7) circle (2.4);
+\draw [black] (36.1,-18.7) circle (3);
+\draw (36.1,-18.7) node {$q1$};
+\draw [black] (51.9,-18.7) circle (3);
+\draw (51.9,-18.7) node {$q2$};
+\draw [black] (13.6,-18.7) -- (16.6,-18.7);
+\fill [black] (16.6,-18.7) -- (15.8,-18.2) -- (15.8,-19.2);
+\draw [black] (22.514,-17.993) arc (100.6628:79.3372:28.839);
+\fill [black] (33.19,-17.99) -- (32.49,-17.35) -- (32.31,-18.34);
+\draw (27.85,-16.99) node [above] {$1$};
+\draw [black] (34.777,-16.02) arc (234:-54:2.25);
+\draw (36.1,-11.45) node [above] {$0$};
+\fill [black] (37.42,-16.02) -- (38.3,-15.67) -- (37.49,-15.08);
+\draw [black] (38.984,-17.882) arc (102.20585:77.79415:23.723);
+\fill [black] (49.02,-17.88) -- (48.34,-17.22) -- (48.13,-18.2);
+\draw (44,-16.85) node [above] {$1$};
+\draw [black] (50.577,-16.02) arc (234:-54:2.25);
+\draw (51.9,-11.45) node [above] {$0$};
+\fill [black] (53.22,-16.02) -- (54.1,-15.67) -- (53.29,-15.08);
+\draw [black] (18.277,-16.02) arc (234:-54:2.25);
+\draw (19.6,-11.45) node [above] {$0$};
+\fill [black] (20.92,-16.02) -- (21.8,-15.67) -- (20.99,-15.08);
+\draw [black] (49.264,-20.129) arc (-64.29762:-115.70238:31.159);
+\fill [black] (22.24,-20.13) -- (22.74,-20.93) -- (23.17,-20.03);
+\draw (35.75,-23.71) node [below] {$1$};
+\end{tikzpicture}
+\end{center}
+
+
 
 \end{document}
