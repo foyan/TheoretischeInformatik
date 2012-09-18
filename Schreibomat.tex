@@ -1069,6 +1069,415 @@ Lösung der Aufgaben
 \end{tikzpicture}
 \end{center}
 
+\section{Nichtdeterministische erstaunliche Endliche Automaten (NEA)}
 
+Idee: Ein NEA kann sich nach dem Lesen eines Wortes in mehreren Zuständen befinden.
+
+Vorteil: Sie sind einfacher zu entwerfen.
+
+\begin{beispiel}
+Akzeptiere alle Wörter, die mit 01 enden.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.3,-18.2) circle (3);
+\draw (12.3,-18.2) node {$q0$};
+\draw [black] (23.7,-18.2) circle (3);
+\draw (23.7,-18.2) node {$q1$};
+\draw [black] (35.3,-18.2) circle (3);
+\draw (35.3,-18.2) node {$q2$};
+\draw [black] (35.3,-18.2) circle (2.4);
+\draw [black] (10.977,-15.52) arc (234:-54:2.25);
+\draw (12.3,-10.95) node [above] {$0,1$};
+\fill [black] (13.62,-15.52) -- (14.5,-15.17) -- (13.69,-14.58);
+\draw [black] (6.3,-18.2) -- (9.3,-18.2);
+\fill [black] (9.3,-18.2) -- (8.5,-17.7) -- (8.5,-18.7);
+\draw [black] (15.3,-18.2) -- (20.7,-18.2);
+\fill [black] (20.7,-18.2) -- (19.9,-17.7) -- (19.9,-18.7);
+\draw (18,-18.7) node [below] {$0$};
+\draw [black] (26.7,-18.2) -- (32.3,-18.2);
+\fill [black] (32.3,-18.2) -- (31.5,-17.7) -- (31.5,-18.7);
+\draw (29.5,-18.7) node [below] {$1$};
+\end{tikzpicture}
+\end{center}
+
+Transitionstabelle:
+
+\begin{tabular}{r|cc}
+			&	0	&	1	\\
+\hline
+$\mapsto q_0$	&	$\{q_0,q_1\}$ & $\{q_0\}$		\\
+$q_1$		&	$\emptyset$ & $\{q_2\}$	\\
+$*q_2$		&	$\emptyset$ & $\emptyset$
+\end{tabular}
+
+Mögliche Berenchungen auf dem Wort 00101:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (7,-14.7) circle (3);
+\draw (7,-14.7) node {$q0$};
+\draw [black] (18.8,-14.7) circle (3);
+\draw (18.8,-14.7) node {$q1$};
+\draw [black] (18.8,-28) circle (3);
+\draw (18.8,-28) node {$q1$};
+\draw [black] (30.8,-14.7) circle (3);
+\draw (30.8,-14.7) node {$q0$};
+\draw [black] (30.8,-28) circle (3);
+\draw (30.8,-28) node {$q1$};
+\draw [black] (43,-15.1) circle (3);
+\draw (43,-15.1) node {$q0$};
+\draw [black] (41.5,-36.3) circle (3);
+\draw (41.5,-36.3) node {$q2$};
+\draw [black] (54.4,-15.1) circle (3);
+\draw (54.4,-15.1) node {$q0$};
+\draw [black] (65.4,-15) circle (3);
+\draw (65.4,-15) node {$q0$};
+\draw [black] (54.4,-28) circle (3);
+\draw (54.4,-28) node {$q1$};
+\draw [black] (65.4,-38.4) circle (3);
+\draw (65.4,-38.4) node {$q2$};
+\draw [black] (65.4,-38.4) circle (2.4);
+\draw [black] (10,-14.7) -- (15.8,-14.7);
+\fill [black] (15.8,-14.7) -- (15,-14.2) -- (15,-15.2);
+\draw (12.9,-15.2) node [below] {$0$};
+\draw [black] (8.99,-16.94) -- (16.81,-25.76);
+\fill [black] (16.81,-25.76) -- (16.65,-24.83) -- (15.9,-25.49);
+\draw (12.36,-22.8) node [left] {$0$};
+\draw [black] (21.8,-14.7) -- (27.8,-14.7);
+\fill [black] (27.8,-14.7) -- (27,-14.2) -- (27,-15.2);
+\draw (24.8,-15.2) node [below] {$0$};
+\draw [black] (20.81,-16.93) -- (28.79,-25.77);
+\fill [black] (28.79,-25.77) -- (28.63,-24.84) -- (27.88,-25.51);
+\draw (24.26,-22.81) node [left] {$0$};
+\draw [black] (33.8,-14.8) -- (40,-15);
+\fill [black] (40,-15) -- (39.22,-14.48) -- (39.19,-15.48);
+\draw (36.88,-15.43) node [below] {$1$};
+\draw [black] (33.17,-29.84) -- (39.13,-34.46);
+\fill [black] (39.13,-34.46) -- (38.8,-33.58) -- (38.19,-34.37);
+\draw (35.14,-32.65) node [below] {$1$};
+\draw [black] (46,-15.1) -- (51.4,-15.1);
+\fill [black] (51.4,-15.1) -- (50.6,-14.6) -- (50.6,-15.6);
+\draw (48.7,-15.6) node [below] {$0$};
+\draw [black] (57.4,-15.07) -- (62.4,-15.03);
+\fill [black] (62.4,-15.03) -- (61.6,-14.53) -- (61.6,-15.53);
+\draw (59.9,-15.56) node [below] {$1$};
+\draw [black] (44.99,-17.35) -- (52.41,-25.75);
+\fill [black] (52.41,-25.75) -- (52.26,-24.82) -- (51.51,-25.48);
+\draw (48.16,-23) node [left] {$0$};
+\draw [black] (56.58,-30.06) -- (63.22,-36.34);
+\fill [black] (63.22,-36.34) -- (62.98,-35.43) -- (62.3,-36.15);
+\draw (58.88,-33.68) node [below] {$1$};
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{definition}[NEA]
+Ein NEA $A$ wird beschrieben durch $A = (Q,\Sigma, \delta, q_0, F)$, wobei
+\[
+\delta: Q \times \Sigma \mapsto 2^Q = \mathcal{P}(Q)
+\]
+Die Transitionsfunktion definiert für jeden Zustand und jedes Eingabesymbol eine Menge von Folgezuständen.
+\end{definition}
+
+\begin{definition}[Erweiterte NEA-Transitionsfunktion]
+Sei $w \in \Sigma^*, q \in Q$. Dann definieren wir
+\[
+\hat{\delta}: Q \times \Sigma^* \mapsto 2^Q
+\]
+rekursiv wie folgt:
+
+\begin{itemize}
+\item $\hat\delta(q, \epsilon) = \{ q \}$
+\item Sei $w = xa$ und $\hat\delta(q, x) = \{p_1, \dots p_k\}$ für $k \in \mathbb{N}$, dann ist
+\[
+\hat\delta(q, w) = \bigcup\limits_{i=1}^k \delta(p_i, a)
+\]
+\end{itemize}
+\end{definition}
+
+\begin{beispiel}
+\begin{eqnarray*}
+\hat\delta(q_0, \epsilon) &=& \{q_0 \} \textrm{ (Grundregel)} \\
+\hat\delta(q_0, 0) = \delta(q_0, 0) &=& \{q_0, q_1 \} \\
+\hat\delta(q_0, 00) = \delta(q_0, 0) \cup \delta(q_1, 0) = \{q_0, q_1\} \cup \emptyset &=& \{q_0, q_1\} \\
+\hat\delta(q_0, 001) = \delta(q_0, 1) \cup \delta(q_1, 1) = \{q_0\} \cup \{q_2\} &=& \{q_0, q_2\} \\
+\hat\delta(q_0, 0010) = \delta(q_0, 0) \cup \delta(q_0, 1) \cup \delta(q_1, 1) = \{q_1\} \cup \{q_2\} &=& \{q_0, q_2\} \textrm{ falsch} \\
+\hat\delta(q_0, 00101) = \delta(q_0, 0) \cup \delta(q_0, 1) \cup \delta(q_1, 1) = \{q_1\} \cup \{q_2\} &=& \{q_0, q_2\} \textrm{ falsch}
+\end{eqnarray*}
+\end{beispiel}
+
+\begin{definition}
+Sei $A = (Q, \Sigma, \delta, q_0, F)$ ein NEA. Die von $A$ akzeptierte Sprache $L(A)$ ist $L(A) = \{ w\in \Sigma^* | \hat\delta(q_0, w) \cap F \neq \emptyset\}$, also die Menge aller Wörter, mit denen vom Startzustand aus ein Endzustand erreichbar ist.
+\end{definition}
+
+Fragen/Probleme:
+\begin{enumerate}
+\item Wie kann man möglichst effizient entscheiden, ob ein gegebenes Wort in der Sprache eines gegebenen NEA enthalten ist?
+\item Sind NEAs mächtiger als DEAs?
+\end{enumerate}
+
+Antwort: DEAs und NEAs sind äquivalent.
+
+Ziel: Automatische Umwandlung von NEAs in DEAs.
+
+\begin{bemerkung}[Teilmengenkonstruktion (Potenzmengenkonstruktion)]
+Idee: Zustände des DEA sind Mengen erreichbarer Zustände des NEA.
+
+Formal: Sei $N = (Q_N, \Sigma, \delta_N, q_0, F_N)$ ein NEA. Konstruiere einen äquivalenten DEA $D = (Q_D, \Sigma, \delta_D, \{q_0\}, F_D)$ mit
+\begin{itemize}
+\item $Q_D = 2^{Q_N}$
+\item $F = \{S \subseteq Q_D | S\cap F \neq \emptyset \}$
+\item $\delta_D(S, a) = \bigcup\limits_{p \in S} \delta_N(p, a)$ für $S \in Q_D, a \in \Sigma$
+\end{itemize}
+\end{bemerkung}
+
+\begin{beispiel}[von vorher]
+Konstruktion des äquivalenten DEAs als Übergangstabelle.
+
+\begin{tabular}{rl|ll}
+&& 0 & 1\\
+\hline
+A&$\emptyset$ & $\emptyset = A$ & $\emptyset = A$   \\
+B&$\mapsto\{q_0\}$ & $\{q_0, q_1\} = E$ & $\{q_0\} = B$ \\
+C&$\{q_1\}$ & $\{\} = A$ & $\{q_2\} = D$ \\
+D&$*\{q_2\}$ & $\{\}$ & $\{\}$ \\
+E&$\{q_0, q_1\}$ & $\{q_0, q_1\}$ & $\{q_0, q_2\}$ \\
+F&$*\{q_0, q_2\}$ & $\{q_0,q_1\}$ & $\{q_0\}$ \\
+G&$*\{q_1, q_2\}$ & $\{\}$ & $\{q_2\}$ \\
+H&$*\{q_1, q_2, q_3\}$ & $\{q_0, q_1\}$ & $\{q_0,q_2\}$ \\
+\end{tabular}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (11.6,-12.4) circle (3);
+\draw (11.6,-12.4) node {$A$};
+\draw [black] (27.1,-12.4) circle (3);
+\draw (27.1,-12.4) node {$G$};
+\draw [black] (27.1,-12.4) circle (2.4);
+\draw [black] (41.2,-12.4) circle (3);
+\draw (41.2,-12.4) node {$B$};
+\draw [black] (58.3,-12.4) circle (3);
+\draw (58.3,-12.4) node {$E$};
+\draw [black] (11.6,-28.9) circle (3);
+\draw (11.6,-28.9) node {$C$};
+\draw [black] (27.1,-28.9) circle (3);
+\draw (27.1,-28.9) node {$D$};
+\draw [black] (27.1,-28.9) circle (2.4);
+\draw [black] (58.3,-28.9) circle (3);
+\draw (58.3,-28.9) node {$F$};
+\draw [black] (58.3,-28.9) circle (2.4);
+\draw [black] (58.3,-43.7) circle (3);
+\draw (58.3,-43.7) node {$H$};
+\draw [black] (58.3,-43.7) circle (2.4);
+\draw [black] (41.2,-5.5) -- (41.2,-9.4);
+\fill [black] (41.2,-9.4) -- (41.7,-8.6) -- (40.7,-8.6);
+\draw [black] (10.277,-9.72) arc (234:-54:2.25);
+\draw (11.6,-5.15) node [above] {$0,1$};
+\fill [black] (12.92,-9.72) -- (13.8,-9.37) -- (12.99,-8.78);
+\draw [black] (42.525,-9.722) arc (181.40536:-106.59464:2.25);
+\draw (47.13,-6.89) node [right] {$1$};
+\fill [black] (44.13,-11.82) -- (44.94,-12.3) -- (44.92,-11.3);
+\draw [black] (44.2,-12.4) -- (55.3,-12.4);
+\fill [black] (55.3,-12.4) -- (54.5,-11.9) -- (54.5,-12.9);
+\draw (49.75,-12.9) node [below] {$0$};
+\draw [black] (14.6,-28.9) -- (24.1,-28.9);
+\fill [black] (24.1,-28.9) -- (23.3,-28.4) -- (23.3,-29.4);
+\draw (19.35,-29.4) node [below] {$1$};
+\draw [black] (11.6,-25.9) -- (11.6,-15.4);
+\fill [black] (11.6,-15.4) -- (11.1,-16.2) -- (12.1,-16.2);
+\draw (12.1,-20.65) node [right] {$0$};
+\draw [black] (25.05,-26.71) -- (13.65,-14.59);
+\fill [black] (13.65,-14.59) -- (13.84,-15.51) -- (14.57,-14.83);
+\draw (19.88,-19.18) node [right] {$0$};
+\draw [black] (59.028,-9.502) arc (193.63546:-94.36454:2.25);
+\draw (63.68,-6.77) node [above] {$0$};
+\fill [black] (61.04,-11.21) -- (61.94,-11.51) -- (61.7,-10.54);
+\draw [black] (60.096,-14.793) arc (29.63396:-29.63396:11.845);
+\fill [black] (60.1,-26.51) -- (60.93,-26.06) -- (60.06,-25.56);
+\draw (62.15,-20.65) node [right] {$1$};
+\draw [black] (56.521,-26.494) arc (-150.7208:-209.2792:11.949);
+\fill [black] (56.52,-14.81) -- (55.69,-15.26) -- (56.57,-15.75);
+\draw (54.49,-20.65) node [left] {$0$};
+\draw [black] (56.14,-26.82) -- (43.36,-14.48);
+\fill [black] (43.36,-14.48) -- (43.59,-15.4) -- (44.28,-14.68);
+\draw (50.77,-20.17) node [above] {$1$};
+\draw [black] (24.1,-12.4) -- (14.6,-12.4);
+\fill [black] (14.6,-12.4) -- (15.4,-12.9) -- (15.4,-11.9);
+\draw (19.35,-11.9) node [above] {$0$};
+\draw [black] (27.1,-15.4) -- (27.1,-25.9);
+\fill [black] (27.1,-25.9) -- (27.6,-25.1) -- (26.6,-25.1);
+\draw (26.6,-20.65) node [left] {$1$};
+\draw [black] (60.973,-13.753) arc (58.05062:-58.05062:16.849);
+\fill [black] (60.97,-13.75) -- (61.39,-14.6) -- (61.92,-13.75);
+\draw (69.41,-28.05) node [right] {$0$};
+\draw [black] (58.3,-40.7) -- (58.3,-31.9);
+\fill [black] (58.3,-31.9) -- (57.8,-32.7) -- (58.8,-32.7);
+\draw (58.8,-36.3) node [right] {$1$};
+\end{tikzpicture}
+\end{center}
+
+Der linke Teil ist nicht erreichbar:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (41.2,-12.4) circle (3);
+\draw (41.2,-12.4) node {$B$};
+\draw [black] (58.3,-12.4) circle (3);
+\draw (58.3,-12.4) node {$E$};
+\draw [black] (58.3,-28.9) circle (3);
+\draw (58.3,-28.9) node {$F$};
+\draw [black] (58.3,-28.9) circle (2.4);
+\draw [black] (58.3,-43.7) circle (3);
+\draw (58.3,-43.7) node {$H$};
+\draw [black] (58.3,-43.7) circle (2.4);
+\draw [black] (41.2,-5.5) -- (41.2,-9.4);
+\fill [black] (41.2,-9.4) -- (41.7,-8.6) -- (40.7,-8.6);
+\draw [black] (42.525,-9.722) arc (181.40536:-106.59464:2.25);
+\draw (47.13,-6.89) node [right] {$1$};
+\fill [black] (44.13,-11.82) -- (44.94,-12.3) -- (44.92,-11.3);
+\draw [black] (44.2,-12.4) -- (55.3,-12.4);
+\fill [black] (55.3,-12.4) -- (54.5,-11.9) -- (54.5,-12.9);
+\draw (49.75,-12.9) node [below] {$0$};
+\draw [black] (59.028,-9.502) arc (193.63546:-94.36454:2.25);
+\draw (63.68,-6.77) node [above] {$0$};
+\fill [black] (61.04,-11.21) -- (61.94,-11.51) -- (61.7,-10.54);
+\draw [black] (60.096,-14.793) arc (29.63396:-29.63396:11.845);
+\fill [black] (60.1,-26.51) -- (60.93,-26.06) -- (60.06,-25.56);
+\draw (62.15,-20.65) node [right] {$1$};
+\draw [black] (56.521,-26.494) arc (-150.7208:-209.2792:11.949);
+\fill [black] (56.52,-14.81) -- (55.69,-15.26) -- (56.57,-15.75);
+\draw (54.49,-20.65) node [left] {$0$};
+\draw [black] (56.14,-26.82) -- (43.36,-14.48);
+\fill [black] (43.36,-14.48) -- (43.59,-15.4) -- (44.28,-14.68);
+\draw (50.77,-20.17) node [above] {$1$};
+\draw [black] (60.973,-13.753) arc (58.05062:-58.05062:16.849);
+\fill [black] (60.97,-13.75) -- (61.39,-14.6) -- (61.92,-13.75);
+\draw (69.41,-28.05) node [right] {$0$};
+\draw [black] (58.3,-40.7) -- (58.3,-31.9);
+\fill [black] (58.3,-31.9) -- (57.8,-32.7) -- (58.8,-32.7);
+\draw (58.8,-36.3) node [right] {$1$};
+\end{tikzpicture}
+\end{center}
+
+$H$ ist ebenfalls nicht erreichbar:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (41.2,-12.4) circle (3);
+\draw (41.2,-12.4) node {$B$};
+\draw [black] (58.3,-12.4) circle (3);
+\draw (58.3,-12.4) node {$E$};
+\draw [black] (58.3,-28.9) circle (3);
+\draw (58.3,-28.9) node {$F$};
+\draw [black] (58.3,-28.9) circle (2.4);
+\draw [black] (41.2,-5.5) -- (41.2,-9.4);
+\fill [black] (41.2,-9.4) -- (41.7,-8.6) -- (40.7,-8.6);
+\draw [black] (42.525,-9.722) arc (181.40536:-106.59464:2.25);
+\draw (47.13,-6.89) node [right] {$1$};
+\fill [black] (44.13,-11.82) -- (44.94,-12.3) -- (44.92,-11.3);
+\draw [black] (44.2,-12.4) -- (55.3,-12.4);
+\fill [black] (55.3,-12.4) -- (54.5,-11.9) -- (54.5,-12.9);
+\draw (49.75,-12.9) node [below] {$0$};
+\draw [black] (59.028,-9.502) arc (193.63546:-94.36454:2.25);
+\draw (63.68,-6.77) node [above] {$0$};
+\fill [black] (61.04,-11.21) -- (61.94,-11.51) -- (61.7,-10.54);
+\draw [black] (60.096,-14.793) arc (29.63396:-29.63396:11.845);
+\fill [black] (60.1,-26.51) -- (60.93,-26.06) -- (60.06,-25.56);
+\draw (62.15,-20.65) node [right] {$1$};
+\draw [black] (56.521,-26.494) arc (-150.7208:-209.2792:11.949);
+\fill [black] (56.52,-14.81) -- (55.69,-15.26) -- (56.57,-15.75);
+\draw (54.49,-20.65) node [left] {$0$};
+\draw [black] (56.14,-26.82) -- (43.36,-14.48);
+\fill [black] (43.36,-14.48) -- (43.59,-15.4) -- (44.28,-14.68);
+\draw (50.77,-20.17) node [above] {$1$};
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{beispiel}[Ein ungünstiger Fall für die Teilmengenkonstruktion]
+
+\begin{eqnarray*}
+L_n &=& \{w \in \{0,1\}^* | \textrm{ Das $n$-t-letzte Zeichen von $w$ ist eine 1} \} \\
+&=& \{w \in \{0,1\}^* | w = x1y \textrm{ mit } x \in \{0,1\}^*, y \in \{0,1\}^{n-1} \} \\
+\end{eqnarray*}
+
+NEA für $L_n$ mit $n+1$ Zuständen:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (8.4,-16.9) circle (3);
+\draw (8.4,-16.9) node {$q0$};
+\draw [black] (20.2,-16.9) circle (3);
+\draw (20.2,-16.9) node {$q1$};
+\draw [black] (31.7,-16.9) circle (3);
+\draw (31.7,-16.9) node {$q2$};
+\draw [black] (43.1,-16.9) circle (3);
+\draw (43.1,-16.9) node {$...$};
+\draw [black] (55.2,-16.9) circle (3);
+\draw (55.2,-16.9) node {$q(n-1)$};
+\draw [black] (67.2,-16.9) circle (3);
+\draw (67.2,-16.9) node {$qn$};
+\draw [black] (2.3,-16.9) -- (5.4,-16.9);
+\fill [black] (5.4,-16.9) -- (4.6,-16.4) -- (4.6,-17.4);
+\draw [black] (7.077,-14.22) arc (234:-54:2.25);
+\draw (8.4,-9.65) node [above] {$0,1$};
+\fill [black] (9.72,-14.22) -- (10.6,-13.87) -- (9.79,-13.28);
+\draw [black] (11.4,-16.9) -- (17.2,-16.9);
+\fill [black] (17.2,-16.9) -- (16.4,-16.4) -- (16.4,-17.4);
+\draw (14.3,-17.4) node [below] {$1$};
+\draw [black] (23.2,-16.9) -- (28.7,-16.9);
+\fill [black] (28.7,-16.9) -- (27.9,-16.4) -- (27.9,-17.4);
+\draw (25.95,-17.4) node [below] {$0,1$};
+\draw [black] (34.7,-16.9) -- (40.1,-16.9);
+\fill [black] (40.1,-16.9) -- (39.3,-16.4) -- (39.3,-17.4);
+\draw (37.4,-17.4) node [below] {$0,1$};
+\draw [black] (46.1,-16.9) -- (52.2,-16.9);
+\fill [black] (52.2,-16.9) -- (51.4,-16.4) -- (51.4,-17.4);
+\draw (49.15,-17.4) node [below] {$0,1$};
+\draw [black] (58.2,-16.9) -- (64.2,-16.9);
+\fill [black] (64.2,-16.9) -- (63.4,-16.4) -- (63.4,-17.4);
+\draw (61.2,-17.4) node [below] {$0,1$};
+\end{tikzpicture}
+\end{center}
+
+Aber jeder DEA für $L_n$ braucht mindestens $2^n$ Zustände, weil der DEA sich an die letzten $n$ gelesenen Symbole erinnern muss, da er nicht weiss, wann das Wortende kommt. D.h. $2^n$ verschiedene Teilworte mpssen unterscheiden werden. D.h. $2^n$ Zustände nötig.
+
+Beispiel mit $n = 2$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (10.1,-10) circle (3);
+\draw (10.1,-10) node {$q0$};
+\draw [black] (29.9,-10) circle (3);
+\draw (29.9,-10) node {$q1$};
+\draw [black] (47.9,-10) circle (3);
+\draw (47.9,-10) node {$q2$};
+\draw [black] (47.9,-10) circle (2.4);
+\draw [black] (3.7,-10) -- (7.1,-10);
+\fill [black] (7.1,-10) -- (6.3,-9.5) -- (6.3,-10.5);
+\draw [black] (13.1,-10) -- (26.9,-10);
+\fill [black] (26.9,-10) -- (26.1,-9.5) -- (26.1,-10.5);
+\draw (20,-10.5) node [below] {$1$};
+\draw [black] (32.9,-10) -- (44.9,-10);
+\fill [black] (44.9,-10) -- (44.1,-9.5) -- (44.1,-10.5);
+\draw (38.9,-10.5) node [below] {$0,1$};
+\draw [black] (11.423,-12.68) arc (54:-234:2.25);
+\draw (10.1,-17.25) node [below] {$0,1$};
+\fill [black] (8.78,-12.68) -- (7.9,-13.03) -- (8.71,-13.62);
+\end{tikzpicture}
+\end{center}
+
+
+\end{beispiel}
 
 \end{document}
