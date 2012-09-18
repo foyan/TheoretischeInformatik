@@ -658,5 +658,77 @@ $(0,1), (1,2), \dots, (k,k+1)$
 
 Aufgaben: 3.7, 3.8, 3.11, 3.17, 3.18, 3.19
 
+\section{Endliche Automaten}
+
+Unterscheidung:
+\begin{description}
+\item[Deterministisch] Automat kann zu einem Zeitpunkt nur einen Zustand annehmen.
+\item[Nichtdeterministisch] Automat kann gleichzeitig mehrere Zustände besitzen.
+\end{description}
+
+\begin{beispiel}
+DEA zum Erkennen des Musters aba:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.3,-25.4) circle (3);
+\draw (15.3,-25.4) node {$q0$};
+\draw [black] (32.3,-25.4) circle (3);
+\draw (32.3,-25.4) node {$q1$};
+\draw [black] (50,-25.4) circle (3);
+\draw (50,-25.4) node {$q2$};
+\draw [black] (67.4,-25.4) circle (3);
+\draw (67.4,-25.4) node {$q3$};
+\draw [black] (67.4,-25.4) circle (2.4);
+\draw [black] (5.9,-25.4) -- (12.3,-25.4);
+\fill [black] (12.3,-25.4) -- (11.5,-24.9) -- (11.5,-25.9);
+\draw [black] (18.3,-25.4) -- (29.3,-25.4);
+\fill [black] (29.3,-25.4) -- (28.5,-24.9) -- (28.5,-25.9);
+\draw (23.8,-25.9) node [below] {$a$};
+\draw [black] (35.3,-25.4) -- (47,-25.4);
+\fill [black] (47,-25.4) -- (46.2,-24.9) -- (46.2,-25.9);
+\draw (41.15,-25.9) node [below] {$b$};
+\draw [black] (53,-25.4) -- (64.4,-25.4);
+\fill [black] (64.4,-25.4) -- (63.6,-24.9) -- (63.6,-25.9);
+\draw (58.7,-25.9) node [below] {$a$};
+\draw [black] (15.214,-22.413) arc (209.37644:-78.62356:2.25);
+\draw (19.09,-18.76) node [above] {$b$};
+\fill [black] (17.62,-23.52) -- (18.56,-23.56) -- (18.07,-22.69);
+\draw [black] (31.478,-22.527) arc (223.69515:-64.30485:2.25);
+\draw (33.97,-18.17) node [above] {$a$};
+\fill [black] (34.08,-23) -- (35,-22.81) -- (34.31,-22.09);
+\draw [black] (47.892,-27.531) arc (-48.4339:-131.5661:22.972);
+\fill [black] (17.41,-27.53) -- (17.68,-28.44) -- (18.34,-27.69);
+\draw (32.65,-33.82) node [below] {$b$};
+\draw [black] (69.756,-23.562) arc (155.68937:-132.31063:2.25);
+\draw (74.75,-23.7) node [right] {$a,b$};
+\fill [black] (70.29,-26.15) -- (70.82,-26.94) -- (71.23,-26.03);
+\end{tikzpicture}
+\end{center}
+
+Zustände speichern das bereits gelesene Teilmuster:
+
+\begin{itemize}
+\item $q_0$: noch nichts vom Teilwort aba gelesen.
+\item $q_1$: zumindest schon das Wort a gelesen.
+\item $q_2$: schon ab gelesen.
+\item $q_3$: das ganze Muster gelesen, es kann also akzeptiert werden.
+\end{itemize}
+\end{beispiel}
+
+Transitionen (Zustandsübergänge£) beschreiben die Änderung beim Lesen eines Zeichens des Wortes.
+
+\begin{definition}[Formale Definition (nochmal)]
+Ein DEA $A$ wird beschrieben durch $A = (Q, \Sigma, \delta, q_0, F)$, wobei:
+\begin{itemize}
+\item $Q$ ist eine endliche Menge von Zuständen,
+\item $\Sigma$ ist das Alphabet für die Eingabe,
+\item $q_0$ ist der Startzustand, $q_0 \in Q$,
+\item $F$ ist die Menge der akzeptierenden Zustände (Endzustände), $F \subseteq Q$,
+\item $\delta: Q \times \Sigma \mapsto Q$ ist die Übergangsfunktion (Transitionsfunktion), die für jeden Zustand und jedes Eingabesymbol einen eindeutigen Folgezustand definiert.
+
+\end{itemize}
+\end{definition}
 
 \end{document}
