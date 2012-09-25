@@ -58,6 +58,7 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{amssymb}
 
 \theoremstyle{definition}
 \newtheorem*{beispiel}{Beispiel}
@@ -1477,6 +1478,655 @@ Beispiel mit $n = 2$:
 \end{tikzpicture}
 \end{center}
 
+
+\end{beispiel}
+
+\begin{beispiel}[Lösung der Knobelaufgabe]
+Wir machen uns zunutze:
+\[
+2^k \mod 3 = \begin{cases}
+1 \textrm{ falls $k$ gerade}\\
+1 \textrm{ falls $k$ gerade}
+\end{cases}
+\]
+Wir haben Zustände $q_{ij}$. $i$ ist der Exponent der nächsten 2er-Potenz modulo 2, $j$ ist die Teilsumme.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.3,-12.3) circle (3);
+\draw (12.3,-12.3) node {$q00$};
+\draw [black] (33.4,-12.3) circle (3);
+\draw (33.4,-12.3) node {$q01$};
+\draw [black] (54.9,-41.5) circle (3);
+\draw (54.9,-41.5) node {$q02$};
+\draw [black] (12.3,-29.4) circle (3);
+\draw (12.3,-29.4) node {$q10$};
+\draw [black] (33.4,-29.4) circle (3);
+\draw (33.4,-29.4) node {$q11$};
+\draw [black] (54.9,-29.4) circle (3);
+\draw (54.9,-29.4) node {$q12$};
+\draw [black] (11.088,-26.66) arc (-160.96425:-199.03575:17.812);
+\fill [black] (11.09,-26.66) -- (11.3,-25.74) -- (10.35,-26.07);
+\draw (9.61,-20.85) node [left] {$0$};
+\draw [black] (32.144,-26.68) arc (-160.21504:-199.78496:17.222);
+\fill [black] (32.14,-26.68) -- (32.34,-25.76) -- (31.4,-26.1);
+\draw (30.63,-20.85) node [left] {$0$};
+\draw [black] (13.463,-15.062) arc (18.20228:-18.20228:18.53);
+\fill [black] (13.46,-15.06) -- (13.24,-15.98) -- (14.19,-15.67);
+\draw (14.89,-20.85) node [right] {$0$};
+\draw [black] (34.746,-14.976) arc (21.36604:-21.36604:16.122);
+\fill [black] (34.75,-14.98) -- (34.57,-15.9) -- (35.5,-15.54);
+\draw (36.35,-20.85) node [right] {$0$};
+\draw [black] (56.874,-31.634) arc (30.15203:-30.15203:7.598);
+\fill [black] (56.87,-31.63) -- (56.84,-32.58) -- (57.71,-32.07);
+\draw (58.4,-35.45) node [right] {$0$};
+\draw [black] (53.12,-39.106) arc (-153.76161:-206.23839:8.269);
+\fill [black] (53.12,-39.11) -- (53.21,-38.17) -- (52.32,-38.61);
+\draw (51.77,-35.45) node [left] {$0$};
+\draw [black] (14.974,-13.66) arc (61.55554:40.40001:57.995);
+\fill [black] (31.52,-27.07) -- (31.38,-26.13) -- (30.62,-26.78);
+\draw (24.87,-19.1) node [above] {$1$};
+\draw [black] (30.826,-27.86) arc (-121.90133:-136.14312:85.589);
+\fill [black] (14.34,-14.5) -- (14.53,-15.42) -- (15.26,-14.73);
+\draw (21.16,-22.19) node [below] {$1$};
+\draw [black] (36.041,-13.722) arc (60.45451:42.5516:69.301);
+\fill [black] (52.92,-27.15) -- (52.75,-26.22) -- (52.01,-26.9);
+\draw (46.01,-19.28) node [above] {$1$};
+\draw [black] (52.205,-28.083) arc (-117.55558:-139.43831:56.935);
+\fill [black] (52.2,-28.08) -- (51.73,-27.27) -- (51.26,-28.16);
+\draw (42.1,-22.66) node [below] {$1$};
+\draw [black] (15.266,-29.851) arc (80.83065:67.45627:164.59);
+\fill [black] (52.14,-40.32) -- (51.59,-39.56) -- (51.21,-40.48);
+\draw (34.81,-33.46) node [above] {$1$};
+\draw [black] (51.916,-41.192) arc (-96.61786:-115.09522:119.515);
+\fill [black] (15,-30.71) -- (15.51,-31.5) -- (15.94,-30.59);
+\draw (32.23,-38) node [below] {$1$};
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\section{NEAs mit $\varepsilon$-Übergängen}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (25.6,-25) circle (3);
+\draw (25.6,-25) node {$q$};
+\draw [black] (43.3,-25) circle (3);
+\draw (43.3,-25) node {$p$};
+\draw [black] (28.6,-25) -- (40.3,-25);
+\fill [black] (40.3,-25) -- (39.5,-24.5) -- (39.5,-25.5);
+\draw (34.45,-25.5) node [below] {$\varepsilon$};
+\end{tikzpicture}
+\end{center}
+
+
+\begin{beispiel}
+Suche nach mehreren Mustern. $L = \{w \in \{ a,b \}^* | \textrm{ enthält eines der Teilwörter aba, abb, bab } \}$ Der NEA $N$ mit $L(N) = L$ mit $\varepsilon$-Übergängen sieht aus:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (9.4,-24.3) circle (3);
+\draw (9.4,-24.3) node {$q0$};
+\draw [black] (21.3,-9.8) circle (3);
+\draw (21.3,-9.8) node {$a$};
+\draw [black] (33.2,-9.8) circle (3);
+\draw (33.2,-9.8) node {$b$};
+\draw [black] (44.9,-9.8) circle (3);
+\draw (44.9,-9.8) node {$c$};
+\draw [black] (57,-9.8) circle (3);
+\draw (57,-9.8) node {$d$};
+\draw [black] (57,-9.8) circle (2.4);
+\draw [black] (21.3,-24.3) circle (3);
+\draw (21.3,-24.3) node {$e$};
+\draw [black] (33.2,-24.3) circle (3);
+\draw (33.2,-24.3) node {$f$};
+\draw [black] (44.9,-24.3) circle (3);
+\draw (44.9,-24.3) node {$g$};
+\draw [black] (57,-24.3) circle (3);
+\draw (57,-24.3) node {$h$};
+\draw [black] (57,-24.3) circle (2.4);
+\draw [black] (21.3,-37.4) circle (3);
+\draw (21.3,-37.4) node {$i$};
+\draw [black] (33.2,-37.4) circle (3);
+\draw (33.2,-37.4) node {$j$};
+\draw [black] (44.9,-37.4) circle (3);
+\draw (44.9,-37.4) node {$k$};
+\draw [black] (57,-37.4) circle (3);
+\draw (57,-37.4) node {$l$};
+\draw [black] (57,-37.4) circle (2.4);
+\draw [black] (4.9,-27.5) -- (6.96,-26.04);
+\fill [black] (6.96,-26.04) -- (6.01,-26.09) -- (6.59,-26.91);
+\draw [black] (6.692,-23.036) arc (272.71751:-15.28249:2.25);
+\draw (3.48,-18.54) node [above] {$a,b$};
+\fill [black] (8.76,-21.38) -- (9.22,-20.56) -- (8.22,-20.61);
+\draw [black] (55.677,-7.12) arc (234:-54:2.25);
+\draw (57,-2.55) node [above] {$a,b$};
+\fill [black] (58.32,-7.12) -- (59.2,-6.77) -- (58.39,-6.18);
+\draw [black] (11.3,-21.98) -- (19.4,-12.12);
+\fill [black] (19.4,-12.12) -- (18.5,-12.42) -- (19.28,-13.05);
+\draw (15.91,-18.48) node [right] {$\varepsilon$};
+\draw [black] (24.3,-9.8) -- (30.2,-9.8);
+\fill [black] (30.2,-9.8) -- (29.4,-9.3) -- (29.4,-10.3);
+\draw (27.25,-10.3) node [below] {$a$};
+\draw [black] (36.2,-9.8) -- (41.9,-9.8);
+\fill [black] (41.9,-9.8) -- (41.1,-9.3) -- (41.1,-10.3);
+\draw (39.05,-10.3) node [below] {$b$};
+\draw [black] (47.9,-9.8) -- (54,-9.8);
+\fill [black] (54,-9.8) -- (53.2,-9.3) -- (53.2,-10.3);
+\draw (50.95,-10.3) node [below] {$a$};
+\draw [black] (12.4,-24.3) -- (18.3,-24.3);
+\fill [black] (18.3,-24.3) -- (17.5,-23.8) -- (17.5,-24.8);
+\draw (15.35,-24.8) node [below] {$\varepsilon$};
+\draw [black] (24.3,-24.3) -- (30.2,-24.3);
+\fill [black] (30.2,-24.3) -- (29.4,-23.8) -- (29.4,-24.8);
+\draw (27.25,-24.8) node [below] {$a$};
+\draw [black] (36.2,-24.3) -- (41.9,-24.3);
+\fill [black] (41.9,-24.3) -- (41.1,-23.8) -- (41.1,-24.8);
+\draw (39.05,-24.8) node [below] {$b$};
+\draw [black] (47.9,-24.3) -- (54,-24.3);
+\fill [black] (54,-24.3) -- (53.2,-23.8) -- (53.2,-24.8);
+\draw (50.95,-24.8) node [below] {$b$};
+\draw [black] (11.42,-26.52) -- (19.28,-35.18);
+\fill [black] (19.28,-35.18) -- (19.12,-34.25) -- (18.37,-34.92);
+\draw (14.81,-32.31) node [left] {$\varepsilon$};
+\draw [black] (24.3,-37.4) -- (30.2,-37.4);
+\fill [black] (30.2,-37.4) -- (29.4,-36.9) -- (29.4,-37.9);
+\draw (27.25,-37.9) node [below] {$b$};
+\draw [black] (36.2,-37.4) -- (41.9,-37.4);
+\fill [black] (41.9,-37.4) -- (41.1,-36.9) -- (41.1,-37.9);
+\draw (39.05,-37.9) node [below] {$a$};
+\draw [black] (47.9,-37.4) -- (54,-37.4);
+\fill [black] (54,-37.4) -- (53.2,-36.9) -- (53.2,-37.9);
+\draw (50.95,-37.9) node [below] {$b$};
+\draw [black] (55.677,-21.62) arc (234:-54:2.25);
+\draw (57,-17.05) node [above] {$a,b$};
+\fill [black] (58.32,-21.62) -- (59.2,-21.27) -- (58.39,-20.68);
+\draw [black] (55.677,-34.72) arc (234:-54:2.25);
+\draw (57,-30.15) node [above] {$a,b$};
+\fill [black] (58.32,-34.72) -- (59.2,-34.37) -- (58.39,-33.78);
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{beispiel}
+Ein $\varepsilon$-NEA, der Dezimalzahlen akzeptiert, die sich zusammensetzen aus:
+\begin{itemize}
+\item optionales $+$ oder $-$
+\item Zeichenreihe von Ziffern
+\item Dezimalpunkt
+\item Zeichenreihe von Ziffern
+\end{itemize}
+Eine der beiden Zeichenreihen von Ziffern darf leer sein.
+
+Der Automat $E$ sieht dann so aus:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (10.1,-15.1) circle (3);
+\draw (10.1,-15.1) node {$q_0$};
+\draw [black] (25.6,-15.1) circle (3);
+\draw (25.6,-15.1) node {$q_1$};
+\draw [black] (41.5,-15.1) circle (3);
+\draw (41.5,-15.1) node {$q_2$};
+\draw [black] (59.5,-15.1) circle (3);
+\draw (59.5,-15.1) node {$q_3$};
+\draw [black] (74.2,-15.1) circle (3);
+\draw (74.2,-15.1) node {$q_5$};
+\draw [black] (74.2,-15.1) circle (2.4);
+\draw [black] (41.5,-27.1) circle (3);
+\draw (41.5,-27.1) node {$q_4$};
+\draw [black] (4.1,-15.1) -- (7.1,-15.1);
+\fill [black] (7.1,-15.1) -- (6.3,-14.6) -- (6.3,-15.6);
+\draw [black] (13.1,-15.1) -- (22.6,-15.1);
+\fill [black] (22.6,-15.1) -- (21.8,-14.6) -- (21.8,-15.6);
+\draw (17.85,-15.6) node [below] {$\varepsilon,\mbox{ }+,\mbox{ }-$};
+\draw [black] (24.277,-12.42) arc (234:-54:2.25);
+\draw (25.6,-7.85) node [above] {$0,1,...9$};
+\fill [black] (26.92,-12.42) -- (27.8,-12.07) -- (26.99,-11.48);
+\draw [black] (28.6,-15.1) -- (38.5,-15.1);
+\fill [black] (38.5,-15.1) -- (37.7,-14.6) -- (37.7,-15.6);
+\draw (33.55,-15.6) node [below] {$.$};
+\draw [black] (44.5,-15.1) -- (56.5,-15.1);
+\fill [black] (56.5,-15.1) -- (55.7,-14.6) -- (55.7,-15.6);
+\draw (50.5,-15.6) node [below] {$0,1,...,9$};
+\draw [black] (62.5,-15.1) -- (71.2,-15.1);
+\fill [black] (71.2,-15.1) -- (70.4,-14.6) -- (70.4,-15.6);
+\draw (66.85,-15.6) node [below] {$\varepsilon$};
+\draw [black] (27.99,-16.91) -- (39.11,-25.29);
+\fill [black] (39.11,-25.29) -- (38.77,-24.41) -- (38.17,-25.21);
+\draw (30.05,-21.6) node [below] {$0,1,...,9$};
+\draw [black] (44,-25.44) -- (57,-16.76);
+\fill [black] (57,-16.76) -- (56.06,-16.79) -- (56.62,-17.62);
+\draw (51.25,-21.6) node [below] {$.$};
+\draw [black] (58.177,-12.42) arc (234:-54:2.25);
+\draw (59.5,-7.85) node [above] {$0,1,...,9$};
+\fill [black] (60.82,-12.42) -- (61.7,-12.07) -- (60.89,-11.48);
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{definition}[NEA mit $\varepsilon$-Übergängen]
+Ein NEA mit $\varepsilon$-Übergängen $A$ wird beschrieben durch $A = (Q, \Sigma, \delta, q_0, F)$, wobei $Q, \Sigma, q_0, F$ wie beim DEA definiert sind, und
+\[
+\delta: Q \times (\Sigma \cup \{\varepsilon\}) \mapsto 2^Q
+\]
+die Transitionsfunktion ist.
+\end{definition}
+\begin{bemerkung}
+Annahme: $\varepsilon \notin \Sigma$
+\end{bemerkung}
+
+\begin{beispiel}[von vorher]
+\[
+E = (\{q_0, q_1, \dots, q_5\}, \{., +, -, 0, 1, \dots, 9 \}, \delta, q_0, \{q_5\})
+\]
+
+Übergangstabelle:
+
+\begin{tabular}{r|c|c|c|c|}
+& $\varepsilon$ & $+,-$ & . & $0,1,\dots,9$ \\\hline
+$q_0$ & $\{q_1\}$& $\{q_1\}$& $\varnothing$& $\varnothing$ \\
+$q_1$ & $\varnothing$& $\varnothing$& $\{q_2\}$& $\{q_1,q_4\}$ \\
+$q_2$ &  $\varnothing$& $\varnothing$& $\varnothing$& $\{q_3\}$ \\
+$q_3$ &  $\varnothing$& $\varnothing$& $\{q_3\}$& $\varnothing$ \\
+$q_4$ & $\varnothing$& $\varnothing$& $\varnothing$ & $\varnothing$\\
+$q_5$ & $\varnothing$& $\varnothing$& $\varnothing$ & $\varnothing$\\
+\end{tabular}
+\end{beispiel}
+
+\section{$\varepsilon$-Hüllen}
+
+Ziel: Zeigen, dass es zu jedem $\varepsilon$-NEA einen äquivalenten DEA gibt.
+
+Idee: Finde für jeden Zustand die Menge aller Zustände, die von dort aus nur mit $\varepsilon$-Übergängen erreichbar sind.
+
+\begin{definition}[Rekursive Definition]
+Die $\varepsilon$-Hülle eines Zustands $q\in Q$ wird bezeichnet mit $\varepsilon$-Hülle$(q)$ und ist definiert durch: \begin{itemize}
+\item $q \in \varepsilon$-Hülle$(q)$
+\item Falls $p \in \varepsilon$-Hülle$(q)$, dann auch jeder Zustand $r$, so dass $r \in \delta(p, \varepsilon)$
+\end{itemize}
+\end{definition}
+
+\begin{beispiel}[Von vorher]
+\begin{eqnarray*}
+\varepsilon\textrm{-Hülle}(q_0) &=& \{q_0, q_1\} \\
+\varepsilon\textrm{-Hülle}(q_1) &=& \{q_1\} \\
+\varepsilon\textrm{-Hülle}(q_2) &=& \{q_2\} \\
+\varepsilon\textrm{-Hülle}(q_3) &=& \{q_3, q_5\} \\
+\varepsilon\textrm{-Hülle}(q_4) &=& \{q_4\} \\
+\varepsilon\textrm{-Hülle}(q_5) &=& \{q_5\} \\
+\end{eqnarray*}
+\end{beispiel}
+
+\begin{beispiel}[Noch eines]. Noch eines:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13,-21.7) circle (3);
+\draw (13,-21.7) node {$q1$};
+\draw [black] (25.4,-13.9) circle (3);
+\draw (25.4,-13.9) node {$q2$};
+\draw [black] (40.5,-13.9) circle (3);
+\draw (40.5,-13.9) node {$q3$};
+\draw [black] (55.9,-13.9) circle (3);
+\draw (55.9,-13.9) node {$q6$};
+\draw [black] (55.9,-13.9) circle (2.4);
+\draw [black] (25.4,-30) circle (3);
+\draw (25.4,-30) node {$q4$};
+\draw [black] (40.5,-30) circle (3);
+\draw (40.5,-30) node {$q5$};
+\draw [black] (55.9,-30) circle (3);
+\draw (55.9,-30) node {$q7$};
+\draw [black] (7.7,-21.7) -- (10,-21.7);
+\fill [black] (10,-21.7) -- (9.2,-21.2) -- (9.2,-22.2);
+\draw [black] (15.54,-20.1) -- (22.86,-15.5);
+\fill [black] (22.86,-15.5) -- (21.92,-15.5) -- (22.45,-16.35);
+\draw (20.12,-18.3) node [below] {$\epsilon$};
+\draw [black] (15.49,-23.37) -- (22.91,-28.33);
+\fill [black] (22.91,-28.33) -- (22.52,-27.47) -- (21.96,-28.3);
+\draw (18.28,-26.35) node [below] {$\epsilon$};
+\draw [black] (28.4,-13.9) -- (37.5,-13.9);
+\fill [black] (37.5,-13.9) -- (36.7,-13.4) -- (36.7,-14.4);
+\draw (32.95,-14.4) node [below] {$\epsilon$};
+\draw [black] (43.5,-13.9) -- (52.9,-13.9);
+\fill [black] (52.9,-13.9) -- (52.1,-13.4) -- (52.1,-14.4);
+\draw (48.2,-14.4) node [below] {$\epsilon$};
+\draw [black] (43.5,-30) -- (52.9,-30);
+\fill [black] (52.9,-30) -- (52.1,-29.5) -- (52.1,-30.5);
+\draw (48.2,-30.5) node [below] {$\epsilon$};
+\draw [black] (42.57,-27.83) -- (53.83,-16.07);
+\fill [black] (53.83,-16.07) -- (52.91,-16.3) -- (53.63,-16.99);
+\draw (48.73,-23.42) node [right] {$b$};
+\draw [black] (28.4,-30) -- (37.5,-30);
+\fill [black] (37.5,-30) -- (36.7,-29.5) -- (36.7,-30.5);
+\draw (32.95,-30.5) node [below] {$a$};
+\end{tikzpicture}
+\end{center}
+
+Bestimme E-Hülle(q1):
+\begin{enumerate}
+\item $q_1 \in \varepsilon-Hulle(q_1)$
+\item Finde alle Zustände aus $\delta(q_1, \varepsilon) = \{q_2, q_4\} \Rightarrow \{q_2, q_4\} \subseteq \varepsilon-Hulle$
+\end{enumerate}
+
+\end{beispiel}
+
+\begin{definition}[$\varepsilon$-Hülle einer Menge $S$ von Zuständen]
+\[
+\varepsilon\textrm{-Hülle}(S) = \bigcup\limits_{q\in S} \varepsilon\textrm{-Hülle}(q)
+\]
+\end{definition}
+
+\section{Erweiterung der Übergangsfunktion auf Wörter}
+
+Finde alle Pfade im Graphen, die mit dem Wort $w$ beschriftet sind (mit beliebig vielen $\varepsilon$ dazwischen).
+
+\begin{definition}[Rekursive Definition]
+Nun denn:
+\begin{itemize}
+\item $\hat\delta(q, \varepsilon) = \varepsilon$-Hülle$(q)$
+\item $\hat\delta(q, xa)$ wird für $x \in \Sigma^*$  und $a \in \Sigma$ definiert durch:
+\begin{enumerate}
+\item Sei $\hat\delta(a,x) = \{ p_1, \dots, p_k \}$
+\item Sei $\bigcup\limits_{i=1}^k \delta(p_i, a) = \{r_1, \dots, r_m \}$
+\item Dann gilt $\hat\delta(q, xa) = \varepsilon$-Hülle$(\{r_1, \dots, r_m\}) = \bigcup\limits_{i=1}^m \varepsilon$-Hülle$(r_i)$
+\end{enumerate}
+\end{itemize}
+\end{definition}
+
+\begin{beispiel}[$\hat\delta(q_0, \textrm{5,6})$] hmm...
+\begin{enumerate}
+\item $\hat\delta(q_0, \epsilon) = \varepsilon$-Hülle$(q_0) = \{q_0, q_1 \}$
+\item $\hat\delta(q_0, 5)$: $\delta(q_0, 5) \cup \delta(q_1, 5) = \varnothing \cup \{q_1, q_4\}$
+
+$\hat\delta(q_0, 5) = \varepsilon$-Hülle$(q_1) \cup \varepsilon$-Hülle$(q_4) = \{q_1, q_4\}$
+
+\item $\hat\delta(q_0, \textrm{5.})$: $\delta(q_1, \textrm{.}) \cup \delta(q_4, \textrm{.}) = \{q_2\} \cup \{q_3\}  = \{q_2, q_3\}$
+
+$\hat\delta(q_0, \textrm{5.}) = \varepsilon$-Hülle$(q_2) \cup \varepsilon$-Hülle$(q_3) = \{q_2, q_3, q_5\}$
+
+\item $\hat\delta(q_0, \textrm{5.6})$: $\delta(q_2, \textrm{6}) \cup \delta(q_3, \textrm{6}) \cup \delta(q_5, 6) = \{q_2\} \cup \{q_3\}  = \{q_2, q_3\}$
+
+$\hat\delta(q_0, \textrm{5.}) = \varepsilon$-Hülle$(q_2) \cup \varepsilon$-Hülle$(q_3) = \{q_2, q_3, q_5\}$
+...
+\end{enumerate}
+\end{beispiel}
+
+\begin{definition}
+Für einen $\varepsilon$-NEA $E = (Q, \Sigma, \delta, q_0, F)$ ist $L(E) = \{w | \hat\delta(q_0, w) \cap F \neq \varnothing\}$.
+\end{definition}
+
+\section{Umwandlung von $\varepsilon$-NEAs in DEAs}
+
+Schritt 1: $\varepsilon$-Übergänge eliminieren
+
+Sei $E = (Q_E, \Sigma, \delta_E, q_0, F_E)$ ein $\varepsilon$-NEA. Konstruiere einen äquivalenten DEA $D = (Q_D, \Sigma,
+\delta_D, q_{0,D}, F_D)$.
+\begin{itemize}
+\item $Q_0 = 2^{Q_E}$. Alle erreichbaren Zustände sind $\varepsilon$-abgeschlossene Teilmengen, das heisst Mengen
+$S \subseteq Q_E$, so dass $S = \varepsilon$-Hülle$(S)$. D.h. jeder $\varepsilon$-Übergang von einem Zustand $q \in S$ führt
+zu einem Zustand, der auch in $S$ liegt.
+\item $q_{0,D} = \varepsilon$-Hülle$(q_0)$
+\item $F_D = \{ S \in Q_D | S \cap F_E \neq \varnothing \}$
+\item $\delta_D(S, a)$ wird für alle $S \in Q_D$ und $a \in \Sigma$ wie folgt berechnet:
+\begin{enumerate}
+\item Sei $S = \{ p_1, \dots, p_k\}$
+\item Berechne $\bigcup\limits_{i=1}^k \delta(p_i, a) = \{r_1, \dots, r_m \}$
+\item Dann ist $\delta_D(S, a) = \bigcup\limits_{j=1}^n \varepsilon$-Hüllen$(r_j)$
+\end{enumerate}
+\end{itemize}
+
+\begin{beispiel}[Von vorher]
+Äquivalenter DEA $D$: Startzustand ist $\varepsilon$-Hülle$(q_0) = \{q_0, q_1\}$
+
+Finde die Folgezustände von $\{q_0, q_1\}$ für alle Symbole des Alphabets:
+\begin{description}
+\item[$+, -$] Kein Übergang von $q_1$ aus, aber von $q_0$ nach $q_1$. Daraus folgt $\varepsilon$-Hülle$(q_1) = \{q_1\}$.
+\item[$.$] Kein Übergang von $q_0$, aber von $q_0$ nach $q_2$. Daraus folgt $\varepsilon$-Hülle$(q_2) = \{q_2\}$.
+\item[$0,1,\dots,9$] Kein Übergang von $q_0$, aber von $q_1$ nach $q_1$ oder $q_4$. Daraus folgt $\varepsilon$-Hülle$(q_1,q_4)
+= \{q_1, q_4\}$
+\end{description}
+
+Transitionstabelle (siehe Excel => transferieren)!
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (7.9,-20.2) circle (3);
+\draw (7.9,-20.2) node {$q0,q1$};
+\draw [black] (25.5,-20.2) circle (3);
+\draw (25.5,-20.2) node {$q1$};
+\draw [black] (42,-20.2) circle (3);
+\draw (42,-20.2) node {$q1,q4$};
+\draw [black] (61.2,-20.2) circle (3);
+\draw (61.2,-20.2) node {$q2,q3,q5$};
+\draw [black] (61.2,-20.2) circle (2.4);
+\draw [black] (40.5,-34.9) circle (3);
+\draw (40.5,-34.9) node {${}$};
+\draw [black] (61.2,-43.3) circle (3);
+\draw (61.2,-43.3) node {$q3,q5$};
+\draw [black] (61.2,-43.3) circle (2.4);
+\draw [black] (22.3,-41.9) circle (3);
+\draw (22.3,-41.9) node {$q2$};
+\draw [black] (10.9,-20.2) -- (22.5,-20.2);
+\fill [black] (22.5,-20.2) -- (21.7,-19.7) -- (21.7,-20.7);
+\draw (16.7,-20.7) node [below] {$+,-$};
+\draw [black] (9.896,-17.964) arc (134.26232:45.73768:21.569);
+\fill [black] (40,-17.96) -- (39.78,-17.05) -- (39.08,-17.76);
+\draw (24.95,-11.34) node [above] {$0,1,...9$};
+\draw [black] (28.5,-20.2) -- (39,-20.2);
+\fill [black] (39,-20.2) -- (38.2,-19.7) -- (38.2,-20.7);
+\draw (33.75,-20.7) node [below] {$0,1,...9$};
+\draw [black] (45,-20.2) -- (58.2,-20.2);
+\fill [black] (58.2,-20.2) -- (57.4,-19.7) -- (57.4,-20.7);
+\draw (51.6,-20.7) node [below] {$.$};
+\draw [black] (41.797,-17.219) arc (211.61986:-76.38014:2.25);
+\draw (47.7,-13.41) node [above] {$0,1,...9$};
+\fill [black] (44.24,-18.23) -- (45.19,-18.23) -- (44.66,-17.38);
+\draw [black] (58.75,-21.94) -- (42.95,-33.16);
+\fill [black] (42.95,-33.16) -- (43.89,-33.11) -- (43.31,-32.29);
+\draw (48.7,-27.05) node [above] {$+,-,.$};
+\draw [black] (61.2,-23.2) -- (61.2,-40.3);
+\fill [black] (61.2,-40.3) -- (61.7,-39.5) -- (60.7,-39.5);
+\draw (60.7,-31.75) node [left] {$0,1,...9$};
+\draw [black] (58.42,-42.17) -- (43.28,-36.03);
+\fill [black] (43.28,-36.03) -- (43.83,-36.79) -- (44.21,-35.87);
+\draw (52.91,-38.56) node [above] {$+,-,.$};
+\draw [black] (41.07,-37.833) arc (38.73124:-249.26876:2.25);
+\draw (34.71,-42.22) node [below] {$+,-,.,0,1,...9$};
+\fill [black] (38.52,-37.14) -- (37.58,-37.25) -- (38.21,-38.03);
+\draw [black] (58.595,-44.785) arc (-62.79869:-121.32365:34.599);
+\fill [black] (58.59,-44.79) -- (57.65,-44.71) -- (58.11,-45.6);
+\draw (41.44,-49.21) node [below] {$0,1,....9$};
+\draw [black] (25.1,-40.82) -- (37.7,-35.98);
+\fill [black] (37.7,-35.98) -- (36.77,-35.8) -- (37.13,-36.73);
+\draw (29.37,-37.85) node [above] {$+,-,.$};
+\draw [black] (25.06,-23.17) -- (22.74,-38.93);
+\fill [black] (22.74,-38.93) -- (23.35,-38.21) -- (22.36,-38.07);
+\draw (23.21,-30.87) node [left] {$.$};
+\draw [black] (9.56,-22.7) -- (20.64,-39.4);
+\fill [black] (20.64,-39.4) -- (20.62,-38.46) -- (19.78,-39.01);
+\draw (14.49,-32.38) node [left] {$.$};
+\draw [black] (1.6,-20.2) -- (4.9,-20.2);
+\fill [black] (4.9,-20.2) -- (4.1,-19.7) -- (4.1,-20.7);
+\draw [black] (41.7,-23.18) -- (40.8,-31.92);
+\fill [black] (40.8,-31.92) -- (41.38,-31.17) -- (40.39,-31.07);
+\draw (40.61,-27.46) node [left] {$+,-$};
+\draw [black] (27.64,-22.3) -- (38.36,-32.8);
+\fill [black] (38.36,-32.8) -- (38.14,-31.88) -- (37.44,-32.6);
+\draw (31.33,-28.03) node [below] {$+,-$};
+\end{tikzpicture}
+\end{center}
+
+
+\end{beispiel}
+
+\begin{bemerkung}[Konvention]
+Die da wären:
+\begin{itemize}
+\item Der Zustand $\varnothing$ wird Senkezustand (Abfallzustand) genannt und darf weggelassen werden.
+\item Darstellung eines DEA mit fehlenden Transitionen sind immer so zu verstehen, dass die fehlenden Transitionen in einen solchen Senkezustand führen:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (7.9,-20.2) circle (3);
+\draw (7.9,-20.2) node {$q0,q1$};
+\draw [black] (25.5,-20.2) circle (3);
+\draw (25.5,-20.2) node {$q1$};
+\draw [black] (42,-20.2) circle (3);
+\draw (42,-20.2) node {$q1,q4$};
+\draw [black] (61.2,-20.2) circle (3);
+\draw (61.2,-20.2) node {$q2,q3,q5$};
+\draw [black] (61.2,-20.2) circle (2.4);
+\draw [black] (61.2,-43.3) circle (3);
+\draw (61.2,-43.3) node {$q3,q5$};
+\draw [black] (61.2,-43.3) circle (2.4);
+\draw [black] (22.3,-41.9) circle (3);
+\draw (22.3,-41.9) node {$q2$};
+\draw [black] (10.9,-20.2) -- (22.5,-20.2);
+\fill [black] (22.5,-20.2) -- (21.7,-19.7) -- (21.7,-20.7);
+\draw (16.7,-20.7) node [below] {$+,-$};
+\draw [black] (9.896,-17.964) arc (134.26232:45.73768:21.569);
+\fill [black] (40,-17.96) -- (39.78,-17.05) -- (39.08,-17.76);
+\draw (24.95,-11.34) node [above] {$0,1,...9$};
+\draw [black] (28.5,-20.2) -- (39,-20.2);
+\fill [black] (39,-20.2) -- (38.2,-19.7) -- (38.2,-20.7);
+\draw (33.75,-20.7) node [below] {$0,1,...9$};
+\draw [black] (45,-20.2) -- (58.2,-20.2);
+\fill [black] (58.2,-20.2) -- (57.4,-19.7) -- (57.4,-20.7);
+\draw (51.6,-20.7) node [below] {$.$};
+\draw [black] (41.797,-17.219) arc (211.61986:-76.38014:2.25);
+\draw (47.7,-13.41) node [above] {$0,1,...9$};
+\fill [black] (44.24,-18.23) -- (45.19,-18.23) -- (44.66,-17.38);
+\draw [black] (61.2,-23.2) -- (61.2,-40.3);
+\fill [black] (61.2,-40.3) -- (61.7,-39.5) -- (60.7,-39.5);
+\draw (60.7,-31.75) node [left] {$0,1,...9$};
+\draw [black] (58.595,-44.785) arc (-62.79869:-121.32365:34.599);
+\fill [black] (58.59,-44.79) -- (57.65,-44.71) -- (58.11,-45.6);
+\draw (41.44,-49.21) node [below] {$0,1,....9$};
+\draw [black] (25.06,-23.17) -- (22.74,-38.93);
+\fill [black] (22.74,-38.93) -- (23.35,-38.21) -- (22.36,-38.07);
+\draw (23.21,-30.87) node [left] {$.$};
+\draw [black] (9.56,-22.7) -- (20.64,-39.4);
+\fill [black] (20.64,-39.4) -- (20.62,-38.46) -- (19.78,-39.01);
+\draw (14.49,-32.38) node [left] {$.$};
+\draw [black] (1.6,-20.2) -- (4.9,-20.2);
+\fill [black] (4.9,-20.2) -- (4.1,-19.7) -- (4.1,-20.7);
+\end{tikzpicture}
+\end{center}
+\end{itemize}
+\end{bemerkung}
+
+Zusammenfassung: DEAs und $\varepsilon$-NEAs sind äquivalent.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.3,-23.3) circle (3);
+\draw (12.3,-23.3) node {$\epsilon-NEA$};
+\draw [black] (41,-19.2) circle (3);
+\draw (41,-19.2) node {$NEA$};
+\draw [black] (36,-38.2) circle (3);
+\draw (36,-38.2) node {$DEA$};
+\draw [black] (36.409,-35.228) arc (170.92969:159.58319:69.248);
+\fill [black] (39.89,-21.99) -- (39.15,-22.56) -- (40.08,-22.91);
+\draw [black] (40.653,-22.18) arc (-8.09337:-21.39375:59.182);
+\fill [black] (37.16,-35.44) -- (37.92,-34.87) -- (36.99,-34.51);
+\draw (40.06,-29.41) node [right] {$Potenzmengenkonstruktion$};
+\draw [black] (33.256,-36.988) arc (-114.82059:-129.4939:86.368);
+\fill [black] (33.26,-36.99) -- (32.74,-36.2) -- (32.32,-37.11);
+\draw (12.24,-32.22) node [below] {$\epsilon-Uebergaenge\mbox{ }eliminieren$};
+\draw [black] (14.992,-24.625) arc (63.08039:52.60511:120.648);
+\fill [black] (14.99,-24.62) -- (15.48,-25.43) -- (15.93,-24.54);
+\end{tikzpicture}
+\end{center}
+
+\section{Reguläre Ausdrücke}
+
+Besonders geeignet für die Mustersuche, anderer Formalismus zur Beschreibung von regulären Sprachen.
+
+\section{Operatoren für reguläre Ausdrücken}
+
+\begin{itemize}
+\item Die Vereinigung von Sprachen $L$ und $M$, $L \cup M$, ist die Menge aller Zeichenreihen, die entweder in $L$ oder in $M$ oder in beiden enthalten sind.
+\item Die Verkettung (Konkatenation) von $L$ und $M$, $L\cdot M$ oder $LM$, ist die Menge aller Zeichenreihe, gebildet aus einer Verkettung einer Zeichenreihe aus $L$ umit einer beliebigen aus $M$.
+
+Formal: \[
+LM = \{w \in \Sigma^* | w = uv \textrm{ mit } u \in L \textrm{ und } v \in M \}
+\]
+
+\item Die Kleensche Hülle (Stern) von $L$, $L^*$, ist die Menge aller Zeichenreihen, die durch die Verkettung einer beliebigen Anzahl von Zeichenreihen aus $L$ gebildet wird.
+
+Formal:
+\begin{eqnarray*}
+L^0 &=& \{\varepsilon\} \\
+L^1 &=& L \\
+L^n &=& L\cdot L^{n-1} \\
+L^* &=& \bigcup\limits_{i=0}^\infty L^i
+\end{eqnarray*}
+
+Anschaulich: $w \in L^*$, wenn sich $w$ zerlegen lässt in endlich viele Wörter $w = w_1w_2\dots w_k$ für ein $k \in \mathbb{N}$, so dass $w_1\in L_1, w_2 \in L_2 \dots w_i L_i$ gilt.
+
+Spezialfälle:
+\begin{itemize}
+\item $\varnothing^* = \{\varepsilon\}$, da $\varnothing^0 = \{\varepsilon\}$
+\item $\{\varepsilon\}^* = \{\varepsilon\}$
+\end{itemize}
+Aber: $\varnothing^i = \varnothing$ für $i > 1$.
+
+\end{itemize}
+
+\begin{definition}[Reguläre Ausdrücke]
+Reguläre Ausdrücke lassen sich wie folgt definieren:
+\begin{enumerate}
+\item $\varepsilon$ und $\varnothing$ sind reguläre Ausdrücke.
+\item Jedes Symbol $a \in \Sigma$ ist ein regulärer Ausdruck.
+\item Wenn $\alpha$ und $\beta$ reguläre Ausdrücke sind, dann sind:
+\begin{itemize}
+\item $(\alpha\cdot\beta)$ (Konkatenation)
+\item $(\alpha+\beta)$ (Vereinigung)
+\end{itemize}
+reguläre Ausdrücke.
+\item Wenn $\alpha$ ein regulärer Ausdruck ist, dan ist auch $(\alpha)^*$ ein regulärer Ausdruck. (Kleenscher Stern)
+\end{enumerate}
+
+\end{definition}
+
+\begin{bemerkung}[Konvention] Man tut:
+\begin{itemize}
+\item Überflüssige Klammern weglassen
+\item Stern bindet stärker als Verkettung
+\item Verkettung bindet stärker als Vereinigung
+\end{itemize}
+\end{bemerkung}
+
+\section{Bedeutung regulärer Ausdrücke}
+
+$L(\alpha)$ bezeichnet die durch den regulären Ausdruck beschriebene Sprache. Dabei gilt: \begin{itemize}
+\item $L(\varepsilon) = \{\varepsilon\}$
+\item $L(\varnothing) = \varnothing$
+\item $L(a) = \{a \}$
+\item $L(\alpha\cdot\beta) = L(\alpha)\cdot L(\beta)$
+\item $L(\alpha + \beta) = L(\alpha) \cup L(\beta)$
+\item $L(\alpha^*) = (L(\alpha))^*$
+\end{itemize}
+
+\begin{beispiel}[Beschreibung von Sprachen durch reguläre Ausdrücke]
+Nun:
+\begin{enumerate}
+\item $L_1 = \{ w \in \{0,1\}^* | w$ beginnt mit 011 und enthält das Teilwort 00 $\}$.
+RA für $L_1$: $011\cdot(0+1)^*\cdot 00 \cdot (0+1)^*$
+
+\item $L_2 = \{ w \in \{a,b,c\}^* | |w|_a$ ist gerade $\}$.
+
+RA für $L_2$: $\left( (b+c)^* a (b+c)^* a (b+c)^* \right)^*$
+\end{enumerate}
 
 \end{beispiel}
 
