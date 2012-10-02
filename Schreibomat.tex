@@ -66,6 +66,7 @@
 \newtheorem*{bemerkung}{Bemerkung}
 \newtheorem*{beweis}{Beweis}
 \newtheorem*{ubung}{Übung}
+\newtheorem{theorem}{Theorem}
 
 \title{Theoretische Informatik -- Schreibomat}
 \author{Florian}
@@ -1899,21 +1900,21 @@ Transitionstabelle (siehe Excel => transferieren)!
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
 \draw [black] (7.9,-20.2) circle (3);
-\draw (7.9,-20.2) node {$q0,q1$};
+\draw (7.9,-20.2) node {$q_0,q_1$};
 \draw [black] (25.5,-20.2) circle (3);
-\draw (25.5,-20.2) node {$q1$};
+\draw (25.5,-20.2) node {$q_1$};
 \draw [black] (42,-20.2) circle (3);
-\draw (42,-20.2) node {$q1,q4$};
+\draw (42,-20.2) node {$q_1,q_4$};
 \draw [black] (61.2,-20.2) circle (3);
-\draw (61.2,-20.2) node {$q2,q3,q5$};
+\draw (61.2,-20.2) node {$q_2,q_3,q_5$};
 \draw [black] (61.2,-20.2) circle (2.4);
 \draw [black] (40.5,-34.9) circle (3);
 \draw (40.5,-34.9) node {${}$};
 \draw [black] (61.2,-43.3) circle (3);
-\draw (61.2,-43.3) node {$q3,q5$};
+\draw (61.2,-43.3) node {$q_3,q_5$};
 \draw [black] (61.2,-43.3) circle (2.4);
 \draw [black] (22.3,-41.9) circle (3);
-\draw (22.3,-41.9) node {$q2$};
+\draw (22.3,-41.9) node {$q_2$};
 \draw [black] (10.9,-20.2) -- (22.5,-20.2);
 \fill [black] (22.5,-20.2) -- (21.7,-19.7) -- (21.7,-20.7);
 \draw (16.7,-20.7) node [below] {$+,-$};
@@ -1976,19 +1977,19 @@ Die da wären:
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
 \draw [black] (7.9,-20.2) circle (3);
-\draw (7.9,-20.2) node {$q0,q1$};
+\draw (7.9,-20.2) node {$q_0,q_1$};
 \draw [black] (25.5,-20.2) circle (3);
-\draw (25.5,-20.2) node {$q1$};
+\draw (25.5,-20.2) node {$q_1$};
 \draw [black] (42,-20.2) circle (3);
-\draw (42,-20.2) node {$q1,q4$};
+\draw (42,-20.2) node {$q_1,q_4$};
 \draw [black] (61.2,-20.2) circle (3);
-\draw (61.2,-20.2) node {$q2,q3,q5$};
+\draw (61.2,-20.2) node {$q_2,q_3,q_5$};
 \draw [black] (61.2,-20.2) circle (2.4);
 \draw [black] (61.2,-43.3) circle (3);
-\draw (61.2,-43.3) node {$q3,q5$};
+\draw (61.2,-43.3) node {$q_3,q_5$};
 \draw [black] (61.2,-43.3) circle (2.4);
 \draw [black] (22.3,-41.9) circle (3);
-\draw (22.3,-41.9) node {$q2$};
+\draw (22.3,-41.9) node {$q_2$};
 \draw [black] (10.9,-20.2) -- (22.5,-20.2);
 \fill [black] (22.5,-20.2) -- (21.7,-19.7) -- (21.7,-20.7);
 \draw (16.7,-20.7) node [below] {$+,-$};
@@ -2029,19 +2030,19 @@ Zusammenfassung: DEAs und $\varepsilon$-NEAs sind äquivalent.
 \begin{tikzpicture}[scale=0.2]
 \tikzstyle{every node}+=[inner sep=0pt]
 \draw [black] (12.3,-23.3) circle (3);
-\draw (12.3,-23.3) node {$\epsilon-NEA$};
+\draw (12.3,-23.3) node {$\varepsilon$-NEA};
 \draw [black] (41,-19.2) circle (3);
-\draw (41,-19.2) node {$NEA$};
+\draw (41,-19.2) node {NEA};
 \draw [black] (36,-38.2) circle (3);
-\draw (36,-38.2) node {$DEA$};
+\draw (36,-38.2) node {DEA};
 \draw [black] (36.409,-35.228) arc (170.92969:159.58319:69.248);
 \fill [black] (39.89,-21.99) -- (39.15,-22.56) -- (40.08,-22.91);
 \draw [black] (40.653,-22.18) arc (-8.09337:-21.39375:59.182);
 \fill [black] (37.16,-35.44) -- (37.92,-34.87) -- (36.99,-34.51);
-\draw (40.06,-29.41) node [right] {$Potenzmengenkonstruktion$};
+\draw (40.06,-29.41) node [right] {Potenzmengenkonstruktion};
 \draw [black] (33.256,-36.988) arc (-114.82059:-129.4939:86.368);
 \fill [black] (33.26,-36.99) -- (32.74,-36.2) -- (32.32,-37.11);
-\draw (12.24,-32.22) node [below] {$\epsilon-Uebergaenge\mbox{ }eliminieren$};
+\draw (12.24,-32.22) node [below] {$\varepsilon$-Uebergaenge eliminieren};
 \draw [black] (14.992,-24.625) arc (63.08039:52.60511:120.648);
 \fill [black] (14.99,-24.62) -- (15.48,-25.43) -- (15.93,-24.54);
 \end{tikzpicture}
@@ -2126,6 +2127,1044 @@ RA für $L_1$: $011\cdot(0+1)^*\cdot 00 \cdot (0+1)^*$
 \item $L_2 = \{ w \in \{a,b,c\}^* | |w|_a$ ist gerade $\}$.
 
 RA für $L_2$: $\left( (b+c)^* a (b+c)^* a (b+c)^* \right)^*$
+
+\item $L_3 = \{ w \in \{0,1\}^* | $ In $w$ kommen die Nullen und Einsen immer abwechselnd vor$\}$
+
+RA für $L_3$: $(01)^* + (10)^* + 1(01)^* + 0(10)^* = (\varepsilon + 1)(01)^*(\varepsilon + 0)$
+\end{enumerate}
+
+\end{beispiel}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (11.2,-21.9) circle (3);
+\draw (11.2,-21.9) node {$\varepsilon$-NEA};
+\draw [black] (33.6,-21.9) circle (3);
+\draw (33.6,-21.9) node {NEA};
+\draw [black] (11.2,-40.2) circle (3);
+\draw (11.2,-40.2) node {RA};
+\draw [black] (33.6,-40.2) circle (3);
+\draw (33.6,-40.2) node {DEA};
+\draw [black] (30.6,-40.2) -- (14.2,-40.2);
+\fill [black] (14.2,-40.2) -- (15,-40.7) -- (15,-39.7);
+\draw [black] (34.87,-24.614) arc (20.42466:-20.42466:18.442);
+\fill [black] (34.87,-37.49) -- (35.62,-36.91) -- (34.68,-36.56);
+\draw [black] (32.25,-37.525) arc (-158.15239:-201.84761:17.4);
+\fill [black] (32.25,-24.57) -- (31.49,-25.13) -- (32.42,-25.5);
+\draw [black] (13.942,-23.115) arc (64.3583:37.14651:49.183);
+\fill [black] (31.86,-37.75) -- (31.78,-36.82) -- (30.98,-37.42);
+\draw [black] (30.837,-39.034) arc (-114.74075:-143.75444:46.246);
+\fill [black] (12.89,-24.38) -- (12.96,-25.32) -- (13.77,-24.72);
+\end{tikzpicture}
+\end{center}
+
+Lösung der Aufgabe 6 (Aufgabenblatt 2):
+
+\begin{itemize}[a)]
+\item $(a+b)^*: \{a,b\}^*$.
+
+$(a^*b^*): \varepsilon \in \mathcal{L}(a^*)$ und $\varepsilon \in \mathcal{L}(b^*)$.
+$\Rightarrow a \in \mathcal{L}(a^*b^*)$ und $b \in \mathcal{L}(a^*b^*)$
+\end{itemize}
+
+\section{Anwendungsbeispiel für RA}
+
+Spezifikation einer Eingabemaske für Kontostände. Bedingungen:
+\begin{itemize}
+\item Währungseingabe: CHF, EUR, USD
+\item optionales Vorzeichen vor dem Betrag: $\oplus$, $\ominus$
+\item Betrag ganzzahlig oder mit Dezimalpunkt und zwei Nachkommastellen
+\item keine führende Nullen
+\end{itemize}
+
+$\Sigma = \{C,D,E,F,H,R,S,U,\oplus, \ominus, ., 0, 1, \dots, 9\}$
+
+Idee: Setze den RA aus Teilen zusammen:
+
+zahlung = waehrung vorzeichen betrag
+
+waehrung = $(CHF + EUR + USD)$
+
+vorzeichen = $(\varepsilon + \oplus + \ominus)$
+
+betrag = ganzzahl ($\varepsilon + .$nachkomma$)$
+
+ganzzahl  = $(0 + (1+2+\dots+9)(0 + 1 +\dots+9)^*$
+
+nachkomma = $(0,1,\dots,9)+(0,1,\dots,9)$
+
+\newcommand{\enea}{$\varepsilon$-NEA}
+
+$\Rightarrow $ zahlung =  $(CHF + EUR + USD)$ $(\varepsilon + \oplus + \ominus)$ $(0 + (1+2+\dots+9)(0 + 1 +\dots+9)^*$
+($\varepsilon + .$(0,1,\dots,9)+(0,1,\dots,9)$)$
+
+\section{Eine ganz neue Idee}
+
+\begin{theorem}
+Reguläre Ausdrücke und endliche Automaten sind äquivalent:
+\begin{enumerate}
+\item für jeden RA $\alpha$ existiert ein DEA $A_\alpha$ mit $\mathcal{L}(\alpha) = \mathcal{L}(A_\alpha)$
+\item für jeden DEA $A$ existiert ein RA $\alpha_A$ mit $\mathcal{L}(A) = \mathcal{L}(\alpha_A)$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}[Beweis für 1.] Nun.
+Umwandlung von RA in DEA. Vorgehensweise: RA $\mapsto$ \enea $\mapsto$ DEA. Für einen gegebenen RA konstruiere einen $\varepsilon$-NEA induktiv entsprechend des regulären Ausdrucks des RA mit folgenden zusätzlichen Eigenschaften:
+\begin{enumerate}
+\item genau ein akzeptierender Zustand
+\item keine Transitionen zum Startzustand
+\item keine Transitionen vom akzeptierenden Zustand wegführende Transitionen
+\end{enumerate}
+Induktionsanfang: \enea für $\varepsilon$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17.9,-16.2) circle (3);
+\draw [black] (30.2,-16.2) circle (3);
+\draw [black] (30.2,-16.2) circle (2.4);
+\draw [black] (10,-16.2) -- (14.9,-16.2);
+\fill [black] (14.9,-16.2) -- (14.1,-15.7) -- (14.1,-16.7);
+\draw [black] (20.9,-16.2) -- (27.2,-16.2);
+\fill [black] (27.2,-16.2) -- (26.4,-15.7) -- (26.4,-16.7);
+\draw (24.05,-16.7) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+\enea für $\varnothing$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17.9,-16.2) circle (3);
+\draw [black] (30.2,-16.2) circle (3);
+\draw [black] (30.2,-16.2) circle (2.4);
+\draw [black] (10,-16.2) -- (14.9,-16.2);
+\fill [black] (14.9,-16.2) -- (14.1,-15.7) -- (14.1,-16.7);
+\end{tikzpicture}
+\end{center}
+
+\enea für $a \in \Sigma$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (17.9,-16.2) circle (3);
+\draw [black] (30.2,-16.2) circle (3);
+\draw [black] (30.2,-16.2) circle (2.4);
+\draw [black] (10,-16.2) -- (14.9,-16.2);
+\fill [black] (14.9,-16.2) -- (14.1,-15.7) -- (14.1,-16.7);
+\draw [black] (20.9,-16.2) -- (27.2,-16.2);
+\fill [black] (27.2,-16.2) -- (26.4,-15.7) -- (26.4,-16.7);
+\draw (24.05,-16.7) node [below] {$a$};
+\end{tikzpicture}
+\end{center}
+
+Induktionsschritt:
+\begin{itemize}
+\item Sei $\alpha = \beta + \gamma$ ein RA, seien $B$ und $C$ \enea s für $\beta$ und $\gamma$ wie oben und mit Startzuständen $q_{B0}$ und $q_{C0}$ und akzeptierenden Zuständen $q_{BF}$ und $q_{CF}$.
+
+Konstruiere hieraus einen \enea für $\alpha$ wie folgt:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (21.8,-17.3) circle (3);
+\draw (21.8,-17.3) node {$qB0$};
+\draw [black] (53.8,-17.3) circle (3);
+\draw (53.8,-17.3) node {$qBF$};
+%\draw [black] (38.1,-17.3) circle (3);
+\draw (38.1,-17.3) node {$B$};
+\draw [black] (21.8,-34.6) circle (3);
+\draw (21.8,-34.6) node {$qC0$};
+%\draw [black] (38.1,-34.6) circle (3);
+\draw (38.1,-34.6) node {$C$};
+\draw [black] (53.8,-34.6) circle (3);
+\draw (53.8,-34.6) node {$qCF$};
+\draw [black] (8.9,-26) circle (3);
+\draw [black] (67.6,-26) circle (3);
+\draw [black] (67.6,-26) circle (2.4);
+\draw [black] (2.1,-26) -- (5.9,-26);
+\fill [black] (5.9,-26) -- (5.1,-25.5) -- (5.1,-26.5);
+\draw [black] (11.39,-24.32) -- (19.31,-18.98);
+\fill [black] (19.31,-18.98) -- (18.37,-19.01) -- (18.93,-19.84);
+\draw (16.27,-22.15) node [below] {$\epsilon$};
+\draw [black] (11.4,-27.66) -- (19.3,-32.94);
+\fill [black] (19.3,-32.94) -- (18.92,-32.08) -- (18.36,-32.91);
+\draw (14.43,-30.8) node [below] {$\epsilon$};
+\draw [black] (56.34,-18.9) -- (65.06,-24.4);
+\fill [black] (65.06,-24.4) -- (64.65,-23.55) -- (64.12,-24.4);
+\draw (59.78,-22.15) node [below] {$\epsilon$};
+\draw [black] (56.35,-33.01) -- (65.05,-27.59);
+\fill [black] (65.05,-27.59) -- (64.11,-27.59) -- (64.64,-28.43);
+\draw (61.62,-30.8) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+erfüllt alle Bedingungen.
+
+\item Seien $\alpha = \beta\cdot\gamma$ und $B,C$ \enea s für $\beta$, $\gamma$. \enea für $\alpha$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (21.8,-17.3) circle (3);
+\draw (21.8,-17.3) node {$qB0$};
+\draw [black] (36.5,-17.3) circle (3);
+\draw (36.5,-17.3) node {$qBF$};
+%\draw [black] (29.5,-17.3) circle (3);
+\draw (29.5,-17.3) node {$B$};
+\draw [black] (48.3,-17.3) circle (3);
+\draw (48.3,-17.3) node {$qC0$};
+%\draw [black] (55.3,-17.3) circle (3);
+\draw (55.3,-17.3) node {$C$};
+\draw [black] (62.9,-17.3) circle (3);
+\draw (62.9,-17.3) node {$qCF$};
+\draw [black] (62.9,-17.3) circle (2.4);
+\draw [black] (14.7,-17.3) -- (18.8,-17.3);
+\fill [black] (18.8,-17.3) -- (18,-16.8) -- (18,-17.8);
+\draw [black] (39.5,-17.3) -- (45.3,-17.3);
+\fill [black] (45.3,-17.3) -- (44.5,-16.8) -- (44.5,-17.8);
+\draw (42.4,-17.8) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+erfüllt alle Bedingungen.
+
+\item Sei $\alpha = \beta^*$, $B$ ein \enea für $\beta$. \enea für $\alpha$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (21.8,-17.3) circle (3);
+\draw (21.8,-17.3) node {$qB0$};
+\draw [black] (36.5,-17.3) circle (3);
+\draw (36.5,-17.3) node {$qBF$};
+%\draw [black] (29.5,-17.3) circle (3);
+\draw (29.5,-17.3) node {$B$};
+\draw [black] (11.1,-17.3) circle (3);
+\draw [black] (47.7,-17.3) circle (3);
+\draw [black] (47.7,-17.3) circle (2.4);
+\draw [black] (22.359,-14.374) arc (-202.51215:-337.48785:7.351);
+\fill [black] (22.36,-14.37) -- (23.13,-13.83) -- (22.2,-13.44);
+\draw (29.15,-9.34) node [above] {$\epsilon$};
+\draw [black] (14.1,-17.3) -- (18.8,-17.3);
+\fill [black] (18.8,-17.3) -- (18,-16.8) -- (18,-17.8);
+\draw (16.45,-17.8) node [below] {$\epsilon$};
+\draw [black] (4.9,-17.3) -- (8.1,-17.3);
+\fill [black] (8.1,-17.3) -- (7.3,-16.8) -- (7.3,-17.8);
+\draw [black] (39.5,-17.3) -- (44.7,-17.3);
+\fill [black] (44.7,-17.3) -- (43.9,-16.8) -- (43.9,-17.8);
+\draw (42.1,-17.8) node [below] {$\epsilon$};
+\draw [black] (45.285,-19.077) arc (-56.63145:-123.36855:28.88);
+\fill [black] (45.28,-19.08) -- (44.34,-19.1) -- (44.89,-19.93);
+\draw (29.4,-24.34) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+erfüllt alle Bedingungen.
+
+\end{itemize}
+
+\end{proof}
+
+\begin{beispiel}
+Beispiel: \enea $A$ für $\alpha = (0+1)^*1(0+1)$:
+
+\enea für $(0+1)$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.2,-22.8) circle (3);
+\draw [black] (21.6,-17.3) circle (3);
+\draw [black] (21.6,-27.6) circle (3);
+\draw [black] (35.9,-17.3) circle (3);
+\draw [black] (35.9,-27.6) circle (3);
+\draw [black] (45.5,-22.8) circle (3);
+\draw [black] (45.5,-22.8) circle (2.4);
+\draw [black] (7.1,-22.8) -- (10.2,-22.8);
+\fill [black] (10.2,-22.8) -- (9.4,-22.3) -- (9.4,-23.3);
+\draw [black] (15.71,-21.16) -- (19.09,-18.94);
+\fill [black] (19.09,-18.94) -- (18.15,-18.96) -- (18.69,-19.8);
+\draw (18.32,-20.55) node [below] {$\epsilon$};
+\draw [black] (15.8,-24.29) -- (19,-26.11);
+\fill [black] (19,-26.11) -- (18.55,-25.28) -- (18.05,-26.15);
+\draw (16.48,-25.7) node [below] {$\epsilon$};
+\draw [black] (24.6,-17.3) -- (32.9,-17.3);
+\fill [black] (32.9,-17.3) -- (32.1,-16.8) -- (32.1,-17.8);
+\draw (28.75,-17.8) node [below] {$0$};
+\draw [black] (24.6,-27.6) -- (32.9,-27.6);
+\fill [black] (32.9,-27.6) -- (32.1,-27.1) -- (32.1,-28.1);
+\draw (28.75,-28.1) node [below] {$1$};
+\draw [black] (38.5,-18.79) -- (42.9,-21.31);
+\fill [black] (42.9,-21.31) -- (42.45,-20.48) -- (41.95,-21.34);
+\draw (39.78,-20.55) node [below] {$\epsilon$};
+\draw [black] (38.58,-26.26) -- (42.82,-24.14);
+\fill [black] (42.82,-24.14) -- (41.88,-24.05) -- (42.32,-24.95);
+\draw (41.61,-25.7) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+\enea für $(0+1)^*$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.2,-22.8) circle (3);
+\draw [black] (21.6,-17.3) circle (3);
+\draw [black] (21.6,-27.6) circle (3);
+\draw [black] (35.9,-17.3) circle (3);
+\draw [black] (35.9,-27.6) circle (3);
+\draw [black] (45.5,-22.8) circle (3);
+\draw [black] (54.7,-22.8) circle (3);
+\draw [black] (54.7,-22.8) circle (2.4);
+\draw [black] (4.2,-22.8) circle (3);
+\draw [black] (15.71,-21.16) -- (19.09,-18.94);
+\fill [black] (19.09,-18.94) -- (18.15,-18.96) -- (18.69,-19.8);
+\draw (18.32,-20.55) node [below] {$\epsilon$};
+\draw [black] (15.8,-24.29) -- (19,-26.11);
+\fill [black] (19,-26.11) -- (18.55,-25.28) -- (18.05,-26.15);
+\draw (16.48,-25.7) node [below] {$\epsilon$};
+\draw [black] (24.6,-17.3) -- (32.9,-17.3);
+\fill [black] (32.9,-17.3) -- (32.1,-16.8) -- (32.1,-17.8);
+\draw (28.75,-17.8) node [below] {$0$};
+\draw [black] (24.6,-27.6) -- (32.9,-27.6);
+\fill [black] (32.9,-27.6) -- (32.1,-27.1) -- (32.1,-28.1);
+\draw (28.75,-28.1) node [below] {$1$};
+\draw [black] (38.5,-18.79) -- (42.9,-21.31);
+\fill [black] (42.9,-21.31) -- (42.45,-20.48) -- (41.95,-21.34);
+\draw (39.78,-20.55) node [below] {$\epsilon$};
+\draw [black] (38.58,-26.26) -- (42.82,-24.14);
+\fill [black] (42.82,-24.14) -- (41.88,-24.05) -- (42.32,-24.95);
+\draw (41.61,-25.7) node [below] {$\epsilon$};
+\draw [black] (48.5,-22.8) -- (51.7,-22.8);
+\fill [black] (51.7,-22.8) -- (50.9,-22.3) -- (50.9,-23.3);
+\draw (50.1,-23.3) node [below] {$\epsilon$};
+\draw [black] (7.2,-22.8) -- (10.2,-22.8);
+\fill [black] (10.2,-22.8) -- (9.4,-22.3) -- (9.4,-23.3);
+\draw (8.7,-23.3) node [below] {$\epsilon$};
+\draw [black] (4.2,-17) -- (4.2,-19.8);
+\fill [black] (4.2,-19.8) -- (4.7,-19) -- (3.7,-19);
+\draw [black] (14.057,-19.929) arc (158.15526:21.84474:16.476);
+\fill [black] (14.06,-19.93) -- (14.82,-19.37) -- (13.89,-19);
+\draw (29.35,-9.08) node [above] {$\epsilon$};
+\draw [black] (52.745,-25.074) arc (-43.37782:-136.62218:32.049);
+\fill [black] (52.74,-25.07) -- (51.83,-25.31) -- (52.56,-26);
+\draw (29.45,-35.61) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+\enea für $(0+1)^*1(0+1)$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.2,-22.8) circle (3);
+\draw [black] (21.6,-17.3) circle (3);
+\draw [black] (21.6,-27.6) circle (3);
+\draw [black] (35.9,-17.3) circle (3);
+\draw [black] (35.9,-27.6) circle (3);
+\draw [black] (45.5,-22.8) circle (3);
+\draw [black] (54.7,-22.8) circle (3);
+\draw [black] (4.2,-22.8) circle (3);
+\draw [black] (63.8,-22.8) circle (3);
+\draw [black] (72.2,-22.8) circle (3);
+\draw [black] (72.3,-44.6) circle (3);
+\draw [black] (62.6,-40.6) circle (3);
+\draw [black] (62.6,-50.1) circle (3);
+\draw [black] (51.1,-40.6) circle (3);
+\draw [black] (51.1,-50.1) circle (3);
+\draw [black] (40.6,-44.6) circle (3);
+\draw [black] (40.6,-44.6) circle (2.4);
+\draw [black] (15.71,-21.16) -- (19.09,-18.94);
+\fill [black] (19.09,-18.94) -- (18.15,-18.96) -- (18.69,-19.8);
+\draw (18.32,-20.55) node [below] {$\epsilon$};
+\draw [black] (15.8,-24.29) -- (19,-26.11);
+\fill [black] (19,-26.11) -- (18.55,-25.28) -- (18.05,-26.15);
+\draw (16.48,-25.7) node [below] {$\epsilon$};
+\draw [black] (24.6,-17.3) -- (32.9,-17.3);
+\fill [black] (32.9,-17.3) -- (32.1,-16.8) -- (32.1,-17.8);
+\draw (28.75,-17.8) node [below] {$0$};
+\draw [black] (24.6,-27.6) -- (32.9,-27.6);
+\fill [black] (32.9,-27.6) -- (32.1,-27.1) -- (32.1,-28.1);
+\draw (28.75,-28.1) node [below] {$1$};
+\draw [black] (38.5,-18.79) -- (42.9,-21.31);
+\fill [black] (42.9,-21.31) -- (42.45,-20.48) -- (41.95,-21.34);
+\draw (39.78,-20.55) node [below] {$\epsilon$};
+\draw [black] (38.58,-26.26) -- (42.82,-24.14);
+\fill [black] (42.82,-24.14) -- (41.88,-24.05) -- (42.32,-24.95);
+\draw (41.61,-25.7) node [below] {$\epsilon$};
+\draw [black] (48.5,-22.8) -- (51.7,-22.8);
+\fill [black] (51.7,-22.8) -- (50.9,-22.3) -- (50.9,-23.3);
+\draw (50.1,-23.3) node [below] {$\epsilon$};
+\draw [black] (7.2,-22.8) -- (10.2,-22.8);
+\fill [black] (10.2,-22.8) -- (9.4,-22.3) -- (9.4,-23.3);
+\draw (8.7,-23.3) node [below] {$\epsilon$};
+\draw [black] (4.2,-17) -- (4.2,-19.8);
+\fill [black] (4.2,-19.8) -- (4.7,-19) -- (3.7,-19);
+\draw [black] (14.057,-19.929) arc (158.15526:21.84474:16.476);
+\fill [black] (14.06,-19.93) -- (14.82,-19.37) -- (13.89,-19);
+\draw (29.35,-9.08) node [above] {$\epsilon$};
+\draw [black] (52.745,-25.074) arc (-43.37782:-136.62218:32.049);
+\fill [black] (52.74,-25.07) -- (51.83,-25.31) -- (52.56,-26);
+\draw (29.45,-35.61) node [below] {$\epsilon$};
+\draw [black] (57.7,-22.8) -- (60.8,-22.8);
+\fill [black] (60.8,-22.8) -- (60,-22.3) -- (60,-23.3);
+\draw (59.25,-23.3) node [below] {$\epsilon$};
+\draw [black] (66.8,-22.8) -- (69.2,-22.8);
+\fill [black] (69.2,-22.8) -- (68.4,-22.3) -- (68.4,-23.3);
+\draw (68,-23.3) node [below] {$1$};
+\draw [black] (72.21,-25.8) -- (72.29,-41.6);
+\fill [black] (72.29,-41.6) -- (72.78,-40.8) -- (71.78,-40.8);
+\draw (71.74,-33.7) node [left] {$\epsilon$};
+\draw [black] (69.53,-43.46) -- (65.37,-41.74);
+\fill [black] (65.37,-41.74) -- (65.92,-42.51) -- (66.3,-41.59);
+\draw (68.34,-42.09) node [above] {$\epsilon$};
+\draw [black] (69.69,-46.08) -- (65.21,-48.62);
+\fill [black] (65.21,-48.62) -- (66.15,-48.66) -- (65.66,-47.79);
+\draw (66.53,-46.85) node [above] {$\epsilon$};
+\draw [black] (59.6,-40.6) -- (54.1,-40.6);
+\fill [black] (54.1,-40.6) -- (54.9,-41.1) -- (54.9,-40.1);
+\draw (56.85,-40.1) node [above] {$0$};
+\draw [black] (59.6,-50.1) -- (54.1,-50.1);
+\fill [black] (54.1,-50.1) -- (54.9,-50.6) -- (54.9,-49.6);
+\draw (56.85,-49.6) node [above] {$1$};
+\draw [black] (48.3,-41.67) -- (43.4,-43.53);
+\fill [black] (43.4,-43.53) -- (44.33,-43.71) -- (43.97,-42.78);
+\draw (44.98,-42.08) node [above] {$\epsilon$};
+\draw [black] (48.44,-48.71) -- (43.26,-45.99);
+\fill [black] (43.26,-45.99) -- (43.73,-46.81) -- (44.2,-45.92);
+\draw (46.76,-46.85) node [above] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+Vereinfachung:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (9.2,-22.8) circle (3);
+\draw [black] (21.2,-22.8) circle (3);
+\draw [black] (33,-22.8) circle (3);
+\draw [black] (33,-22.8) circle (2.4);
+\draw [black] (12.2,-22.8) -- (18.2,-22.8);
+\fill [black] (18.2,-22.8) -- (17.4,-22.3) -- (17.4,-23.3);
+\draw (15.2,-23.3) node [below] {$1$};
+\draw [black] (24.2,-22.8) -- (30,-22.8);
+\fill [black] (30,-22.8) -- (29.2,-22.3) -- (29.2,-23.3);
+\draw (27.1,-23.3) node [below] {$0,1$};
+\draw [black] (7.877,-20.12) arc (234:-54:2.25);
+\draw (9.2,-15.55) node [above] {$0,1$};
+\fill [black] (10.52,-20.12) -- (11.4,-19.77) -- (10.59,-19.18);
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{ubung}[Aufgabe 1]
+
+\begin{enumerate}[a)]
+\item
+$a+b$:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.7,-24.3) circle (3);
+\draw [black] (23.1,-16.8) circle (3);
+\draw [black] (36.3,-16.8) circle (3);
+\draw [black] (23.1,-30) circle (3);
+\draw [black] (36.3,-30) circle (3);
+\draw [black] (46.2,-23) circle (3);
+\draw [black] (46.2,-23) circle (2.4);
+\draw [black] (26.1,-16.8) -- (33.3,-16.8);
+\fill [black] (33.3,-16.8) -- (32.5,-16.3) -- (32.5,-17.3);
+\draw (29.7,-17.3) node [below] {$a$};
+\draw [black] (26.1,-30) -- (33.3,-30);
+\fill [black] (33.3,-30) -- (32.5,-29.5) -- (32.5,-30.5);
+\draw (29.7,-30.5) node [below] {$b$};
+\draw [black] (15.13,-22.55) -- (20.67,-18.55);
+\fill [black] (20.67,-18.55) -- (19.73,-18.62) -- (20.31,-19.43);
+\draw (18.82,-21.05) node [below] {$\epsilon$};
+\draw [black] (15.33,-25.74) -- (20.47,-28.56);
+\fill [black] (20.47,-28.56) -- (20.01,-27.74) -- (19.53,-28.61);
+\draw (16.98,-27.65) node [below] {$\epsilon$};
+\draw [black] (38.84,-18.39) -- (43.66,-21.41);
+\fill [black] (43.66,-21.41) -- (43.24,-20.56) -- (42.71,-21.41);
+\draw (40.33,-20.4) node [below] {$\epsilon$};
+\draw [black] (38.75,-28.27) -- (43.75,-24.73);
+\fill [black] (43.75,-24.73) -- (42.81,-24.79) -- (43.39,-25.6);
+\draw (42.17,-27) node [below] {$\epsilon$};
+\draw [black] (6.8,-24.3) -- (9.7,-24.3);
+\fill [black] (9.7,-24.3) -- (8.9,-23.8) -- (8.9,-24.8);
+\end{tikzpicture}
+\end{center}
+
+$(a+b)^*$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (12.7,-24.3) circle (3);
+\draw [black] (23.1,-16.8) circle (3);
+\draw [black] (36.3,-16.8) circle (3);
+\draw [black] (23.1,-30) circle (3);
+\draw [black] (36.3,-30) circle (3);
+\draw [black] (46.2,-23) circle (3);
+\draw [black] (3.4,-24.3) circle (3);
+\draw [black] (55.6,-23) circle (3);
+\draw [black] (55.6,-23) circle (2.4);
+\draw [black] (26.1,-16.8) -- (33.3,-16.8);
+\fill [black] (33.3,-16.8) -- (32.5,-16.3) -- (32.5,-17.3);
+\draw (29.7,-17.3) node [below] {$a$};
+\draw [black] (26.1,-30) -- (33.3,-30);
+\fill [black] (33.3,-30) -- (32.5,-29.5) -- (32.5,-30.5);
+\draw (29.7,-30.5) node [below] {$b$};
+\draw [black] (15.13,-22.55) -- (20.67,-18.55);
+\fill [black] (20.67,-18.55) -- (19.73,-18.62) -- (20.31,-19.43);
+\draw (18.82,-21.05) node [below] {$\epsilon$};
+\draw [black] (15.33,-25.74) -- (20.47,-28.56);
+\fill [black] (20.47,-28.56) -- (20.01,-27.74) -- (19.53,-28.61);
+\draw (16.98,-27.65) node [below] {$\epsilon$};
+\draw [black] (38.84,-18.39) -- (43.66,-21.41);
+\fill [black] (43.66,-21.41) -- (43.24,-20.56) -- (42.71,-21.41);
+\draw (40.33,-20.4) node [below] {$\epsilon$};
+\draw [black] (38.75,-28.27) -- (43.75,-24.73);
+\fill [black] (43.75,-24.73) -- (42.81,-24.79) -- (43.39,-25.6);
+\draw (42.17,-27) node [below] {$\epsilon$};
+\draw [black] (6.4,-24.3) -- (9.7,-24.3);
+\fill [black] (9.7,-24.3) -- (8.9,-23.8) -- (8.9,-24.8);
+\draw (8.05,-24.8) node [below] {$\epsilon$};
+\draw [black] (49.2,-23) -- (52.6,-23);
+\fill [black] (52.6,-23) -- (51.8,-22.5) -- (51.8,-23.5);
+\draw (50.9,-23.5) node [below] {$\epsilon$};
+\draw [black] (13.513,-21.416) arc (159.26273:25.18188:17.201);
+\fill [black] (13.51,-21.42) -- (14.26,-20.85) -- (13.33,-20.49);
+\draw (28.9,-9.78) node [above] {$\epsilon$};
+\draw [black] (53.862,-25.444) arc (-38.14839:-138.99839:31.539);
+\fill [black] (53.86,-25.44) -- (52.97,-25.76) -- (53.76,-26.38);
+\draw (29.86,-38.01) node [below] {$\epsilon$};
+\draw [black] (3.4,-19.1) -- (3.4,-21.3);
+\fill [black] (3.4,-21.3) -- (3.9,-20.5) -- (2.9,-20.5);
+\end{tikzpicture}
+\end{center}
+
+$(a+b)^*a$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (20.5,-24.3) circle (3);
+\draw [black] (28.3,-19.6) circle (3);
+\draw [black] (36.3,-19.6) circle (3);
+\draw [black] (28.3,-27.9) circle (3);
+\draw [black] (36.3,-27.9) circle (3);
+\draw [black] (45.2,-24.3) circle (3);
+\draw [black] (12.3,-24.3) circle (3);
+\draw [black] (54.1,-24.3) circle (3);
+\draw [black] (62.2,-24.3) circle (3);
+\draw [black] (70.2,-24.3) circle (3);
+\draw [black] (70.2,-24.3) circle (2.4);
+\draw [black] (31.3,-19.6) -- (33.3,-19.6);
+\fill [black] (33.3,-19.6) -- (32.5,-19.1) -- (32.5,-20.1);
+\draw (32.3,-20.1) node [below] {$a$};
+\draw [black] (31.3,-27.9) -- (33.3,-27.9);
+\fill [black] (33.3,-27.9) -- (32.5,-27.4) -- (32.5,-28.4);
+\draw (32.3,-28.4) node [below] {$b$};
+\draw [black] (23.07,-22.75) -- (25.73,-21.15);
+\fill [black] (25.73,-21.15) -- (24.79,-21.13) -- (25.3,-21.99);
+\draw (25.32,-22.45) node [below] {$\epsilon$};
+\draw [black] (23.22,-25.56) -- (25.58,-26.64);
+\fill [black] (25.58,-26.64) -- (25.06,-25.85) -- (24.64,-26.76);
+\draw (23.5,-26.61) node [below] {$\epsilon$};
+\draw [black] (38.95,-21) -- (42.55,-22.9);
+\fill [black] (42.55,-22.9) -- (42.07,-22.08) -- (41.61,-22.97);
+\draw (39.83,-22.45) node [below] {$\epsilon$};
+\draw [black] (39.08,-26.78) -- (42.42,-25.42);
+\fill [black] (42.42,-25.42) -- (41.49,-25.26) -- (41.86,-26.19);
+\draw (41.63,-26.62) node [below] {$\epsilon$};
+\draw [black] (15.3,-24.3) -- (17.5,-24.3);
+\fill [black] (17.5,-24.3) -- (16.7,-23.8) -- (16.7,-24.8);
+\draw (16.4,-24.8) node [below] {$\epsilon$};
+\draw [black] (48.2,-24.3) -- (51.1,-24.3);
+\fill [black] (51.1,-24.3) -- (50.3,-23.8) -- (50.3,-24.8);
+\draw (49.65,-24.8) node [below] {$\epsilon$};
+\draw [black] (20.634,-21.31) arc (-189.49667:-350.50333:12.386);
+\fill [black] (20.63,-21.31) -- (21.26,-20.6) -- (20.27,-20.44);
+\draw (32.85,-10.47) node [above] {$\epsilon$};
+\draw [black] (52.751,-26.977) arc (-30.52907:-149.47093:22.698);
+\fill [black] (52.75,-26.98) -- (51.91,-27.41) -- (52.78,-27.92);
+\draw (33.2,-38.64) node [below] {$\epsilon$};
+\draw [black] (65.2,-24.3) -- (67.2,-24.3);
+\fill [black] (67.2,-24.3) -- (66.4,-23.8) -- (66.4,-24.8);
+\draw (66.2,-24.8) node [below] {$a$};
+\draw [black] (57.1,-24.3) -- (59.2,-24.3);
+\fill [black] (59.2,-24.3) -- (58.4,-23.8) -- (58.4,-24.8);
+\draw (58.15,-24.8) node [below] {$\epsilon$};
+\draw [black] (5.5,-24.3) -- (9.3,-24.3);
+\fill [black] (9.3,-24.3) -- (8.5,-23.8) -- (8.5,-24.8);
+\end{tikzpicture}
+\end{center}
+
+$((a+b)^*a)^*$
+
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (20.5,-24.3) circle (3);
+\draw [black] (28.3,-19.6) circle (3);
+\draw [black] (36.3,-19.6) circle (3);
+\draw [black] (28.3,-27.9) circle (3);
+\draw [black] (36.3,-27.9) circle (3);
+\draw [black] (45.2,-24.3) circle (3);
+\draw [black] (12.3,-24.3) circle (3);
+\draw [black] (54.1,-24.3) circle (3);
+\draw [black] (62.2,-24.3) circle (3);
+\draw [black] (70.2,-24.3) circle (3);
+\draw [black] (70.2,-33.9) circle (3);
+\draw [black] (4,-24.3) circle (3);
+\draw [black] (31.3,-19.6) -- (33.3,-19.6);
+\fill [black] (33.3,-19.6) -- (32.5,-19.1) -- (32.5,-20.1);
+\draw (32.3,-20.1) node [below] {$a$};
+\draw [black] (31.3,-27.9) -- (33.3,-27.9);
+\fill [black] (33.3,-27.9) -- (32.5,-27.4) -- (32.5,-28.4);
+\draw (32.3,-28.4) node [below] {$b$};
+\draw [black] (23.07,-22.75) -- (25.73,-21.15);
+\fill [black] (25.73,-21.15) -- (24.79,-21.13) -- (25.3,-21.99);
+\draw (25.32,-22.45) node [below] {$\epsilon$};
+\draw [black] (23.22,-25.56) -- (25.58,-26.64);
+\fill [black] (25.58,-26.64) -- (25.06,-25.85) -- (24.64,-26.76);
+\draw (23.5,-26.61) node [below] {$\epsilon$};
+\draw [black] (38.95,-21) -- (42.55,-22.9);
+\fill [black] (42.55,-22.9) -- (42.07,-22.08) -- (41.61,-22.97);
+\draw (39.83,-22.45) node [below] {$\epsilon$};
+\draw [black] (39.08,-26.78) -- (42.42,-25.42);
+\fill [black] (42.42,-25.42) -- (41.49,-25.26) -- (41.86,-26.19);
+\draw (41.63,-26.62) node [below] {$\epsilon$};
+\draw [black] (15.3,-24.3) -- (17.5,-24.3);
+\fill [black] (17.5,-24.3) -- (16.7,-23.8) -- (16.7,-24.8);
+\draw (16.4,-24.8) node [below] {$\epsilon$};
+\draw [black] (48.2,-24.3) -- (51.1,-24.3);
+\fill [black] (51.1,-24.3) -- (50.3,-23.8) -- (50.3,-24.8);
+\draw (49.65,-24.8) node [below] {$\epsilon$};
+\draw [black] (20.634,-21.31) arc (-189.49667:-350.50333:12.386);
+\fill [black] (20.63,-21.31) -- (21.26,-20.6) -- (20.27,-20.44);
+\draw (32.85,-10.47) node [above] {$\epsilon$};
+\draw [black] (52.751,-26.977) arc (-30.52907:-149.47093:22.698);
+\fill [black] (52.75,-26.98) -- (51.91,-27.41) -- (52.78,-27.92);
+\draw (33.2,-38.64) node [below] {$\epsilon$};
+\draw [black] (65.2,-24.3) -- (67.2,-24.3);
+\fill [black] (67.2,-24.3) -- (66.4,-23.8) -- (66.4,-24.8);
+\draw (66.2,-24.8) node [below] {$a$};
+\draw [black] (57.1,-24.3) -- (59.2,-24.3);
+\fill [black] (59.2,-24.3) -- (58.4,-23.8) -- (58.4,-24.8);
+\draw (58.15,-24.8) node [below] {$\epsilon$};
+\draw [black] (13.543,-21.571) arc (152.75003:27.24997:31.166);
+\fill [black] (13.54,-21.57) -- (14.35,-21.09) -- (13.47,-20.63);
+\draw (41.25,-4.18) node [above] {$\epsilon$};
+\draw [black] (70.2,-27.3) -- (70.2,-30.9);
+\fill [black] (70.2,-30.9) -- (70.7,-30.1) -- (69.7,-30.1);
+\draw (69.7,-29.1) node [left] {$\epsilon$};
+\draw [black] (7,-24.3) -- (9.3,-24.3);
+\fill [black] (9.3,-24.3) -- (8.5,-23.8) -- (8.5,-24.8);
+\draw (8.15,-24.8) node [below] {$\epsilon$};
+\draw [black] (4,-17.3) -- (4,-21.3);
+\fill [black] (4,-21.3) -- (4.5,-20.5) -- (3.5,-20.5);
+\draw [black] (67.823,-35.73) arc (-54.30569:-142.19678:45.185);
+\fill [black] (67.82,-35.73) -- (66.88,-35.79) -- (67.47,-36.6);
+\draw (34.65,-44.34) node [below] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+\item $a+b$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (32.4,-24.2) circle (3);
+\draw [black] (40.5,-24.2) circle (3);
+\draw [black] (32.4,-32.7) circle (3);
+\draw [black] (40.5,-32.7) circle (3);
+\draw [black] (24.1,-28.4) circle (3);
+\draw [black] (49.2,-28.4) circle (3);
+\draw [black] (49.2,-28.4) circle (2.4);
+\draw [black] (35.4,-24.2) -- (37.5,-24.2);
+\fill [black] (37.5,-24.2) -- (36.7,-23.7) -- (36.7,-24.7);
+\draw (36.45,-24.7) node [below] {$a$};
+\draw [black] (35.4,-32.7) -- (37.5,-32.7);
+\fill [black] (37.5,-32.7) -- (36.7,-32.2) -- (36.7,-33.2);
+\draw (36.45,-33.2) node [below] {$b$};
+\draw [black] (26.78,-27.05) -- (29.72,-25.55);
+\fill [black] (29.72,-25.55) -- (28.78,-25.47) -- (29.24,-26.36);
+\draw (29.16,-26.8) node [below] {$\epsilon$};
+\draw [black] (26.76,-29.78) -- (29.74,-31.32);
+\fill [black] (29.74,-31.32) -- (29.26,-30.51) -- (28.8,-31.4);
+\draw (27.34,-31.05) node [below] {$\epsilon$};
+\draw [black] (43.2,-25.5) -- (46.5,-27.1);
+\fill [black] (46.5,-27.1) -- (46,-26.3) -- (45.56,-27.2);
+\draw (43.94,-26.81) node [below] {$\epsilon$};
+\draw [black] (43.19,-31.37) -- (46.51,-29.73);
+\fill [black] (46.51,-29.73) -- (45.57,-29.64) -- (46.01,-30.53);
+\draw (45.76,-31.05) node [below] {$\epsilon$};
+\draw [black] (18.4,-28.4) -- (21.1,-28.4);
+\fill [black] (21.1,-28.4) -- (20.3,-27.9) -- (20.3,-28.9);
+\end{tikzpicture}
+\end{center}
+
+$a+b+c$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (32.4,-24.2) circle (3);
+\draw [black] (40.5,-24.2) circle (3);
+\draw [black] (32.4,-32.7) circle (3);
+\draw [black] (40.5,-32.7) circle (3);
+\draw [black] (24.1,-28.4) circle (3);
+\draw [black] (49.2,-28.4) circle (3);
+\draw [black] (15.6,-34.2) circle (3);
+\draw [black] (27.3,-41) circle (3);
+\draw [black] (43.8,-41) circle (3);
+\draw [black] (59.2,-34.8) circle (3);
+\draw [black] (59.2,-34.8) circle (2.4);
+\draw [black] (35.4,-24.2) -- (37.5,-24.2);
+\fill [black] (37.5,-24.2) -- (36.7,-23.7) -- (36.7,-24.7);
+\draw (36.45,-24.7) node [below] {$a$};
+\draw [black] (35.4,-32.7) -- (37.5,-32.7);
+\fill [black] (37.5,-32.7) -- (36.7,-32.2) -- (36.7,-33.2);
+\draw (36.45,-33.2) node [below] {$b$};
+\draw [black] (26.78,-27.05) -- (29.72,-25.55);
+\fill [black] (29.72,-25.55) -- (28.78,-25.47) -- (29.24,-26.36);
+\draw (29.16,-26.8) node [below] {$\epsilon$};
+\draw [black] (26.76,-29.78) -- (29.74,-31.32);
+\fill [black] (29.74,-31.32) -- (29.26,-30.51) -- (28.8,-31.4);
+\draw (27.34,-31.05) node [below] {$\epsilon$};
+\draw [black] (43.2,-25.5) -- (46.5,-27.1);
+\fill [black] (46.5,-27.1) -- (46,-26.3) -- (45.56,-27.2);
+\draw (43.94,-26.81) node [below] {$\epsilon$};
+\draw [black] (43.19,-31.37) -- (46.51,-29.73);
+\fill [black] (46.51,-29.73) -- (45.57,-29.64) -- (46.01,-30.53);
+\draw (45.76,-31.05) node [below] {$\epsilon$};
+\draw [black] (18.08,-32.51) -- (21.62,-30.09);
+\fill [black] (21.62,-30.09) -- (20.68,-30.13) -- (21.24,-30.95);
+\draw (20.77,-31.8) node [below] {$\epsilon$};
+\draw [black] (30.3,-41) -- (40.8,-41);
+\fill [black] (40.8,-41) -- (40,-40.5) -- (40,-41.5);
+\draw (35.55,-41.5) node [below] {$c$};
+\draw [black] (18.19,-35.71) -- (24.71,-39.49);
+\fill [black] (24.71,-39.49) -- (24.27,-38.66) -- (23.76,-39.52);
+\draw (20.53,-38.1) node [below] {$\epsilon$};
+\draw [black] (46.58,-39.88) -- (56.42,-35.92);
+\fill [black] (56.42,-35.92) -- (55.49,-35.76) -- (55.86,-36.68);
+\draw (52.38,-38.42) node [below] {$\epsilon$};
+\draw [black] (51.73,-30.02) -- (56.67,-33.18);
+\fill [black] (56.67,-33.18) -- (56.27,-32.33) -- (55.73,-33.17);
+\draw (53.28,-32.1) node [below] {$\epsilon$};
+\draw [black] (9,-34.2) -- (12.6,-34.2);
+\fill [black] (12.6,-34.2) -- (11.8,-33.7) -- (11.8,-34.7);
+\end{tikzpicture}
+\end{center}
+
+$(a+b+c)\cdot (a+b)$
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (32.4,-15.7) circle (3);
+\draw [black] (40.5,-15.7) circle (3);
+\draw [black] (32.4,-25.7) circle (3);
+\draw [black] (40.5,-25.7) circle (3);
+\draw [black] (24.1,-21) circle (3);
+\draw [black] (48.7,-21) circle (3);
+\draw [black] (14.8,-27.1) circle (3);
+\draw [black] (26.6,-34.8) circle (3);
+\draw [black] (44.8,-34.8) circle (3);
+\draw [black] (59.5,-27.8) circle (3);
+\draw [black] (23,-47.2) circle (3);
+\draw [black] (31.4,-41.2) circle (3);
+\draw [black] (40.5,-41.2) circle (3);
+\draw [black] (31.4,-52.4) circle (3);
+\draw [black] (39.9,-52.4) circle (3);
+\draw [black] (48.7,-47.2) circle (3);
+\draw [black] (48.7,-47.2) circle (2.4);
+\draw [black] (35.4,-15.7) -- (37.5,-15.7);
+\fill [black] (37.5,-15.7) -- (36.7,-15.2) -- (36.7,-16.2);
+\draw (36.45,-16.2) node [below] {$a$};
+\draw [black] (35.4,-25.7) -- (37.5,-25.7);
+\fill [black] (37.5,-25.7) -- (36.7,-25.2) -- (36.7,-26.2);
+\draw (36.45,-26.2) node [below] {$b$};
+\draw [black] (26.63,-19.39) -- (29.87,-17.31);
+\fill [black] (29.87,-17.31) -- (28.93,-17.32) -- (29.47,-18.17);
+\draw (29.17,-18.85) node [below] {$\epsilon$};
+\draw [black] (26.71,-22.48) -- (29.79,-24.22);
+\fill [black] (29.79,-24.22) -- (29.34,-23.39) -- (28.85,-24.26);
+\draw (27.33,-23.85) node [below] {$\epsilon$};
+\draw [black] (43.02,-17.33) -- (46.18,-19.37);
+\fill [black] (46.18,-19.37) -- (45.78,-18.52) -- (45.24,-19.36);
+\draw (43.68,-18.85) node [below] {$\epsilon$};
+\draw [black] (43.1,-24.21) -- (46.1,-22.49);
+\fill [black] (46.1,-22.49) -- (45.15,-22.46) -- (45.65,-23.32);
+\draw (45.52,-23.85) node [below] {$\epsilon$};
+\draw [black] (17.31,-25.45) -- (21.59,-22.65);
+\fill [black] (21.59,-22.65) -- (20.65,-22.67) -- (21.2,-23.5);
+\draw (20.37,-24.55) node [below] {$\epsilon$};
+\draw [black] (29.6,-34.8) -- (41.8,-34.8);
+\fill [black] (41.8,-34.8) -- (41,-34.3) -- (41,-35.3);
+\draw (35.7,-35.3) node [below] {$c$};
+\draw [black] (17.31,-28.74) -- (24.09,-33.16);
+\fill [black] (24.09,-33.16) -- (23.69,-32.3) -- (23.14,-33.14);
+\draw (19.78,-31.45) node [below] {$\epsilon$};
+\draw [black] (47.51,-33.51) -- (56.79,-29.09);
+\fill [black] (56.79,-29.09) -- (55.85,-28.98) -- (56.28,-29.89);
+\draw (53.06,-31.81) node [below] {$\epsilon$};
+\draw [black] (51.24,-22.6) -- (56.96,-26.2);
+\fill [black] (56.96,-26.2) -- (56.55,-25.35) -- (56.02,-26.2);
+\draw (53.18,-24.9) node [below] {$\epsilon$};
+\draw [black] (8.2,-27.1) -- (11.8,-27.1);
+\fill [black] (11.8,-27.1) -- (11,-26.6) -- (11,-27.6);
+\draw [black] (34.4,-41.2) -- (37.5,-41.2);
+\fill [black] (37.5,-41.2) -- (36.7,-40.7) -- (36.7,-41.7);
+\draw (35.95,-41.7) node [below] {$a$};
+\draw [black] (34.4,-52.4) -- (36.9,-52.4);
+\fill [black] (36.9,-52.4) -- (36.1,-51.9) -- (36.1,-52.9);
+\draw (35.65,-52.9) node [below] {$b$};
+\draw [black] (25.44,-45.46) -- (28.96,-42.94);
+\fill [black] (28.96,-42.94) -- (28.02,-43) -- (28.6,-43.82);
+\draw (28.12,-44.7) node [below] {$\epsilon$};
+\draw [black] (25.55,-48.78) -- (28.85,-50.82);
+\fill [black] (28.85,-50.82) -- (28.43,-49.97) -- (27.91,-50.82);
+\draw (26.28,-50.3) node [below] {$\epsilon$};
+\draw [black] (42.92,-42.97) -- (46.28,-45.43);
+\fill [black] (46.28,-45.43) -- (45.93,-44.55) -- (45.34,-45.36);
+\draw (43.68,-44.7) node [below] {$\epsilon$};
+\draw [black] (42.48,-50.87) -- (46.12,-48.73);
+\fill [black] (46.12,-48.73) -- (45.17,-48.7) -- (45.68,-49.56);
+\draw (45.22,-50.3) node [below] {$\epsilon$};
+\draw [black] (20.502,-45.542) arc (-127.10424:-356.91386:24.36);
+\fill [black] (20.5,-45.54) -- (20.17,-44.66) -- (19.56,-45.46);
+\draw (22.85,-4.1) node [above] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+Letzter Schritt:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (32.4,-15.7) circle (3);
+\draw [black] (40.5,-15.7) circle (3);
+\draw [black] (32.4,-25.7) circle (3);
+\draw [black] (40.5,-25.7) circle (3);
+\draw [black] (24.1,-21) circle (3);
+\draw [black] (48.7,-21) circle (3);
+\draw [black] (14.8,-27.1) circle (3);
+\draw [black] (26.6,-34.8) circle (3);
+\draw [black] (44.8,-34.8) circle (3);
+\draw [black] (59.5,-27.8) circle (3);
+\draw [black] (23,-47.2) circle (3);
+\draw [black] (31.4,-41.2) circle (3);
+\draw [black] (42,-41.2) circle (3);
+\draw [black] (31.4,-52.4) circle (3);
+\draw [black] (39.9,-52.4) circle (3);
+\draw [black] (48.7,-47.2) circle (3);
+\draw [black] (57.5,-47.2) circle (3);
+\draw [black] (4.8,-27.1) circle (3);
+\draw [black] (35.4,-15.7) -- (37.5,-15.7);
+\fill [black] (37.5,-15.7) -- (36.7,-15.2) -- (36.7,-16.2);
+\draw (36.45,-16.2) node [below] {$a$};
+\draw [black] (35.4,-25.7) -- (37.5,-25.7);
+\fill [black] (37.5,-25.7) -- (36.7,-25.2) -- (36.7,-26.2);
+\draw (36.45,-26.2) node [below] {$b$};
+\draw [black] (26.63,-19.39) -- (29.87,-17.31);
+\fill [black] (29.87,-17.31) -- (28.93,-17.32) -- (29.47,-18.17);
+\draw (29.17,-18.85) node [below] {$\epsilon$};
+\draw [black] (26.71,-22.48) -- (29.79,-24.22);
+\fill [black] (29.79,-24.22) -- (29.34,-23.39) -- (28.85,-24.26);
+\draw (27.33,-23.85) node [below] {$\epsilon$};
+\draw [black] (43.02,-17.33) -- (46.18,-19.37);
+\fill [black] (46.18,-19.37) -- (45.78,-18.52) -- (45.24,-19.36);
+\draw (43.68,-18.85) node [below] {$\epsilon$};
+\draw [black] (43.1,-24.21) -- (46.1,-22.49);
+\fill [black] (46.1,-22.49) -- (45.15,-22.46) -- (45.65,-23.32);
+\draw (45.52,-23.85) node [below] {$\epsilon$};
+\draw [black] (17.31,-25.45) -- (21.59,-22.65);
+\fill [black] (21.59,-22.65) -- (20.65,-22.67) -- (21.2,-23.5);
+\draw (20.37,-24.55) node [below] {$\epsilon$};
+\draw [black] (29.6,-34.8) -- (41.8,-34.8);
+\fill [black] (41.8,-34.8) -- (41,-34.3) -- (41,-35.3);
+\draw (35.7,-35.3) node [below] {$c$};
+\draw [black] (17.31,-28.74) -- (24.09,-33.16);
+\fill [black] (24.09,-33.16) -- (23.69,-32.3) -- (23.14,-33.14);
+\draw (19.78,-31.45) node [below] {$\epsilon$};
+\draw [black] (47.51,-33.51) -- (56.79,-29.09);
+\fill [black] (56.79,-29.09) -- (55.85,-28.98) -- (56.28,-29.89);
+\draw (53.06,-31.81) node [below] {$\epsilon$};
+\draw [black] (51.24,-22.6) -- (56.96,-26.2);
+\fill [black] (56.96,-26.2) -- (56.55,-25.35) -- (56.02,-26.2);
+\draw (53.18,-24.9) node [below] {$\epsilon$};
+\draw [black] (34.4,-41.2) -- (39,-41.2);
+\fill [black] (39,-41.2) -- (38.2,-40.7) -- (38.2,-41.7);
+\draw (36.7,-41.7) node [below] {$a$};
+\draw [black] (34.4,-52.4) -- (36.9,-52.4);
+\fill [black] (36.9,-52.4) -- (36.1,-51.9) -- (36.1,-52.9);
+\draw (35.65,-52.9) node [below] {$b$};
+\draw [black] (25.44,-45.46) -- (28.96,-42.94);
+\fill [black] (28.96,-42.94) -- (28.02,-43) -- (28.6,-43.82);
+\draw (28.12,-44.7) node [below] {$\epsilon$};
+\draw [black] (25.55,-48.78) -- (28.85,-50.82);
+\fill [black] (28.85,-50.82) -- (28.43,-49.97) -- (27.91,-50.82);
+\draw (26.28,-50.3) node [below] {$\epsilon$};
+\draw [black] (44.23,-43.2) -- (46.47,-45.2);
+\fill [black] (46.47,-45.2) -- (46.2,-44.29) -- (45.54,-45.04);
+\draw (44.42,-44.69) node [below] {$\epsilon$};
+\draw [black] (42.48,-50.87) -- (46.12,-48.73);
+\fill [black] (46.12,-48.73) -- (45.17,-48.7) -- (45.68,-49.56);
+\draw (45.22,-50.3) node [below] {$\epsilon$};
+\draw [black] (20.502,-45.542) arc (-127.10424:-356.91386:24.36);
+\fill [black] (20.5,-45.54) -- (20.17,-44.66) -- (19.56,-45.46);
+\draw (22.85,-4.1) node [above] {$\epsilon$};
+\draw [black] (51.7,-47.2) -- (54.5,-47.2);
+\fill [black] (54.5,-47.2) -- (53.7,-46.7) -- (53.7,-47.7);
+\draw (53.1,-47.7) node [below] {$\epsilon$};
+\draw [black] (7.8,-27.1) -- (11.8,-27.1);
+\fill [black] (11.8,-27.1) -- (11,-26.6) -- (11,-27.6);
+\draw (9.8,-27.6) node [below] {$\epsilon$};
+\draw [black] (47.2,-49.795) arc (-34.37509:-206.95404:19.78);
+\fill [black] (13.24,-29.66) -- (12.43,-30.15) -- (13.33,-30.6);
+\draw (19.87,-56.14) node [below] {$\epsilon$};
+\draw [black] (5.256,-24.136) arc (168.30285:-30.05697:29.205);
+\fill [black] (59.13,-44.69) -- (59.97,-44.24) -- (59.1,-43.74);
+\draw (45.13,-2.25) node [above] {$\epsilon$};
+\end{tikzpicture}
+\end{center}
+
+\end{enumerate}
+
+\end{ubung}
+
+\begin{proof}[Beweis für 2.]
+
+Idee: Dynamische Programmierung. Die Teilprobleme hier sind: Für jedes Paar $(p,q)$ von Zuständen finde einen regulären Ausdruck, der alle Wörter beschreibt, die von $p$ nach $q$ führen.
+
+Genauer: Sei $A = (Q, \Sigma, \delta, q_0, F)$ ein DEA, seien die Zustände durchnumeriert, d.h. $Q = \{1,2,\dots , n \}$, $q_0 = 1$.
+
+\begin{enumerate}
+\item Berechne für alle $i, j \in \{1,2,\dots n\}$ reguläre Ausdrücke $\alpha_{i,j}^{(0)}$, die die direkten Verbindungen von Zustand $i$ zu Zustand $j$ beschreiben:
+\begin{enumerate}[a)]
+\item $i = j$:
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (22.5,-20.3) circle (3);
+\draw (22.5,-20.3) node {$i$};
+\draw [black] (22.5,-29.7) circle (3);
+\draw (22.5,-29.7) node {$i$};
+\draw [black] (21.177,-17.62) arc (234:-54:2.25);
+\draw (22.5,-13.05) node [above] {$a_1,\mbox{ }a_2,\dots$};
+\fill [black] (23.82,-17.62) -- (24.7,-17.27) -- (23.89,-16.68);
+\end{tikzpicture}
+\end{center}
+
+$\alpha_{i,i}^{(0)} = \varepsilon + a_1 + a_2 + \dots$ oder $\alpha_{i,i}^{(0)} = \varepsilon$
+
+\item $i \neq j$
+
+$\alpha_{i,i}^{(0)} = a_1 + a_2 + \dots$ oder $\alpha_{i,j}^{(0)} = \varnothing$
+\end{enumerate}
+
+\item Nun werden nacheinander alle anderen Zustände als mögliche Zwischenstation auf dem Weg von $i$ nach $j$ hinzugenommen -- zunächst den Zustand $1$:
+
+$\alpha_{i,j}^{(1)}$ beschreibt die Wörter, mit denen man von $i$ nach $j$ kommt und zwischendurch nur den Zustand $1$ besucht.
+\end{enumerate}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (8.9,-14.3) circle (3);
+\draw (8.9,-14.3) node {$i$};
+\draw [black] (33.2,-14.3) circle (3);
+\draw (33.2,-14.3) node {$j$};
+\draw [black] (21.1,-14.3) circle (3);
+\draw (21.1,-14.3) node {$1$};
+\draw [black] (19.777,-11.62) arc (234:-54:2.25);
+\draw (21.1,-7.05) node [above] {$b_1,b_2,\dots$};
+\fill [black] (22.42,-11.62) -- (23.3,-11.27) -- (22.49,-10.68);
+\draw [black] (11.9,-14.3) -- (18.1,-14.3);
+\fill [black] (18.1,-14.3) -- (17.3,-13.8) -- (17.3,-14.8);
+\draw (15,-14.8) node [below] {$a_1,a_2,\dots$};
+\draw [black] (24.1,-14.3) -- (30.2,-14.3);
+\fill [black] (30.2,-14.3) -- (29.4,-13.8) -- (29.4,-14.8);
+\draw (27.15,-14.8) node [below] {$c_1,c_2,\dots$};
+\draw [black] (31.165,-16.498) arc (-48.43714:-131.56286:15.246);
+\fill [black] (31.16,-16.5) -- (30.23,-16.65) -- (30.9,-17.4);
+\draw (21.05,-20.84) node [below] {$d_1,d_2,\dots$};
+\end{tikzpicture}
+\end{center}
+
+$\alpha_{i,j}^{(1)} = \alpha_{i,j}^{(0)} + \alpha_{i,1}^{(0)}(\alpha_{1,1}^{(0)})^*\alpha_{1,j}^{(0)} $
+
+Induktion: Wir nehmen an, dass wir $\alpha_{i,j}^{(k-1)}$ für alle $i,j$ schon berechnet haben. Dann gilt: $\alpha_{i,1}^{(k)} = 
+\alpha_{i,j}^{(k-1)} + \alpha_{i,k}^{(k-1)}(\alpha_{k,k}^{(k-1)})^* \alpha_{k,j}^{(k-1)}$
+
+Daraus folgt der Reguläre Ausdruck für den DEA $A$ mit $q_0 = 1$ und $F = \{f_1, f_2, \dots f_m \}$:
+
+\[
+\alpha_{1,f_1}^{(n)} + \alpha_{1,f_2}^{(n)} + \dots + \alpha_{1,f_m}^{(n)}
+\]
+
+\end{proof}
+
+\begin{beispiel}
+
+DEA $A$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.7,-17.1) circle (3);
+\draw (15.7,-17.1) node {$1$};
+\draw [black] (29.7,-17.1) circle (3);
+\draw (29.7,-17.1) node {$2$};
+\draw [black] (29.7,-17.1) circle (2.4);
+\draw [black] (18.7,-17.1) -- (26.7,-17.1);
+\fill [black] (26.7,-17.1) -- (25.9,-16.6) -- (25.9,-17.6);
+\draw (22.7,-17.6) node [below] {$0$};
+\draw [black] (32.38,-15.777) arc (144:-144:2.25);
+\draw (36.95,-17.1) node [right] {$0,1$};
+\fill [black] (32.38,-18.42) -- (32.73,-19.3) -- (33.32,-18.49);
+\draw [black] (17.023,-19.78) arc (54:-234:2.25);
+\draw (15.7,-24.35) node [below] {$1$};
+\fill [black] (14.38,-19.78) -- (13.5,-20.13) -- (14.31,-20.72);
+\draw [black] (9.7,-17.1) -- (12.7,-17.1);
+\fill [black] (12.7,-17.1) -- (11.9,-16.6) -- (11.9,-17.6);
+\end{tikzpicture}
+\end{center}
+
+\begin{enumerate}
+\item $\alpha_{1,1}^{(0)} = 1 + \varepsilon$
+
+$\alpha_{1,2}^{(0)} = 1$
+
+$\alpha_{2,1}^{(0)} = \varnothing$
+
+$\alpha_{2,2}^{(0)} = \varepsilon + 0 + 1$
+
+\item $\alpha_{1,1}^{(1)} = \alpha_{1,1}^{(0)} + \alpha_{1,1}^{(0)}(\alpha_{1,1}^{(0)})^*\alpha_{1,1}^{(0)} = 1 + \varepsilon + (1 + \varepsilon)(\alpha_{1,1}^{(0)})^*\alpha_{1,1}^{(0)} = (1+\varepsilon)^* = 1^*$
+
+$\alpha_{1,2}^{(1)} = \alpha_{1,2}^{(0)} +  \alpha_{1,1}^{(0)}( \alpha_{1,1}^{(0)})^* \alpha_{1,2}^{(0)}$
+$= 0 + (1+\varepsilon)(1+\varepsilon)^*0 = 1^*0$
+
+$\alpha_{2,1}^{(1)} = \alpha_{2,1}^{(0)}+ \alpha_{2,1}^{(1)}(\alpha_{1,1}^{(1)})^*\alpha_{1,1}^{(1)} = \varnothing + \varnothing(1+\varepsilon)^*(1+\varepsilon) = \varnothing$
+
+$\alpha_{2,2}^{(1)} =\alpha_{2,2}^{(0)} + \alpha_{2,1}^{(0)}(\alpha_{1,1}^{(0)})^*\alpha_{1,2}^{(0)} = (\varepsilon+0+1) + \varnothing \dots = \varepsilon + 0 + 1$
+
+\item $\alpha_{1,1}^{(1)} + \alpha_{1,2}^{(1)}(\alpha_{2,2}^{(1)})^*\alpha_{2,1}^{(1)}
+= 1^* + 1^*0 (\varepsilon + 0+1) \varnothing = 1^*$
+
+$\alpha_{1,2}^{(2)} =  \alpha_{1,2}^{(1)} + \alpha_{1,2}^{(1)} (\alpha_{2,2}^{(1)})^* \alpha_{2,2}^{(1)} = 1^*0+1^*0(\varepsilon + 0 + 1)^* (\varepsilon + 0 + 1) = 1^*0(0+1)^* = \mathcal{L}(A) $
+
 \end{enumerate}
 
 \end{beispiel}
