@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.3.10)  2 OCT 2012 21:01
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.3.10)  3 OCT 2012 08:57
 entering extended mode
 **Schreibomat.tex
 (C:\Devel\TheoretischeInformatik\Schreibomat.tex
@@ -1047,7 +1047,7 @@ i-gun-gen an jeder Kreuzung
  []
 
 
-Overfull \hbox (20.48914pt too wide) in paragraph at lines 197--198
+Overfull \hbox (19.47803pt too wide) in paragraph at lines 197--198
  [] 
  []
 
@@ -1077,7 +1077,7 @@ Overfull \hbox (18.95525pt too wide) in paragraph at lines 520--521
  []
 
 [7] [8] [9] [10] [11] [12] [13] [14] [15]
-Overfull \hbox (0.18886pt too wide) in paragraph at lines 1221--1222
+Overfull \hbox (0.18886pt too wide) in paragraph at lines 1227--1228
 []\OT1/cmr/m/n/10.95 Wie kann man moglichst ef-fizient entschei-den, ob ein ge
 gebenes Wort in der Sprache
  []
@@ -1085,18 +1085,18 @@ gebenes Wort in der Sprache
 [16] [17] [18]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1551.
+(hyperref)                removing `math shift' on input line 1557.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\varepsilon' on input line 1551.
+(hyperref)                removing `\varepsilon' on input line 1557.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1551.
+(hyperref)                removing `math shift' on input line 1557.
 
 
-Overfull \hbox (78.71951pt too wide) in paragraph at lines 1568--1569
+Overfull \hbox (78.71951pt too wide) in paragraph at lines 1574--1575
 []\OT1/cmr/bx/n/10.95 Beispiel. []\OT1/cmr/m/n/10.95 Suche nach mehreren Muster
 n. $\OML/cmm/m/it/10.95 L \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\OML/cmm/m/
 it/10.95 w \OMS/cmsy/m/n/10.95 2 f\OML/cmm/m/it/10.95 a; b\OMS/cmsy/m/n/10.95 g
@@ -1104,7 +1104,7 @@ it/10.95 w \OMS/cmsy/m/n/10.95 2 f\OML/cmm/m/it/10.95 a; b\OMS/cmsy/m/n/10.95 g
  []
 
 [19]
-Overfull \hbox (4.42914pt too wide) in paragraph at lines 1716--1717
+Overfull \hbox (4.42914pt too wide) in paragraph at lines 1722--1723
 []\OT1/cmr/bx/n/10.95 Definition 19 \OT1/cmr/m/n/10.95 (NEA mit $\OML/cmm/m/it/
 10.95 "$\OT1/cmr/m/n/10.95 -[]Ubergangen)\OT1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/
 10.95 Ein NEA mit $\OML/cmm/m/it/10.95 "$\OT1/cmr/m/n/10.95 -[]Ubergangen $\OM
@@ -1113,31 +1113,31 @@ L/cmm/m/it/10.95 A$ \OT1/cmr/m/n/10.95 wird beschrieben
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1744.
+(hyperref)                removing `math shift' on input line 1750.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\varepsilon' on input line 1744.
+(hyperref)                removing `\varepsilon' on input line 1750.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1744.
+(hyperref)                removing `math shift' on input line 1750.
 
 [20] [21]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1866.
+(hyperref)                removing `math shift' on input line 1872.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\varepsilon' on input line 1866.
+(hyperref)                removing `\varepsilon' on input line 1872.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 1866.
+(hyperref)                removing `math shift' on input line 1872.
 
 [22]
-Overfull \hbox (12.28809pt too wide) in paragraph at lines 1893--1895
+Overfull \hbox (12.28809pt too wide) in paragraph at lines 1899--1901
 []\OT1/cmr/m/n/10.95 Kein []Ubergang von $\OML/cmm/m/it/10.95 q[]$\OT1/cmr/m/n/
 10.95 , aber von $\OML/cmm/m/it/10.95 q[]$ \OT1/cmr/m/n/10.95 nach $\OML/cmm/m/
 it/10.95 q[]$ \OT1/cmr/m/n/10.95 oder $\OML/cmm/m/it/10.95 q[]$\OT1/cmr/m/n/10.
@@ -1146,24 +1146,24 @@ m/it/10.95 q[]; q[]\OT1/cmr/m/n/10.95 ) =$
  []
 
 [23] [24]
-Overfull \hbox (4.68251pt too wide) in paragraph at lines 2087--2089
+Overfull \hbox (4.68251pt too wide) in paragraph at lines 2093--2095
 []\OT1/cmr/bx/n/10.95 Definition 24 \OT1/cmr/m/n/10.95 (Regulare Ausdrucke)\O
 T1/cmr/bx/n/10.95 . []\OT1/cmr/m/n/10.95 Regulare Ausdrucke lassen sich wie f
 olgt definieren: 
  []
 
 [25] [26] [27] [28]
-Overfull \hbox (3.80956pt too wide) in paragraph at lines 2540--2541
+Overfull \hbox (3.80956pt too wide) in paragraph at lines 2546--2547
  [] 
  []
 
 [29] [30]
-Overfull \hbox (8.206pt too wide) in paragraph at lines 2778--2779
+Overfull \hbox (8.206pt too wide) in paragraph at lines 2784--2785
  [] 
  []
 
 [31] [32] [33] [34]
-Overfull \hbox (8.82532pt too wide) in paragraph at lines 3111--3112
+Overfull \hbox (8.82532pt too wide) in paragraph at lines 3117--3118
 []\OT1/cmr/m/n/10.95 Daraus folgt der Regulare Aus-druck fur den DEA $\OML/cm
 m/m/it/10.95 A$ \OT1/cmr/m/n/10.95 mit $\OML/cmm/m/it/10.95 q[] \OT1/cmr/m/n/10
 .95 = 1$ und $\OML/cmm/m/it/10.95 F \OT1/cmr/m/n/10.95 = \OMS/cmsy/m/n/10.95 f\
@@ -1171,18 +1171,18 @@ OML/cmm/m/it/10.95 f[]; f[]; [] f[]\OMS/cmsy/m/n/10.95 g$\OT1/cmr/m/n/10.95 :
  []
 
 [35]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3172.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3178.
  [36]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3172.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 3178.
  (C:\Devel\TheoretischeInformatik\Schreibomat.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3172.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3178.
 Package rerunfilecheck Info: File `Schreibomat.out' has not changed.
 (rerunfilecheck)             Checksum: 77A90C653110D4CF0CA417CF6D826946;1034.
  ) 
 Here is how much of TeX's memory you used:
  19346 strings out of 494053
  343601 string characters out of 3146191
- 386552 words of memory out of 3000000
+ 387552 words of memory out of 3000000
  22156 multiletter control sequences out of 15000+200000
  16946 words of font info for 66 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
@@ -1206,7 +1206,7 @@ nts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
 ype1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmu10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msbm10.pfb>
-Output written on Schreibomat.pdf (36 pages, 391352 bytes).
+Output written on Schreibomat.pdf (36 pages, 392303 bytes).
 PDF statistics:
  406 PDF objects out of 1000 (max. 8388607)
  128 named destinations out of 1000 (max. 500000)
