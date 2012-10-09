@@ -3176,4 +3176,43 @@ $\alpha_{1,2}^{(2)} =  \alpha_{1,2}^{(1)} + \alpha_{1,2}^{(1)} (\alpha_{2,2}^{(1
 
 \end{beispiel}
 
+\section{Reguläre Sprachen und ihre Eigenschaften}
+
+\begin{definition}[Reguläre Sprache]
+Eine Sprache heisst regulär, wenn sie von einem DEA akzeptiert wird.
+\[
+\mathcal{L}_{\textrm{reg}} = \mathcal{L}(\textrm{DEA}) = \{ L | L \textrm{ist regulär} \}
+\]
+\end{definition}
+
+Ziel: Charakterisierung von regulären Sprachen.
+
+\subsection{Abschlusseigenschaften regulärer Sprachen}
+
+\begin{description}
+\item[Vereinigung] Wenn $L$ und $M$ reguläre Sprachen sind, dann ist auch $L$ vereinigt mit $M$ regulär.
+\begin{proof}[Beweis]
+Wenn $L$ und $M$ regulär sind, dann existieren reguläre Ausdrücke $\alpha$ und $\beta$ für $L$ und $M$, d.h. $L(\alpha) = L$ und $L(\beta) = M$.
+
+Daraus folgt, dass $\alpha + \beta$ ebenfalls ein RA ist, daraus folgt $L(\alpha + \beta) = L \cup M$ (gemäss Definition der Vereinigung von RA).
+\end{proof}
+
+\item[Verkettung] Wenn $L$ und $M$ reguläre Sprachen sind, dann ist auch $L$ verkettet mit $M$ regulär.
+\begin{proof}[Beweis]
+Analog der Vereinigung.
+\end{proof}
+
+\item[Kleene'scher Stern] Wenn $L$ eine reguläre Sprache ist, dann ist auch $L^*$ eine reguläre Sprache.
+\begin{proof}[Beweis]
+Analog der Vereinigung.
+\end{proof}
+
+\item[Komplement] Wenn $L$ eine reguläre Sprache ist, dann ist auch $\bar{L} = \Sigma^* - L$ regulär.
+
+\begin{proof}[Beweis]
+Sei $A$ ein DEA für $L$. Dann gibt es für jedes Wort $w$ aus $\Sigma^*$ einen eindeutigen Zustand, in dem der DEA endet, wenn er $w$ liest. Alle Wörter aus $L(A) = L$ führen in Endzustände, alle Wörter aus $\Sigma^* - L = \bar{L}$ in nichtakzeptierende Zustände. Vertauschen von End- und Nicht-Endzuständen ergibt einen DEA für $\bar{L}$.
+\end{proof}
+
+\end{description}
+
 \end{document}
