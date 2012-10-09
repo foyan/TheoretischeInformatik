@@ -3210,9 +3210,576 @@ Analog der Vereinigung.
 \item[Komplement] Wenn $L$ eine reguläre Sprache ist, dann ist auch $\bar{L} = \Sigma^* - L$ regulär.
 
 \begin{proof}[Beweis]
-Sei $A$ ein DEA für $L$. Dann gibt es für jedes Wort $w$ aus $\Sigma^*$ einen eindeutigen Zustand, in dem der DEA endet, wenn er $w$ liest. Alle Wörter aus $L(A) = L$ führen in Endzustände, alle Wörter aus $\Sigma^* - L = \bar{L}$ in nichtakzeptierende Zustände. Vertauschen von End- und Nicht-Endzuständen ergibt einen DEA für $\bar{L}$.
+Sei $A$ ein DEA für $L$. Dann gibt es für jedes Wort $w$ aus $\Sigma^*$ einen eindeutigen Zustand, in dem der DEA endet, wenn er $w$ liest. Alle Wörter aus $L(A) = L$ führen in Endzustände, alle Wörter aus $\Sigma^* - L = \bar{L}$ in nichtakzeptierende Zustände. Vertauschen von End- und Nicht-Endzuständen ergibt einen DEA für $\overline{L}$.
 \end{proof}
 
+\item[Durchschnitt] Wenn $L$ und $M$ reguläre Sprachen sind, dann ist auch $L\cap M$ regulär.
+
+\begin{proof}[Beweis 1 mit De Morgan'schen Gesetzen]
+Es gelten ja:
+\begin{eqnarray}
+\overline{A \cap B} &=& \overline{A} \cup  \overline{B} \\
+\overline{A \cup B} &=& \overline{A} \cap  \overline{B} 
+\end{eqnarray}
+
+Da $L, M$ regulär sind, sind auch $\overline{L}, \overline{M}$ regulär. $\overline{L} \cup \overline{M}$ ist ebenfalls regulär. $\overline{\overline{L} \cup \overline{M}}$ ist ebenfalls regulär. Durch De Morgan No. 1 ist $\overline{\overline{L}} \cap \overline{\overline{M}} = L \cap M$ schnurstracks auch regulär.
+
+\end{proof}
+
+\begin{proof}[Beweis 2 durch Konstruktion des Produktautomaten]
+
+\begin{definition}[Produktautomat]
+Sei $A = (Q_A, \Sigma, \delta_A, q_{0A}, F_A)$ ein DEA für $L$, $B = (Q_B, \Sigma, \delta_B, q_{0B}, F_B)$. Dann ist der Produktautomat für $A$ und $B$ der DEA $C = (Q_C, \Sigma, \delta_C, q_{0C}, F_C)$ mit
+\begin{itemize}
+\item $Q_C = Q_A \times Q_B$
+\item $\delta_C(p, q) = (\delta_A(p), \delta_B(q))$ für alle $(p, q) \in Q_C$
+\item $q_0C = (q_{0A}, q_{0B})$
+\item $F_C = \{(p, q) \in Q_C | p \in F_A $ und $ q \in F_B \}$
+\end{itemize}
+
+\end{definition}
+
+Anschaulich kann man sagen, dass $C$ einfach die Arbeit von $A$ und $B$ simuliert und genau dann akzeptiert, wenn auch $A$ und $B$ akzeptieren.
+
+Es gilt darum: $L(C) = L(A) \cap L(B) = L \cap M$
+
+\end{proof}
+
+\begin{beispiel}
+Sei $L = \{ w \in \{a, b\}^* | |w|_a $ ist gerade $\}$. Sei $M = \{ w \in \{a, b\}^* | w $ enthält das Teilwort  $ab $.$\}$.
+\end{beispiel}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14.8,-25.3) circle (3);
+\draw (14.8,-25.3) node {$p_0$};
+\draw [black] (14.8,-25.3) circle (2.4);
+\draw [black] (14.8,-38.3) circle (3);
+\draw (14.8,-38.3) node {$p_1$};
+\draw [black] (30.9,-11.4) circle (3);
+\draw (30.9,-11.4) node {$q_0$};
+\draw [black] (43.9,-11.4) circle (3);
+\draw (43.9,-11.4) node {$q_1$};
+\draw [black] (57,-11.4) circle (3);
+\draw (57,-11.4) node {$q_2$};
+\draw [black] (57,-11.4) circle (2.4);
+\draw [black] (31,-26.1) circle (3);
+\draw (31,-26.1) node {$p_0,q_0$};
+\draw [black] (43.9,-26.1) circle (3);
+\draw (43.9,-26.1) node {$p_0,q_1$};
+\draw [black] (57.6,-26.1) circle (3);
+\draw (57.6,-26.1) node {$p_0,q_2$};
+\draw [black] (57.6,-26.1) circle (2.4);
+\draw [black] (31,-38.6) circle (3);
+\draw (31,-38.6) node {$p_1,q_0$};
+\draw [black] (43.9,-38.6) circle (3);
+\draw (43.9,-38.6) node {$p_1,q_1$};
+\draw [black] (57.6,-38.6) circle (3);
+\draw (57.6,-38.6) node {$p_1,q_2$};
+\draw [black] (14.8,-18.8) -- (14.8,-22.3);
+\fill [black] (14.8,-22.3) -- (15.3,-21.5) -- (14.3,-21.5);
+\draw [black] (12.12,-26.623) arc (324:36:2.25);
+\draw (7.55,-25.3) node [left] {$b$};
+\fill [black] (12.12,-23.98) -- (11.77,-23.1) -- (11.18,-23.91);
+\draw [black] (16.123,-40.98) arc (54:-234:2.25);
+\draw (14.8,-45.55) node [below] {$b$};
+\fill [black] (13.48,-40.98) -- (12.6,-41.33) -- (13.41,-41.92);
+\draw [black] (13.045,-35.883) arc (-153.42749:-206.57251:9.129);
+\fill [black] (13.05,-35.88) -- (13.13,-34.94) -- (12.24,-35.39);
+\draw (11.58,-31.8) node [left] {$a$};
+\draw [black] (16.445,-27.794) arc (24.5046:-24.5046:9.658);
+\fill [black] (16.44,-27.79) -- (16.32,-28.73) -- (17.23,-28.31);
+\draw (17.81,-31.8) node [right] {$a$};
+\draw [black] (23.8,-11.4) -- (27.9,-11.4);
+\fill [black] (27.9,-11.4) -- (27.1,-10.9) -- (27.1,-11.9);
+\draw [black] (29.577,-8.72) arc (234:-54:2.25);
+\draw (30.9,-4.15) node [above] {$a$};
+\fill [black] (32.22,-8.72) -- (33.1,-8.37) -- (32.29,-7.78);
+\draw [black] (33.598,-10.107) arc (108.4487:71.5513:12.013);
+\fill [black] (41.2,-10.11) -- (40.6,-9.38) -- (40.28,-10.33);
+\draw (37.4,-8.99) node [above] {$b$};
+\draw [black] (41.119,-12.51) arc (-74.44385:-105.55615:13.868);
+\fill [black] (33.68,-12.51) -- (34.32,-13.21) -- (34.59,-12.24);
+\draw (37.4,-13.52) node [below] {$a$};
+\draw [black] (46.9,-11.4) -- (54,-11.4);
+\fill [black] (54,-11.4) -- (53.2,-10.9) -- (53.2,-11.9);
+\draw (50.45,-11.9) node [below] {$b$};
+\draw [black] (55.677,-8.72) arc (234:-54:2.25);
+\draw (57,-4.15) node [above] {$a,b$};
+\fill [black] (58.32,-8.72) -- (59.2,-8.37) -- (58.39,-7.78);
+\draw [black] (25.5,-21.7) -- (28.66,-24.23);
+\fill [black] (28.66,-24.23) -- (28.35,-23.34) -- (27.72,-24.12);
+\draw [black] (29.437,-36.053) arc (-157.38674:-202.61326:9.632);
+\fill [black] (29.44,-36.05) -- (29.59,-35.12) -- (28.67,-35.51);
+\draw (28.2,-32.35) node [left] {$a$};
+\draw [black] (32.563,-28.647) arc (22.61326:-22.61326:9.632);
+\fill [black] (32.56,-28.65) -- (32.41,-29.58) -- (33.33,-29.19);
+\draw (33.8,-32.35) node [right] {$a$};
+\draw [black] (34,-26.1) -- (40.9,-26.1);
+\fill [black] (40.9,-26.1) -- (40.1,-25.6) -- (40.1,-26.6);
+\draw (37.45,-26.6) node [below] {$b$};
+\draw [black] (46.9,-26.1) -- (54.6,-26.1);
+\fill [black] (54.6,-26.1) -- (53.8,-25.6) -- (53.8,-26.6);
+\draw (50.75,-26.6) node [below] {$b$};
+\draw [black] (34,-38.6) -- (40.9,-38.6);
+\fill [black] (40.9,-38.6) -- (40.1,-38.1) -- (40.1,-39.1);
+\draw (37.45,-39.1) node [below] {$b$};
+\draw [black] (46.9,-38.6) -- (54.6,-38.6);
+\fill [black] (54.6,-38.6) -- (53.8,-38.1) -- (53.8,-39.1);
+\draw (50.75,-39.1) node [below] {$b$};
+\draw [black] (55.87,-36.167) arc (-154.32992:-205.67008:8.812);
+\fill [black] (55.87,-36.17) -- (55.97,-35.23) -- (55.07,-35.66);
+\draw (54.5,-32.35) node [left] {$a$};
+\draw [black] (59.167,-28.644) arc (22.68806:-22.68806:9.608);
+\fill [black] (59.17,-28.64) -- (59.01,-29.57) -- (59.94,-29.19);
+\draw (60.41,-32.35) node [right] {$a$};
+\draw [black] (42.297,-28.635) arc (-34.99313:-56.81131:32.055);
+\fill [black] (33.58,-37.08) -- (34.53,-37.06) -- (33.98,-36.22);
+\draw (39.31,-33.75) node [below] {$a$};
+\draw [black] (33.595,-27.603) arc (57.16041:34.64404:31.101);
+\fill [black] (33.6,-27.6) -- (34,-28.46) -- (34.54,-27.62);
+\draw (39.34,-30.92) node [above] {$a$};
+\draw [black] (60.28,-37.277) arc (144:-144:2.25);
+\draw (64.85,-38.6) node [right] {$b$};
+\fill [black] (60.28,-39.92) -- (60.63,-40.8) -- (61.22,-39.99);
+\draw [black] (60.28,-24.777) arc (144:-144:2.25);
+\draw (64.85,-26.1) node [right] {$b$};
+\fill [black] (60.28,-27.42) -- (60.63,-28.3) -- (61.22,-27.49);
+\end{tikzpicture}
+\end{center}
+
+\begin{bemerkung}
+Mit $F_C = \{(p, q) \in Q_C | p \in F_A $ oder $ q \in F_B \}$ funktionert auch für die Vereinigung.
+\end{bemerkung}
+
+\item[Mengendifferenz]
+
+Wenn $L$ und $M$ regulär sind, ist auch $L-M$ regulär.
+
+\begin{proof}[Beweis]
+Es gilt $L - M = L \cap \overline{M}$. Das Komplement ist regulär, der Schnitt ist regulär, ergo ist $L \cap \overline{M}$ regulär.
+\end{proof}
+
+\item[Spiegelung]
+\begin{definition}
+Sei $w = a_1\dots a_k$ ein Wort. Dann ist $w^\textrm{R} = a_k\dots a_1$ die Spiegelung von $w$.
+
+Sei $L \subseteq \Sigma^*$ eine Sprache. Dann ist $L^\textrm{R} = \{ w \in \Sigma^* | w^\textrm{R} \in L \}$ die Spiegelung von $L$.
+ 
+\end{definition}
+\begin{bemerkung} Einige coole Sachen:
+\begin{itemize}
+\item $\varepsilon^\textrm{R} = \varepsilon$
+\item $(w^\textrm{R})^\textrm{R} = w$
+\item Wenn $L$ regulär ist, dann ist auch $L^\textrm{R}$ regulär.
+\end{itemize}
+\end{bemerkung}
+
+\begin{proof}[Beweis]
+Sei $A = (Q, \Sigma, \delta, q_0, F)$ ein DEA für $L$. Wir konstruieren einen \enea $B$ für $L^\textrm{R}$ wie folgt:
+
+$B = (Q \cup \{q_S\}, \Sigma, \delta_B, q_S, F_B)$ mit
+\begin{enumerate}
+\item $F_B = \{q_0 \}$
+\item $\delta_B(q, a) = \{p\}$ für $\delta(p,a) = q$
+\item $\delta_B(q_S, \varepsilon) = \{p \}$ für alle $p \in F$
+\end{enumerate}
+
+$B$ simuliert $A$ in umgekehrter Richtung $\Rightarrow B$ akzeptiert $L^\textrm{R}$.
+\end{proof}
+
+\begin{beispiel}
+$L = \{w \in \{a,b\}^* | w $ endet auf $ba$ oder $ab\}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14,-27.2) circle (3);
+\draw (14,-27.2) node {$q_0$};
+\draw [black] (24.5,-20.9) circle (3);
+\draw (24.5,-20.9) node {$q_1$};
+\draw [black] (24.5,-33.8) circle (3);
+\draw (24.5,-33.8) node {$q_2$};
+\draw [black] (37.7,-20.9) circle (3);
+\draw (37.7,-20.9) node {$q_3$};
+\draw [black] (37.7,-20.9) circle (2.4);
+\draw [black] (37.7,-33.8) circle (3);
+\draw (37.7,-33.8) node {$q_4$};
+\draw [black] (37.7,-33.8) circle (2.4);
+\draw [black] (7.6,-27.2) -- (11,-27.2);
+\fill [black] (11,-27.2) -- (10.2,-26.7) -- (10.2,-27.7);
+\draw [black] (16.57,-25.66) -- (21.93,-22.44);
+\fill [black] (21.93,-22.44) -- (20.98,-22.43) -- (21.5,-23.28);
+\draw (20.19,-24.55) node [below] {$a$};
+\draw [black] (16.54,-28.8) -- (21.96,-32.2);
+\fill [black] (21.96,-32.2) -- (21.55,-31.35) -- (21.02,-32.2);
+\draw (18.25,-31) node [below] {$b$};
+\draw [black] (27.5,-20.9) -- (34.7,-20.9);
+\fill [black] (34.7,-20.9) -- (33.9,-20.4) -- (33.9,-21.4);
+\draw (31.1,-21.4) node [below] {$b$};
+\draw [black] (27.5,-33.8) -- (34.7,-33.8);
+\fill [black] (34.7,-33.8) -- (33.9,-33.3) -- (33.9,-34.3);
+\draw (31.1,-34.3) node [below] {$a$};
+\draw [black] (23.177,-18.22) arc (234:-54:2.25);
+\draw (24.5,-13.65) node [above] {$a$};
+\fill [black] (25.82,-18.22) -- (26.7,-17.87) -- (25.89,-17.28);
+\draw [black] (25.823,-36.48) arc (54:-234:2.25);
+\draw (24.5,-41.05) node [below] {$b$};
+\fill [black] (23.18,-36.48) -- (22.3,-36.83) -- (23.11,-37.42);
+\draw [black] (39.569,-23.227) arc (28.73671:-28.73671:8.575);
+\fill [black] (39.57,-31.47) -- (40.39,-31.01) -- (39.51,-30.53);
+\draw (41.12,-27.35) node [right] {$a$};
+\draw [black] (36.13,-31.257) arc (-156.93869:-203.06131:9.973);
+\fill [black] (36.13,-23.44) -- (35.36,-23.98) -- (36.28,-24.38);
+\draw (34.83,-27.35) node [left] {$b$};
+\draw [black] (26.062,-31.24) arc (145.88482:122.7981:31.592);
+\fill [black] (26.06,-31.24) -- (26.92,-30.86) -- (26.1,-30.3);
+\draw (29.12,-25.88) node [above] {$b$};
+\draw [black] (34.987,-32.524) arc (-118.78623:-149.89669:23.852);
+\fill [black] (25.84,-23.58) -- (25.81,-24.53) -- (26.67,-24.02);
+\draw (28.84,-29.16) node [below] {$a$};
+\end{tikzpicture}
+\end{center}
+
+$L^\textrm{R} = \{w \in \{a,b\}^* | w $ beginnt mit $ba$ oder $ab\}$.
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (14,-27.2) circle (3);
+\draw (14,-27.2) node {$q_0$};
+\draw [black] (14,-27.2) circle (2.4);
+\draw [black] (24.5,-20.9) circle (3);
+\draw (24.5,-20.9) node {$q_1$};
+\draw [black] (24.5,-33.8) circle (3);
+\draw (24.5,-33.8) node {$q_2$};
+\draw [black] (37.7,-20.9) circle (3);
+\draw (37.7,-20.9) node {$q_3$};
+\draw [black] (37.7,-33.8) circle (3);
+\draw (37.7,-33.8) node {$q_4$};
+\draw [black] (50.2,-27.2) circle (3);
+\draw (50.2,-27.2) node {$q_S$};
+\draw [black] (23.177,-18.22) arc (234:-54:2.25);
+\draw (24.5,-13.65) node [above] {$a$};
+\fill [black] (25.82,-18.22) -- (26.7,-17.87) -- (25.89,-17.28);
+\draw [black] (25.823,-36.48) arc (54:-234:2.25);
+\draw (24.5,-41.05) node [below] {$b$};
+\fill [black] (23.18,-36.48) -- (22.3,-36.83) -- (23.11,-37.42);
+\draw [black] (57.7,-27.2) -- (53.2,-27.2);
+\fill [black] (53.2,-27.2) -- (54,-27.7) -- (54,-26.7);
+\draw [black] (47.52,-25.85) -- (40.38,-22.25);
+\fill [black] (40.38,-22.25) -- (40.87,-23.06) -- (41.32,-22.16);
+\draw (44.86,-23.55) node [above] {$\epsilon$};
+\draw [black] (47.55,-28.6) -- (40.35,-32.4);
+\fill [black] (40.35,-32.4) -- (41.29,-32.47) -- (40.83,-31.58);
+\draw (43.03,-30) node [above] {$\epsilon$};
+\draw [black] (34.7,-33.8) -- (27.5,-33.8);
+\fill [black] (27.5,-33.8) -- (28.3,-34.3) -- (28.3,-33.3);
+\draw (31.1,-33.3) node [above] {$a$};
+\draw [black] (34.7,-20.9) -- (27.5,-20.9);
+\fill [black] (27.5,-20.9) -- (28.3,-21.4) -- (28.3,-20.4);
+\draw (31.1,-20.4) node [above] {$b$};
+\draw [black] (21.93,-22.44) -- (16.57,-25.66);
+\fill [black] (16.57,-25.66) -- (17.52,-25.67) -- (17,-24.82);
+\draw (18.31,-23.55) node [above] {$a$};
+\draw [black] (21.96,-32.2) -- (16.54,-28.8);
+\fill [black] (16.54,-28.8) -- (16.95,-29.65) -- (17.48,-28.8);
+\draw (20.25,-30) node [above] {$b$};
+\draw [black] (25.372,-30.934) arc (157.87246:110.81046:16.534);
+\fill [black] (34.81,-21.71) -- (33.89,-21.52) -- (34.24,-22.46);
+\draw (28.11,-24.86) node [above] {$b$};
+\draw [black] (34.921,-32.678) arc (-116.14106:-152.54185:20.671);
+\fill [black] (34.92,-32.68) -- (34.42,-31.88) -- (33.98,-32.77);
+\draw (28.62,-29.38) node [below] {$a$};
+\draw [black] (36.168,-31.233) arc (-157.60898:-202.39102:10.194);
+\fill [black] (36.17,-31.23) -- (36.33,-30.3) -- (35.4,-30.68);
+\draw (34.9,-27.35) node [left] {$b$};
+\draw [black] (39.104,-23.541) arc (20.20784:-20.20784:11.028);
+\fill [black] (39.1,-23.54) -- (38.91,-24.46) -- (39.85,-24.12);
+\draw (40.28,-27.35) node [right] {$a$};
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{proof}[Beweis über Reguläre Ausdrücke]
+
+Sei $\alpha$ ein regulärer Ausdruck mit $L(\alpha) = L$.
+
+Zu zeigen: Es gibt einen RA $\beta$ mit $L(\beta) = (L(\alpha))^\textrm{R} = L^\textrm{R}$.
+
+Strukturelle Induktion über den Aufbau von $\alpha$. Induktionsanfang:
+
+\begin{itemize}
+\item $\varepsilon^\textrm{R} = \varepsilon$
+\item $\varnothing^\textrm{R} = \varnothing$
+\item $a^\textrm{R} = a$ für ein $a \in \Sigma$
+\end{itemize}
+
+Induktionsschritt:
+\begin{itemize}
+\item Vereinigung $\alpha = \alpha_1 + \alpha_2$:
+\[
+L(\alpha_1 + \alpha_2)^\textrm{R} = (L(\alpha_1) \cup L(\alpha_2))^\textrm{R} = L(\alpha_1)^\textrm{R} \cup L(\alpha_2)^\textrm{R} \Rightarrow \alpha^\textrm{R} = \alpha_1^\textrm{R} + \alpha_2^\textrm{R}
+\]
+\item Konkatenation $\alpha = \alpha_1 \alpha_2$:
+\[
+L(\alpha_1 \alpha_2)^\textrm{R} =  (L(\alpha_1) L(\alpha_2))^\textrm{R} = L(\alpha_1)^\textrm{R} L(\alpha_2)^\textrm{R} \Rightarrow \alpha^\textrm{R} \overset{(w_1 w_2)^\textrm{R} = w_2^\textrm{R} w_1^\textrm{R}}{=} \alpha_1^\textrm{R} \alpha_2^\textrm{R}
+\]
+\item Kleene'scher Stern $\alpha = \alpha_1^*$:
+\[
+L(\alpha_1^*)^\textrm{R} = (L(\alpha_1)^\textrm{R})^* \rightarrow \alpha^\textrm{R} = (\alpha_1^\textrm{R})^*
+\]
+\end{itemize}
+
+\end{proof}
+
+\item[Homomorphismus]
+
+\begin{definition} Ein (Wort-)Homomorphismus ist eine Abbildung
+\[
+h : \Sigma_1 \mapsto \Sigma_2^*
+\]
+
+die die Symbole eines Alphabets auf Wörter abbildet.
+\end{definition}
+
+\begin{beispiel}
+$\Sigma_1 = \{0,1 \}, \Sigma_2 = \{a,b\}, h(0) = ab, h(1) = \varepsilon$
+\end{beispiel}
+
+Erweiterung auf Wörter: Sei $w = a_1\dots a_k$. Dann ist $h(w) = h(a_1)\cdot h(a_2)\cdot \dots \cdot h(a_k)$.
+
+\begin{beispiel}
+$h(0101) = ab\cdot \varepsilon \cdot ab \cdot \varepsilon = abab$
+\end{beispiel}
+
+\begin{definition}
+Sei $h : \Sigma_1 \mapsto \Sigma_2^*$ ein Homomorphismus, sei $L \subseteq \Sigma_1^*$ eine Sprache. Dann ist
+\[
+h(L) = \{ w \in \Sigma^* | w = h(x) \textrm{ für ein } x \in L \}
+\]
+\end{definition}
+
+Satz: Sei $h : \Sigma_1 \mapsto \Sigma_2^*$ ein Homomorphismus. Wenn $L \subseteq L_1^*$ regulär ist, dann ist auch $h(L)$ regulär.
+
+\begin{proof}[Beweis über rock-the-bottom strukturelle Induktion]
+Für einen regulären Ausdruck $\alpha$ über $\Sigma_1$ ist $h(\alpha)$ der reguläre Ausdruck über $\Sigma_2$, der entsteht, wenn jedes Vorkommen von $a \in \Sigma_1$ durch $h(a)$ ersetzt wird. 
+\end{proof}
+
+\begin{beispiel}
+$\Sigma_1 = \{0,1\}, \Sigma_2 = \{a,b\}, h(0) = ab, h(1) = \varepsilon$.
+\[
+\alpha = ((0+1)0)^* 1 \Rightarrow h(\alpha) ((ab + \varepsilon)\cdot ab)^*\varepsilon = (ab)^*
+\]
+\end{beispiel}
+
+Und latürnich gilt: $L(h(\alpha)) = h(L)$
+
+\begin{beispiel}[Übungsaufgaben 9. Oktober -- Aufgabe 3]
+Deifniere die Menge der $a$-Vorgänger eines Zustands $q$ als $V_a(q) = \{ p \in Q | \delta(p, a) = q \}$. Dann ist $B = (Q, \Sigma, \delta, q_0, V_a(F))$ ein DEA für $L/a$.
+\end{beispiel}
+
 \end{description}
+
+\subsection{Nichtregularität}
+
+Ziel: Zeige, dass es Sprachen gibt, die nicht regulär sind.
+
+Idee: DEAs analysieren: DEAs können nicht beliebig weit zählen.
+
+\begin{beispiel}
+Betrachte den folgenden DEA:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.6,-17.3) circle (3);
+\draw (13.6,-17.3) node {$q_0$};
+\draw [black] (26.5,-17.3) circle (3);
+\draw (26.5,-17.3) node {$q_1$};
+\draw [black] (40.4,-17.3) circle (3);
+\draw (40.4,-17.3) node {$q_4$};
+\draw [black] (40.4,-17.3) circle (2.4);
+\draw [black] (40.3,-30.3) circle (3);
+\draw (40.3,-30.3) node {$q_2$};
+\draw [black] (26.5,-30.3) circle (3);
+\draw (26.5,-30.3) node {$q_3$};
+\draw [black] (12.277,-14.62) arc (234:-54:2.25);
+\draw (13.6,-10.05) node [above] {$a$};
+\fill [black] (14.92,-14.62) -- (15.8,-14.27) -- (14.99,-13.68);
+\draw [black] (16.6,-17.3) -- (23.5,-17.3);
+\fill [black] (23.5,-17.3) -- (22.7,-16.8) -- (22.7,-17.8);
+\draw (20.05,-17.8) node [below] {$b$};
+\draw [black] (29.5,-17.3) -- (37.4,-17.3);
+\fill [black] (37.4,-17.3) -- (36.6,-16.8) -- (36.6,-17.8);
+\draw (33.45,-17.8) node [below] {$b$};
+\draw [black] (28.68,-19.36) -- (38.12,-28.24);
+\fill [black] (38.12,-28.24) -- (37.88,-27.33) -- (37.19,-28.06);
+\draw (32.44,-24.28) node [below] {$a$};
+\draw [black] (27.823,-32.98) arc (54:-234:2.25);
+\draw (26.5,-37.55) node [below] {$b$};
+\fill [black] (25.18,-32.98) -- (24.3,-33.33) -- (25.11,-33.92);
+\draw [black] (37.3,-30.3) -- (29.5,-30.3);
+\fill [black] (29.5,-30.3) -- (30.3,-30.8) -- (30.3,-29.8);
+\draw (33.4,-29.8) node [above] {$a$};
+\draw [black] (42.98,-28.977) arc (144:-144:2.25);
+\draw (47.55,-30.3) node [right] {$b$};
+\fill [black] (42.98,-31.62) -- (43.33,-32.5) -- (43.92,-31.69);
+\draw [black] (43.08,-15.977) arc (144:-144:2.25);
+\draw (47.65,-17.3) node [right] {$a,b$};
+\fill [black] (43.08,-18.62) -- (43.43,-19.5) -- (44.02,-18.69);
+\draw [black] (26.5,-27.3) -- (26.5,-20.3);
+\fill [black] (26.5,-20.3) -- (26,-21.1) -- (27,-21.1);
+\draw (27,-23.8) node [right] {$a$};
+\draw [black] (8.8,-17.3) -- (10.6,-17.3);
+\fill [black] (10.6,-17.3) -- (9.8,-16.8) -- (9.8,-17.8);
+\end{tikzpicture}
+\end{center}
+
+Arbeit von $A$ auf dem Wort $w=abaaab$:
+\[
+q_0
+\overset{a}{\mapsto} q_0
+\overset{b}{\mapsto} q_1
+\overset{a}{\mapsto} q_2
+\overset{a}{\mapsto} q_3
+\overset{a}{\mapsto} q_1
+\overset{b}{\mapsto} q_4
+\]
+
+Enthält einen Zykel $q_1 \overset{a}{\mapsto}q_2 \overset{a}{\mapsto}q_3 \overset{a}{\mapsto}q_1$.
+
+Wiederholung des Zykels: $w' = ab aaa aaa b$
+
+\[
+q_0
+\overset{a}{\mapsto} q_0
+\overset{b}{\mapsto} q_1
+\overset{a}{\mapsto} q_2
+\overset{a}{\mapsto} q_3
+\overset{a}{\mapsto} q_1
+\overset{a}{\mapsto} q_2
+\overset{a}{\mapsto} q_3
+\overset{a}{\mapsto} q_1
+\overset{b}{\mapsto} q_4
+\]
+
+Da $q_4 \in F$, gilt $w' \in L(A)$
+
+\end{beispiel}
+
+Allgemein: Sei $A$ ein DEA. Sei $w = u\cdot x \cdot v$ ein Wort in $L(A)$, $u,v,x \in \Sigma^*, x \neq \varepsilon$. Falls der Automat auf dem Teilwort $x$ in einer Schleife läuft, dann ist auch das Wort $w' = uxxv \in L(A)$.
+
+Formal: Falls $\hat\delta(q_0, u) = q$ und $\hat\delta(q, x) = q$ und $\hat\delta(q, v) \in F$, dann ist $w' = uxxv \in L(A)$.
+
+Im Beispiel oben:
+\[
+w = \underbrace{u}_{ab}\underbrace{x}_{aaa}\underbrace{v}_{b} \in L(A)
+\]
+, $w' = \underbrace{u}_{ab}\underbrace{x}_{aaa}\underbrace{x}_{aaa}\underbrace{v}_{b} \in L(A)$
+
+\begin{bemerkung}
+Ein DEA ist vollständig, d.h. für jedes $q \in Q$ und jedes $a \in \Sigma$ existiert genau ein Folgezustand $\delta(q, a)$. Daraus folgt direkt, dass man mit jedem Wort aus $\Sigma^*$ kann man durch den Automaten laufen, ohne stecken zu bleiben. Daraus wiederum folgt, dass bei der Arbeit des DEA $A$ mit $n$ Zuständen auf einem Wort der Länge $\ge n$ wird mindestens ein Zustand doppelt besucht.
+\end{bemerkung}
+
+\begin{beispiel} Sei
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (13.6,-17.3) circle (3);
+\draw (13.6,-17.3) node {$q_0$};
+\draw [black] (26.5,-17.3) circle (3);
+\draw (26.5,-17.3) node {$q_1$};
+\draw [black] (40.4,-17.3) circle (3);
+\draw (40.4,-17.3) node {$q_2$};
+\draw [black] (40.4,-17.3) circle (2.4);
+\draw [black] (16.202,-15.826) arc (111.38395:68.61605:10.555);
+\fill [black] (23.9,-15.83) -- (23.34,-15.07) -- (22.97,-16);
+\draw (20.05,-14.6) node [above] {$a$};
+\draw [black] (29.139,-15.89) arc (110.97997:69.02003:12.04);
+\fill [black] (37.76,-15.89) -- (37.19,-15.14) -- (36.83,-16.07);
+\draw (33.45,-14.59) node [above] {$a$};
+\draw [black] (43.08,-15.977) arc (144:-144:2.25);
+\draw (47.65,-17.3) node [right] {$a$};
+\fill [black] (43.08,-18.62) -- (43.43,-19.5) -- (44.02,-18.69);
+\draw [black] (8.8,-17.3) -- (10.6,-17.3);
+\fill [black] (10.6,-17.3) -- (9.8,-16.8) -- (9.8,-17.8);
+\draw [black] (23.773,-18.532) arc (-72.58873:-107.41127:12.441);
+\fill [black] (16.33,-18.53) -- (16.94,-19.25) -- (17.24,-18.29);
+\draw (20.05,-19.6) node [below] {$b$};
+\draw [black] (37.582,-18.318) arc (-75.38527:-104.61473:16.378);
+\fill [black] (29.32,-18.32) -- (29.97,-19) -- (30.22,-18.04);
+\draw (33.45,-19.35) node [below] {$b$};
+\draw [black] (15.286,-14.824) arc (140.11895:39.88105:15.265);
+\fill [black] (38.71,-14.82) -- (38.58,-13.89) -- (37.82,-14.53);
+\draw (27,-8.85) node [above] {$b$};
+\end{tikzpicture}
+\end{center}
+
+$|Q| = 3$.
+
+z.B. $w_1 = abb$: $q_0 \overset{a}{\mapsto} q_1 \overset{b}{\mapsto} q_0 \overset{b}{\mapsto} q_2$
+
+$\Rightarrow$ $q_0$ doppelt besucht.
+\end{beispiel}
+
+Beobachtung: Sei $A = (Q, \Sigma, \delta, q_0, F)$ ein DEA mit $|Q| = n$. Sei $w \in L(A)$ mit $|w| \ge n$. Dann wiederholt sich in der Berechnung von $A$ auf $w$ mindestens einmal ein Zustand. Wir nennen einen dieser wiederholt besuchten Zustände $q_x$. Dann lässt sich $w$ zerlegen in drei Teile
+\[
+w = \underbrace{u}_{\textrm{bis zum ersten $q_x$}} \cdot \underbrace{x}_{\textrm{von $q_x$ nach $q_x$}} \cdot \underbrace{v}_{\textrm{nach $q_x$}}
+\]
+
+Berechnug von $A$ auf $w$ hat die Form
+\[
+q_0 \overset{u}{\leadsto} q_x \overset{x}{\leadsto} q_x \overset{v}{\leadsto} q_F \in F
+\]
+
+Damit gibt es auch eine Berechnung von $A$ auf $w' = uxxv$:
+\[
+q_0 \overset{u}{\leadsto} q_x \overset{x}{\leadsto} q_x q_x \overset{x}{\leadsto} q_x \overset{v}{\leadsto} q_F \in F
+\]
+
+\begin{beispiel}
+Diese Beobachtung können wir nutzen, um zu zeigen, dass $L = \{a^k b^k | k \ge 0 \}$ nicht regulär ist.
+\end{beispiel}
+
+\begin{proof}[Beweis durch Widerspruch]
+Für $L$ kann es keinen DEA mit 7 Zuständen geben.
+
+Annahme: Es gibt einen DEA $A = (Q, \Sigma, \delta, q_0, F)$ mit $|Q| = 7$ und $\Sigma = \{a,b\}$, so dass $L(A) = L$.
+
+Es gibt zwei Möglichkeiten zur Widerlegung:
+
+\begin{enumerate}
+\item alle möglichen DEA mit 7 Zuständen ausprobieren. Klappt nicht, weil zu viele. 
+\item Beobachtung über Zykel ausnutzen.
+
+Betrachte das Wort $w = aaaabbbb \in L$. Es gilt $|w| = 8 > 7 = |Q|$. Also muss sich in der Berechnung von $A$ auf $w$ mindestens ein Zustand wiederholen.
+
+Zerteilen wir $w$ in $w = u\cdot x \cdot v$ mit der Berechnung
+\[
+q_0 \overset{u}{\leadsto}
+q_x \overset{x}{\leadsto}
+q_x \overset{v}{\leadsto}
+q_F \in F
+\]
+
+Daraus folgt $w' = uxxv \in L(A)$.
+Wie kann das Wort $x$ aussehen? Fallunterscheidung:
+\begin{enumerate}
+\item $x$ besteht nur aus $a$s. z.B. $w = \underbrace{aa}_u\underbrace{aa}_x \underbrace{bbbb}_v$. Daraus folgt $w' = \underbrace{aa}_u\underbrace{aa}_x \underbrace{aa}_x \underbrace{bbbb}_v = a^6 b^4 \not\in L$. Widerspruch!
+
+\item $x$ besteht nur aus $b$s. z.B. $w = \underbrace{aaaab}_u\underbrace{b}_x \underbrace{bb}_v$. Daraus folgt $w' = \underbrace{aaaab}_u\underbrace{b}_x \underbrace{b}_x \underbrace{bb}_v = a^4 b^5 \not\in L$. Widerspruch!
+
+\item $x$ besteht aus $a$s und $b$s. z.B. $w = \underbrace{aa}_u\underbrace{aab}_x \underbrace{bbb}_v$. Daraus folgt $w' = \underbrace{aa}_u\underbrace{aab}_x \underbrace{aab}_x \underbrace{bbb}_v  \not\in L$. Widerspruch!
+
+Daraus folgt, dass es keinen DEA mit 7 Zuständen für $L$ gibt.
+
+Denselben Beweis hätten wir auch für jede andere Anzahl von Zuständen führen können. Daraus kann gefolgert werden, dass es überhaupt keinen DEA für $L$ gibt. Daraus folgt, dass $L$ nicht regulär ist.
+\end{enumerate}
+
+\end{enumerate}
+\end{proof}
 
 \end{document}
