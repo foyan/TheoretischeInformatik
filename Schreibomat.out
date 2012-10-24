@@ -17,3 +17,6 @@
 \BOOKMARK [1][-]{section.17}{Regul\344re Sprachen und ihre Eigenschaften}{}% 17
 \BOOKMARK [2][-]{subsection.17.1}{Abschlusseigenschaften regul\344rer Sprachen}{section.17}% 18
 \BOOKMARK [2][-]{subsection.17.2}{Nichtregularit\344t}{section.17}% 19
+\BOOKMARK [2][-]{subsection.17.3}{Verallgemeinerung der Methode}{section.17}% 20
+\BOOKMARK [2][-]{subsection.17.4}{Anwendung des Pumping-Lemmas gegen einen Gegner}{section.17}% 21
+\BOOKMARK [1][-]{section.18}{Regul\344re Grammatiken}{}% 22

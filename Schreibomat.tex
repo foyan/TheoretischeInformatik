@@ -3782,4 +3782,357 @@ Denselben Beweis hätten wir auch für jede andere Anzahl von Zuständen führen
 \end{enumerate}
 \end{proof}
 
+\begin{beispiel}
+Argumentieren wir, warum ein DEA mit 5 Zuständen die Sprache
+\[
+	L = \{a^kb^{2k} | k \ge 0 \}
+\]
+nicht akzeptieren kann.
+\end{beispiel}
+
+\begin{proof}[Beweis]
+Annahme: Es gibt einen DEA mit $|Q|=5$. Betrachten wir uns das Wort $w = aabbbb \in L$. Es gilt $|w|$ = 6, das heisst es wird mindestens 1 Zustand mehrfach durchlaufen. $w$ lässt sich also zerlegen in $w = uxv$:
+\[
+q_0 \overset{u}{\leadsto} q_x \overset{x}{\leadsto} q_F \in F.
+\]
+Dann gilt $w' = uxxv \in L(A)$.
+
+Fallunterscheidung über die Form von $x$:
+\begin{enumerate}
+\item $x$ besteht nur aus $a$s. D.h. $w'$ enthält mehr $a$s als $w$, aber nicht mehr $b$s $ \Rightarrow w' \notin L$. Widerspruch!
+\item $x$ besteht nur aus $b$s. Analoger Widerspruch.
+\item $x$ besteht aus $a$s und $b$s. $\Rightarrow $ in $w'$ kommt ein $b$ vor einem $a \Rightarrow w' \notin L$. Darum gibt es keinen DEA mit 5 Zuständen, der $L$ akzeptieren könnte.
+\end{enumerate}
+\end{proof}
+
+\subsection{Verallgemeinerung der Methode}
+
+Ziel: Zeige, dass es gar keinen DEA für $L$ gibt.
+
+\begin{definition}[Pumping-Lemma für reguläre Sprachen]
+
+Sei $L$ eine reguläre Sprache. Dann gibt es eine Konstante $n_0$ (die von $L$ abhängt), so dass für jedes Wort $w \in L$ mit $|w| \ge n_0$ gilt:
+
+$w$ kann zerlegt werden in $w = uxv$ mit den folgenden Eigenschaften:
+\begin{enumerate}[(a)]
+\item $|w| \ge 1$, d.h. $x \neq \varepsilon$
+\item $|ux| \le n_0$
+\item Für alle $k \ge 0$ ist auch $ux^kv \in L$.
+\end{enumerate}
+
+\end{definition}
+
+\begin{proof}[Begründung der Korrektheit]
+Falls $L$ regulär ist, existiert ein DEA $A$ für $L$. Setzen wir $n_0 = |Q|$. $x$ ist dann die Beschriftung eines Zykels in $A$, der in den ersten $|Q|$ Berechnungsschritten auftritt ($|ux| \le n_0$). Eine Wiederholung des Zykels ändert nichts an der Akzeptanz des Wortes.
+\end{proof}
+
+\begin{beispiel}
+Zeigen wir, dass $L = \{a^kb^k | k \in \mathbb{N} \}$.
+\end{beispiel}
+\begin{proof}[Beweis]
+Annahme: $L$ ist regulär. Das Pumping-Lemma gibt uns die Existenz einer Konstanten $n_0$, sodass für alle Wörter $w \in L$ mit $|w| \ge n_0$ alle Bedingungen gelten.
+Um einen Widerspruch herzuleiten, können wir uns ein Wort $w \in L$ auswählen, sei also $w = a^{n_0}b^{n_0}$. Nach dem Pumping-Lemma gibt es eine Zerlegung $w = uxv$ mit $|ux| \le n_0$ und $|x| \ge 1$.
+
+Daraus folgt, dass:
+\[
+u = a^j \textrm{ für ein } 0 \le j \le n_0 \le n_0
+\]
+und
+\[
+x = a^i \textrm{ für ein } 1 \le i \le n_0.
+\]
+Weiter gilt nach dem Pumping-Lemma: $ux^kv \in L$ für alle $k$.
+Um den Widerspruch herzuleiten, wählen wir $k = 2$. Nach dem Pumping-Lemma muss gelten, dass
+\[
+ux^2v = a^{n_0 + i}b^{n_0} \in L.
+\]
+Das ist ein Widerspruch weil $n_0 + i \neq n_0$. Also kann $L$ nicht regulär sein.
+\end{proof}
+
+\begin{bemerkung}
+So nützlich es auch ist, aber:
+\begin{itemize}
+\item Das Pumping-Lemma gibt nur notwendige Eigenschaften für reguläre Sprachen an, aber keine hinreichenden. Die Regularität einer Sprache kann also damit nicht gezeigt werden.
+\item Es gibt Sprachen, die nicht regulär sind und trotzdem das Pumping-Lemma erfüllen. Dumm gelaufen.
+
+\end{itemize}
+\end{bemerkung}
+
+\subsection{Anwendung des Pumping-Lemmas gegen einen Gegner}
+
+Wir spielen gegen Darth Vader, die Lemmings und die Achse der bösen Allquantoren.
+\begin{enumerate}
+\item Wir wählen die Sprache, deren Nichtregularität wir nachweisen wollen.
+\item Darth Vader wählt $n_0$.
+\item Wir wählen das Wort $w$ mit $|w| \ge n_0$.
+\item Darth Vader lässt sich davon nicht beeindrucken und zerlegt $w = uxv$ gemäss dem Pumping-Lemma.
+\item Wir wählen $k$ und gewinnen, falls wir einen Widerspruch herleiten können.
+\end{enumerate}
+
+\begin{beispiel} Viele viele Aufgaben:
+\begin{enumerate}[(a)]
+\item Nicht regulär: $L = \{0^m10^m\}, m \ge 1$
+
+Annahme: $L$ ist regulär. Darum gibt es $n_0$, sodass alle Pumping-Lemma-Bedingungen gelten. $w = 0^{n_0}10^{n_0}$.
+
+Zerlegung: $w = uxv$. $u = 0^j$, $x = 1$. $ux^kv \in L$ für alle $k$. $k = 2$. Daraus folgt: $ux^2v = 0^{n_0}1^20^{n_0}$. Foul.
+
+\item Nicht regulär: $L = \{yy^\textrm{R} | y \in \{a,b^*\} \}$
+
+Annahme: $L$ ist regulär. Darum gibt es $n_0$, sodass alle Pumping-Lemma-Bedingungen gelten. $w = a^{n_0}bba^{n_0}$. Zerlegung. $\Rightarrow |ux| \le n_0, |x| \ge 1$, also
+\[
+u = a^j, x = a^i
+\]
+
+Gem. Pumping-Lemma ist $ux^0v = uv-a^{n_0-i}bba^{n_0}$. Widerspruch.
+
+\end{enumerate}
+\end{beispiel}
+
+\begin{beispiel}
+6a. Differenz: Offenbar $0^*1^*$ regulär. Annahme: $L_1$ ist regulär.
+\[
+\{0^m1^m\} = 0^*1^* - \{0^i1^j | i \neq j \}. 
+\]
+
+6b. Homomorphismus: $h: \{ a,b,c\} \mapsto \{0,1\}$. $h(a) = 0, h(b) = 0, h(c) = 1$.
+
+$h(L_2) = \{0^m0^l1^{m+l} | l, m \ge 0\}$
+\end{beispiel}
+
+\section{Reguläre Grammatiken}
+
+Idee: Mechanismus zur Erzeugung aller Wörter aus einer Sprache.
+
+\begin{beispiel} Reguläre Sprache:
+\[
+L = \{1w | w \in 0^* \} \subseteq \{0,1\}^* = \{1, 10, 100, 1000, \dots \}
+\]
+
+Vorgehen bei der Konstruktion solcher Wörter:
+\begin{itemize}
+\item 1 an den Anfang setzen
+\item beliebig viele 0 auffüllen.
+\end{itemize}
+
+Regeln:
+\begin{enumerate}[(1)]
+\item start $\rightarrow 1N$
+\item $N \rightarrow 0N$
+\item $N \rightarrow \varepsilon$
+\end{enumerate}
+
+Konstruktion von 1000:
+
+start $\overset{(1)}{\Rightarrow} 1N \overset{(2)}{\Rightarrow} 10N \overset{(2)}{\Rightarrow} 100N \overset{(2)}{\Rightarrow} 1000N \overset{(3)}{\Rightarrow} 1000$
+
+\end{beispiel}
+
+\begin{definition}
+Eine Rechtslineare Grammatik $G$ erzeugt alle Wörter einer Sprache buchstabenweise von links nach rechts. Sie wird beschrieben durch
+\[
+G = (N,T,P,S),
+\]
+wobei
+\begin{itemize}
+\item $T$ das Terminalalphabet (Alphabet der Sprache)
+\item $N$ das Nichtterminalalphabet (Menge von Hilfssymbolen)
+\item $P \subseteq N \times (TN \cup T \cup \{\varepsilon\})$ die Menge von Produktionen (Regeln). Für $p = (l,r)$ heisst $l$ die linke Seite von $P$ und $r$ die rechte Seite von $P$. Wir schreiben statt $p = (l,r)$ auch $l \rightarrow r$
+\item $S \in N$ ist das Startsymbol
+\end{itemize}
+\end{definition}
+
+Anschauung: Produktion $p = l \rightarrow r$ ist eine Ersetzungsregel. In einem Wort über $T\cup N$ wird durch Anwendung von $p$ ein Vorkommen von $l$ durch $r$ ersetzt.
+
+\begin{definition}[Ableitungsschritt]
+Sei $G = (N,T,P,S)$ eine rechtslineare Grammatik. Ein Ableitungsschritt in $G$ ist eine Relation
+\[
+\Rightarrow \subseteq T^*N\times T^* (N\cup \varepsilon)
+\]
+definiert durch $uA \Rightarrow uw$ genau dann, wenn $A \rightarrow w \in P$, wobei $u \in T^*, A\in N, w \in TN \cup T\cup \{\varepsilon\}$.
+\end{definition}
+
+\begin{definition}[Ableitung]
+Eine Ableitung ist eine endliche Folge von Ableitungsschritten. Formal ist $\overset{*}{\Rightarrow}$ die reflexive, transitive Hülle von $\Rightarrow$.
+
+Die von $G$ erzeugte Sprache ist definiert als
+\[
+L(G) =  \{w \in \Sigma^* | S \overset{*}{\Rightarrow} w \},
+\]
+also die Menge aller Wörter, die aus $S$ in endlich vielen Ableitungsschritten erzeugt werden können.
+
+\end{definition}
+
+\begin{definition}[Äquivalenz von Grammatiken]
+Zwei Grammatiken sind $G_1, G_2$ heissen äquivalent, falls
+\[
+L(G_1) = L(G_2).
+\]
+
+\end{definition}
+
+\begin{beispiel}
+Ein Beispiel:
+\[
+G = (\{S,A,B\}, \{0,1\}, P, S),
+\]
+wobei
+\[
+P = \{ S \overset{(1)}{\rightarrow} 0S, S \overset{(2)}{\rightarrow} 1S, S \overset{(3)}{\rightarrow} 0A, A \overset{(4)}{\rightarrow} 0B, A \overset{(5)}{\rightarrow} 1B, B \overset{(6)}{\rightarrow} 0, B \overset{(7)}{\rightarrow} 1\}
+\]
+
+Ableitung von 011010:
+
+\begin{eqnarray*}
+S \overset{(1)}{\Rightarrow} 0S \overset{(2)}{\Rightarrow} 01S \overset{(2)}{\Rightarrow} 011S \overset{(3)}{\Rightarrow} 0110A \overset{(5)}{\Rightarrow} 01101B \overset{(6)}{\Rightarrow}011010
+\end{eqnarray*}
+
+Ableitung von 0111:
+
+Zwei Regeln für $S$:
+
+\[
+S \overset{(1)}{\Rightarrow} 0S \overset{(2)}{\Rightarrow}01S \overset{(2)}{\Rightarrow} 011S \overset{(2)}{\Rightarrow} 0111S \dots
+\]
+
+Klappt nicht.
+
+\[
+S \overset{(3)}{\Rightarrow} 0A \overset{(5)}{\Rightarrow}01B \overset{(7)}{\Rightarrow} 011
+\]
+
+Klappt ebenfalls nicht.
+
+\end{beispiel}
+
+\begin{definition}
+\[
+\mathcal{L}_{\textrm{rlin}} = \{ L | \textrm{ es existiert eine rechtslineare Grammatik $G$ mit } L= L(G) \}
+\]
+\end{definition}
+
+Vereinfachung rechtslinearer Grammatiken. 3 Typen von Regeln:
+
+\begin{enumerate}[(1)]
+\item $A \rightarrow aB$
+\item $A \rightarrow a$
+\item $A \rightarrow \varepsilon$
+\end{enumerate}
+
+Zeige: Die Regel (2) kann vermieden werden: Ersetze $A \rightarrow a$ durch $A\rightarrow aC$ und $C \rightarrow \varepsilon$.
+
+Weitere Vereinfachung: Es reicht, eine Regel vom Typ (3), zusätzlich wird gegebenenfalls $S \rightarrow \varepsilon$, falls $\varepsilon \in L(G)$. Wie funktioniert das? Ersetze die Regeln $A_1 \rightarrow a_1B_1, \dots, A_k \rightarrow a_kB_k$ und
+$B_1 \rightarrow \varepsilon, \dots, B_k \rightarrow \varepsilon$
+durch
+$A_1 \rightarrow a_1T, \dots, A_k \rightarrow a_kT$ und $T \rightarrow \varepsilon$.
+
+\begin{theorem}[Äquivalenz von rechtslinearen Grammatiken und Endlichen Automaten]
+Zu jeder rechtslinearen Grammatik über $T = \Sigma$ existiert ein NEA $A$ über $\Sigma$ mit $L(A) = L(G)$.
+\end{theorem}
+\begin{proof}[Beweis]
+$G = (N, \Sigma, P, S)$ ohne Typ (2).
+
+Daraus folgt: NEA $A = (Q, \Sigma, \delta, q_0, F)$ mit
+\begin{itemize}
+\item $Q = N$
+\item $q_0 = S$
+\item $F = \{X \in N | X \rightarrow \varepsilon \in P \}$
+\item $\delta$ definiert durch: $X \in \delta (Y, a) \Leftrightarrow Y \rightarrow aY \in P$
+\end{itemize}
+
+\end{proof}
+
+\begin{beispiel}
+$G = (\{S,A,B\}, \{a,b\}, P, S)$ mit
+
+$P = \{ S \rightarrow aB, S \rightarrow bA, A \rightarrow aB, B \rightarrow bA, A \rightarrow \varepsilon, B \rightarrow \varepsilon\}$.
+
+NEA für $L(G)$:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.5,-27) circle (3);
+\draw (15.5,-27) node {$S$};
+\draw [black] (32.1,-17.4) circle (3);
+\draw (32.1,-17.4) node {$A$};
+\draw [black] (32.1,-17.4) circle (2.4);
+\draw [black] (32.1,-36.3) circle (3);
+\draw (32.1,-36.3) node {$B$};
+\draw [black] (32.1,-36.3) circle (2.4);
+\draw [black] (7.4,-27) -- (12.5,-27);
+\fill [black] (12.5,-27) -- (11.7,-26.5) -- (11.7,-27.5);
+\draw [black] (18.1,-25.5) -- (29.5,-18.9);
+\fill [black] (29.5,-18.9) -- (28.56,-18.87) -- (29.06,-19.74);
+\draw (24.8,-22.7) node [below] {$b$};
+\draw [black] (30.91,-33.549) arc (-160.81873:-199.18127:20.39);
+\fill [black] (30.91,-33.55) -- (31.12,-32.63) -- (30.17,-32.96);
+\draw (29.28,-26.85) node [left] {$a$};
+\draw [black] (33.484,-20.057) arc (22.64444:-22.64444:17.642);
+\fill [black] (33.48,-20.06) -- (33.33,-20.99) -- (34.25,-20.6);
+\draw (35.34,-26.85) node [right] {$b$};
+\draw [black] (18.12,-28.47) -- (29.48,-34.83);
+\fill [black] (29.48,-34.83) -- (29.03,-34.01) -- (28.54,-34.88);
+\draw (22.86,-32.15) node [below] {$a$};
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
+\begin{theorem}
+Zu jedem DEA $A$ über $\Sigma$ existiert eine rechtslineare Grammatik $G$ über $\Sigma = T$ mit $L(G) = L(A)$.
+\end{theorem}
+
+\begin{proof}
+$A = (Q, \Sigma, \delta,  q_0, F)$
+
+$\Rightarrow G = (N, \Sigma, P, S)$ mit
+\begin{itemize}
+\item $N = G$
+\item $S = q_0$
+\item $P$ definiert durch $p \rightarrow aq \in P \Leftrightarrow \delta(p, a) = q$ und $q \rightarrow \varepsilon \in P \Leftrightarrow q \in F$.
+\end{itemize}
+\end{proof}
+
+\begin{beispiel}
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (9.6,-18.6) circle (3);
+\draw (9.6,-18.6) node {$q_0$};
+\draw [black] (24.4,-18.6) circle (3);
+\draw (24.4,-18.6) node {$q_1$};
+\draw [black] (39.6,-18.6) circle (3);
+\draw (39.6,-18.6) node {$q_2$};
+\draw [black] (54.9,-18.6) circle (3);
+\draw (54.9,-18.6) node {$q_3$};
+\draw [black] (54.9,-18.6) circle (2.4);
+\draw [black] (3.3,-18.6) -- (6.6,-18.6);
+\fill [black] (6.6,-18.6) -- (5.8,-18.1) -- (5.8,-19.1);
+\draw [black] (8.277,-15.92) arc (234:-54:2.25);
+\draw (9.6,-11.35) node [above] {$b$};
+\fill [black] (10.92,-15.92) -- (11.8,-15.57) -- (10.99,-14.98);
+\draw [black] (12.6,-18.6) -- (21.4,-18.6);
+\fill [black] (21.4,-18.6) -- (20.6,-18.1) -- (20.6,-19.1);
+\draw (17,-19.1) node [below] {$a$};
+\draw [black] (27.4,-18.6) -- (36.6,-18.6);
+\fill [black] (36.6,-18.6) -- (35.8,-18.1) -- (35.8,-19.1);
+\draw (32,-19.1) node [below] {$b$};
+\draw [black] (42.6,-18.6) -- (51.9,-18.6);
+\fill [black] (51.9,-18.6) -- (51.1,-18.1) -- (51.1,-19.1);
+\draw (47.25,-19.1) node [below] {$a$};
+\draw [black] (57.746,-17.69) arc (135.46923:-152.53077:2.25);
+\draw (62.27,-19.79) node [right] {$a,b$};
+\fill [black] (57.35,-20.31) -- (57.57,-21.22) -- (58.27,-20.51);
+\draw [black] (23.077,-15.92) arc (234:-54:2.25);
+\draw (24.4,-11.35) node [above] {$a$};
+\fill [black] (25.72,-15.92) -- (26.6,-15.57) -- (25.79,-14.98);
+\draw [black] (37.336,-20.565) arc (-53.10285:-126.89715:21.213);
+\fill [black] (11.86,-20.56) -- (12.2,-21.44) -- (12.8,-20.64);
+\draw (24.6,-25.31) node [below] {$b$};
+\end{tikzpicture}
+\end{center}
+
+\end{beispiel}
+
 \end{document}

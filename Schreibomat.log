@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.3.10)  9 OCT 2012 21:35
+This is pdfTeX, Version 3.1415926-1.40.11 (MiKTeX 2.9) (preloaded format=pdflatex 2011.3.10)  23 OCT 2012 21:45
 entering extended mode
 **Schreibomat.tex
 (C:\Devel\TheoretischeInformatik\Schreibomat.tex
@@ -1194,19 +1194,47 @@ ML/cmm/m/it/10.95 w \OT1/cmr/m/n/10.95 = [] [] []$. Da-raus folgt $\OML/cmm/m/i
 t/10.95 w[] \OT1/cmr/m/n/10.95 = [] [] [] [] \OMS/cmsy/m/n/10.95 62$
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3785.
 [43]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 3785.
+Overfull \hbox (2.53102pt too wide) in paragraph at lines 3856--3857
+[]\OT1/cmr/m/n/10.95 Es gibt Sprachen, die nicht regular sind und trotz-dem da
+s Pumping-Lemma erfullen.
+ []
+
+[44]
+Overfull \hbox (4.68808pt too wide) in paragraph at lines 3876--3877
+[]\OT1/cmr/m/n/10.95 Annahme: $\OML/cmm/m/it/10.95 L$ \OT1/cmr/m/n/10.95 ist re
+gular. Darum gibt es $\OML/cmm/m/it/10.95 n[]$\OT1/cmr/m/n/10.95 , so-dass all
+e Pumping-Lemma-Bedingungen
+ []
+
+
+Overfull \hbox (4.68808pt too wide) in paragraph at lines 3882--3883
+[]\OT1/cmr/m/n/10.95 Annahme: $\OML/cmm/m/it/10.95 L$ \OT1/cmr/m/n/10.95 ist re
+gular. Darum gibt es $\OML/cmm/m/it/10.95 n[]$\OT1/cmr/m/n/10.95 , so-dass all
+e Pumping-Lemma-Bedingungen
+ []
+
+[45] [46] [47]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 4138.
+ [48]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 4138.
  (C:\Devel\TheoretischeInformatik\Schreibomat.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 3785.
-Package rerunfilecheck Info: File `Schreibomat.out' has not changed.
-(rerunfilecheck)             Checksum: 40CB17EF030295AF3D0BB1BB296974D1;1284.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 4138.
+
+
+Package rerunfilecheck Warning: File `Schreibomat.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `Schreibomat.out':
+(rerunfilecheck)             Before: D41D8CD98F00B204E9800998ECF8427E;0
+(rerunfilecheck)             After:  ED5025FD46F1B93AEA1AEED46506D0A0;1527.
  ) 
 Here is how much of TeX's memory you used:
- 19816 strings out of 494053
- 352806 string characters out of 3146191
- 387555 words of memory out of 3000000
- 22602 multiletter control sequences out of 15000+200000
+ 19917 strings out of 494053
+ 354610 string characters out of 3146191
+ 387614 words of memory out of 3000000
+ 22668 multiletter control sequences out of 15000+200000
  17854 words of font info for 69 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  56i,12n,68p,660b,790s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1230,9 +1258,9 @@ ype1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/cm/cmu10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
 public/amsfonts/symbols/msam10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Schreibomat.pdf (43 pages, 447090 bytes).
+Output written on Schreibomat.pdf (48 pages, 466459 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 152 named destinations out of 1000 (max. 500000)
- 165 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 472 PDF objects out of 1000 (max. 8388607)
+ 187 named destinations out of 1000 (max. 500000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
