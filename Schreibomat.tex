@@ -59,6 +59,7 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
+\usepackage{qtree}
 
 \theoremstyle{definition}
 \newtheorem*{beispiel}{Beispiel}
@@ -4134,5 +4135,171 @@ $\Rightarrow G = (N, \Sigma, P, S)$ mit
 \end{center}
 
 \end{beispiel}
+
+\section{Kontextfreie Grammatiken}
+
+\begin{definition}[Kontextfreie Grammatik]
+Eine kontextfreie Grammatik $G$ wird beschrieben durch
+\[
+G = (\Sigma, N, P, S),
+\]
+wobei:
+\begin{itemize}
+\item $\Sigma$ das Terminalalphabet;
+\item $N$ das Nichtterminalalphabet;
+\item $P \subseteq N \times (T \cup N)^*$ die Menge der Produktionen (Regeln). (Statt $(X, abY)$ nutzen wir $X \rightarrow abY$;
+\item $S$ das Startsymbol
+\end{itemize}
+ist.
+
+\end{definition}
+
+\begin{beispiel}
+Kontextfreie Grammatik für die folgende Sprache: $L = \{a^nb^n | n \ge 0 \}$:
+\[
+G = (\{a,b\}, \{S\}, P, S),
+\]
+wobei 
+\[
+P = \{ S \rightarrow aSb, S \rightarrow \varepsilon \}
+\].
+
+Beispielableitung für $aabb \in L$:
+\[
+S \Rightarrow aSb \Rightarrow aaSbb \Rightarrow aa\varepsilon bb = aabb
+\]
+\end{beispiel}
+
+\begin{definition}[Kontextfreie Sprache]
+Eine Sprache $L$ ist kontextfrei, wenn es eine Kontextfreie Grammatik $G$ gibt mit \[
+L = L(G).
+\]
+\end{definition}
+
+Die Familie
+\[
+\mathcal{L}_{\textrm{CF}}
+\]
+ist die Menger aller kontextfreien Sprachen. Es gilt:
+\[
+\mathcal{L}_{\textrm{REG}} \subseteq \mathcal{L}_{\textrm{CF}}
+\]
+
+\begin{proof}[Beweis]
+Jede reguläre Grammatik ist auch eine kontextfreie Grammatik.
+\end{proof}
+
+\begin{beispiel}
+Kontextfreie Grammatik zur Erzeugung aller arithmetischer Ausdrücke.
+
+Induktion:
+\begin{itemize}
+\item $a$ ist ein arithmetischer Ausdruck.
+\item Für arithmetische Ausdrücke $\alpha, \beta$ sind
+\begin{itemize}
+\item $(\alpha+\beta)$,
+\item $(\alpha-\beta)$,
+\item $\alpha\cdot \beta$,
+\item $\alpha / \beta$
+\end{itemize}
+ebenso arithmetische Ausdrücke.
+\end{itemize}
+Zum Beispiel $(a+a), (a\cdot(a+a\cdot a)+a)$.
+
+Beschreibung durch eine kontextfreie Grammatik $G = (\Sigma, N, P, S)$ mit
+\begin{itemize}
+\item $\Sigma = \{ (, ), a, +, -, \cdot, /\}$
+\item $N = \{ S, A, B, C \}$ ($A$ für einen ganzen Ausdruck, $B$ für Addition/Division, $C$ für Multiplikation/Division),
+\item $P = \{S \rightarrow A, A \rightarrow a, A = (ABA), A \rightarrow ACA, B \rightarrow +, B \rightarrow -, C \rightarrow \cdot, C \rightarrow / \}$
+\end{itemize}
+
+Beispielableitung von $(a\cdot (a -a)+a)$:
+\begin{eqnarray*}
+S &\Rightarrow& (ABA) \Rightarrow (A+A) \Rightarrow (ACA + A) \Rightarrow (A\cdot A+ A) \\ &\Rightarrow& 
+ (A \cdot (ABA) + A)
+\Rightarrow (A\cdot (A-A)+A) \Rightarrow (a\cdot (A-A)+A) \\ &\Rightarrow& (a\cdot (a-A)+A) 
+\Rightarrow (a\cdot (a-a)+A)
+\Rightarrow (a\cdot (a-a)+a)
+\end{eqnarray*}
+
+\end{beispiel}
+
+Bessere Notation mit einem Parsebaum:
+\begin{itemize}
+\item Startsymbol als Wurzel
+\item Terminale als Blätter
+\item Nichtterminale als innere Knoten
+\item Regelanwendung: $X \rightarrow \alpha_1\alpha_2\dots \alpha_k \mapsto$:
+\end{itemize}
+
+\Tree [.X [$\alpha_1$ $\alpha_2$ {$\dots$} $\alpha_k$ ] ]
+
+Ableitungsbaum für $(a\cdot (a-a) + a)$ in $G$:
+
+\Tree [ .S [ .A [ A [ + ].B A ] ] ]
+
+%\Tree[
+%	.S [ .A [
+%	.( .A [.A  [.a] .C [$\cdot$] .A [.( .A [.a] .B [.-] .A [.a] .)]] .B .A .)
+%]]
+%]
+
+\section{Vereinfachung von kontextfreien Grammatiken}
+
+\begin{enumerate}[(1)]
+
+\item Elimination der $\varepsilon$-Regeln (Regeln der Form $X \rightarrow \varepsilon$.
+\begin{definition}
+Eine kontextfreie Grammatik $G$ heisst $\varepsilon$-frei, wenn sie keine Regeln der Form $X \rightarrow \varepsilon$ hat.
+\end{definition}
+\begin{theorem}
+Sei $G$ eine kontextfreie Grammatik. Dann gibt es eine $\varepsilon$-freie kontextfreie Grammatik $G'$ mit
+\[
+L(G') = L(G) - \{\varepsilon\}.
+\]
+\end{theorem}
+\begin{proof}[Beweis]
+Transformation von $G$ in $G'$:
+\begin{enumerate}
+\item Sei $N_1$ die Menge aller linken Seiten von $\varepsilon$-Regeln:
+\[
+N_1 = \{A \in N | A \rightarrow \varepsilon\}
+\]
+\item Bestimme alle in $\varepsilon$ ableitbaren Nichtterminale. Dann gilt
+\[
+N_1 = \{ A \in N | A \overset{*}{\Rightarrow} \varepsilon\}
+\]
+Berechnung: $N_1 \leftarrow N_1 \cup \{ A \in N | A \rightarrow \alpha, \alpha \in N_1^* \}$
+
+\item Für jede Regel $A \rightarrow \alpha_1B\alpha_2$ mit $B \in N_1$, $\alpha_1, \alpha_2 \in (\Sigma \cup N)^*$ füge die Regel $A \rightarrow \alpha_1\alpha_2$ zu $P$ hinzu und erhalte $P_1$. Iteriere so lange bis sich $P_1$ nicht mehr ändert.
+
+\item Eliminiere alle $\varepsilon$-Regeln aus $P_1$:
+\[
+P_2 \leftarrow P_1 - \{ r \in P_1 | r = A \rightarrow \varepsilon \}.
+\]
+
+\end{enumerate}
+
+Daraus ergibt sich die Sprache $G' = (\Sigma, N, P_2, S)$.
+
+\end{proof}
+
+\begin{beispiel}
+Betrachte $G = (\{a,b,c\}, \{S,A,B,C\}, P, S)$ mit $P = \{ S \rightarrow AB, S \rightarrow C, A \rightarrow aB, a \rightarrow \varepsilon, B \rightarrow bA, B \rightarrow \varepsilon, C = c \}$.
+\begin{enumerate}
+\item $N_1 = \{A, B\}$
+\item Wegen $S \rightarrow AB$ und $A,B \in N_1$ folgt $N_1 \leftarrow N_1 \cup \{S \}$. $\Rightarrow N_1 = \{A,B,S\}$.
+\item $P_1 \leftarrow P \cup \{ S \rightarrow B, S \rightarrow A, A \rightarrow a, B \rightarrow b \}$.
+\item $P_2 \leftarrow P_1 - \{A \rightarrow \varepsilon, B \rightarrow \varepsilon\}$
+\end{enumerate}
+\end{beispiel}
+
+\item Elimination nutzloser Symbole
+
+
+
+\item Elimination von Kettenregeln (Regeln der Form $X \rightarrow Y$ mit $X, Y \in N$)
+
+\end{enumerate}
 
 \end{document}
