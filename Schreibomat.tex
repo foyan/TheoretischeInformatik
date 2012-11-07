@@ -4215,7 +4215,7 @@ Beschreibung durch eine kontextfreie Grammatik $G = (\Sigma, N, P, S)$ mit
 
 Beispielableitung von $(a\cdot (a -a)+a)$:
 \begin{eqnarray*}
-S &\Rightarrow& (ABA) \Rightarrow (A+A) \Rightarrow (ACA + A) \Rightarrow (A\cdot A+ A) \\ &\Rightarrow& 
+S &\Rightarrow& A \Rightarrow (ABA) \Rightarrow (A+A) \Rightarrow (ACA + A) \Rightarrow (A\cdot A+ A) \\ &\Rightarrow& 
  (A \cdot (ABA) + A)
 \Rightarrow (A\cdot (A-A)+A) \Rightarrow (a\cdot (A-A)+A) \\ &\Rightarrow& (a\cdot (a-A)+A) 
 \Rightarrow (a\cdot (a-a)+A)
@@ -4236,7 +4236,7 @@ Bessere Notation mit einem Parsebaum:
 
 Ableitungsbaum für $(a\cdot (a-a) + a)$ in $G$:
 
-\Tree [ .S [ .A [ A [ + ].B A ] ] ]
+\Tree [ .S [ .A [ ( [ .A [ .A a ] [ .C $\cdot$ ] [ .A ( [ .A a ] [ .B - ] [ .A a ] ) ] ] [ .B + ] [ .A a ] ) ] ] ]
 
 %\Tree[
 %	.S [ .A [
@@ -4296,7 +4296,63 @@ Betrachte $G = (\{a,b,c\}, \{S,A,B,C\}, P, S)$ mit $P = \{ S \rightarrow AB, S \
 
 \item Elimination nutzloser Symbole
 
+\begin{enumerate}
+\item Ein Symbol $x$ heisst erreichbar, falls es eine Ableitung $S \overset{*}{\Rightarrow} \alpha$ gibt, sodass $X$ in $\alpha$ vorkommt.
 
+Bestimmung der Menge erreichbarer Symbole: Sei $G = (\Sigma, N, P, S)$ eine kontextfreie Grammatik.
+\begin{enumerate}
+\item $E_N = \{ S \}$ (erreichbare Nichtterminale), $E_\Sigma = \varnothing$ (erreichbare Terminale)
+\item Für alle $A \rightarrow \alpha$ in $P$ mit $A = E_N$: Füge die Symbole von $\alpha$  zu $E_N$ bzw. $E_\Sigma$ hinzu. Wiederhole solange, bis sich $E_N$ und $E_\Sigma$ nicht mehr ändern.
+\item Reduziere die Grammatik zu $G' = (E_\Sigma, E_N, P', S)$ mit
+\[
+P' = \{A \rightarrow \alpha \in P | A \in E_N \}
+\]
+\end{enumerate}
+
+\item Ein Nichtterminal $x$ heisst produktiv (oder erzeugend), falls es eine Ableitung $x \overset{*}{\Rightarrow} w$ gibt für ein $w \in \Sigma^*$.
+
+Bestimmung der Menge der produktiven Nichtterminale: Sei $G = (\Sigma, N, P, S)$ eine kontextfreie Grammatik.
+\begin{enumerate}
+\item $\textrm{Prod} := \{A \in N | A \rightarrow w \in P, w \in \Sigma^* \} $.
+\item Für alle $A \in N$: Falls $A \rightarrow \alpha \in P$ mit $\alpha \in (\Sigma \cup \textrm{Prod})^*$, füge $A$ zu $\textrm{Prod}$ hinzu. Wiederhole solange, bis sich $\textrm{Prod}$ nicht mehr ändert.
+\item Reduziere die Grammatik zu $G' = (\Sigma, \textrm{Prod}, P', S)$ mit
+\[
+P' = \{ A \rightarrow \alpha \in P | A \in \textrm{Prod} \}
+\]
+\end{enumerate}
+
+\end{enumerate}
+
+\begin{beispiel}
+Betrachte die kontextfreie Grammatik
+\[
+G = (\{a,b,c\}, \{S,A,B,C\}, P, S)
+\] mit \[
+P = \{S \rightarrow A, S \rightarrow AB, A \rightarrow Aa, B \rightarrow bB, B \rightarrow Bb, C \rightarrow c \}
+\]
+
+Erreichbare Symbole: $\{ S, A, B, a, b \}$
+
+Also erhalten wir die Grammatik $G' = (\{a,b\}, \{S,A,B\}, P', S)$ mit
+\[
+P' = \{S \rightarrow A, S \rightarrow AB, A \rightarrow Aa, A \rightarrow a, B \rightarrow bB, B \rightarrow Bb \}.
+\]
+
+Produktive Nichtterminale in $G'$: $\{ S, A \}$.
+
+Reduzierte Grammatik $G'' = (\{a,b\}, \{S, A\}, P'', S)$ mit
+\[
+P'' = \{S \rightarrow A, A \rightarrow Aa, A \rightarrow a \}
+\]
+\end{beispiel}
+
+\begin{definition}
+Eine kontextfreie Grammatik $G$ heisst reduziert, falls sie keine unproduktiven und keine nichterreichbaren Symbole enthält.
+\end{definition}
+
+\begin{bemerkung}
+Diese Definitionen scheinen noch nicht so zu klappen, zumindest beim behandelten Beispiel nicht...
+\end{bemerkung}
 
 \item Elimination von Kettenregeln (Regeln der Form $X \rightarrow Y$ mit $X, Y \in N$)
 
