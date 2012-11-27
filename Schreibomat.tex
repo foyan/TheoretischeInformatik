@@ -4582,4 +4582,35 @@ Länge & $b$   & $b$   & $a$   & $a$ \\
 \end{enumerate}
 \end{beispiel}
 
+\section{Turingmaschine}
+
+Motivation:
+\begin{description}
+\item[Berechenbarkeit] Zeigen, dass es Probleme gibt, die nicht lösbar (entscheidbar) sind.
+\item[Komplexität] Zeigen, dass es Probleme gibt, die nicht handhabbar sind.
+\end{description}
+
+Ziel:
+Berechnungsmodell, das so allgemein wie möglich, aber trotzdem einfach aufgebaut ist.
+
+\begin{definition}[Turingmaschine]
+Eine Turingmaschine (TM) ist ein 7-Tupel
+\[
+M = (Q, \Sigma, \Gamma, \delta, q_0, F),
+\]
+wobei
+\begin{itemize}
+\item $Q$: Zustandsmenge
+\item $\Sigma$: Eingabealphabet, $\textvisiblespace \notin \Sigma$
+\item $\Gamma$: Arbeitsalphabet, $\textvisiblespace \in \Gamma$, $\Sigma \subset \Gamma$
+\item $q_0$: Anfangszustand
+\item $F$: Akzeptierende Zustände
+\item $\delta$: Transitionsfunktion mit
+\[
+\delta: Q\times \Gamma \mapsto Q \times \Gamma \times \{L,R,N\}
+\]
+\end{itemize}
+
+\end{definition}
+
 \end{document}
