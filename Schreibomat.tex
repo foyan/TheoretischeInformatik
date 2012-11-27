@@ -4616,5 +4616,22 @@ wobei
 \section{Berechnung eine TM auf der Eingabe $x$}
 
 Folge von Konfigurationen $K_1, \dots, K_n$, so dass
-begin
+- $K_1$ ist Anfangskonfiguration (q_0, x) mit Kopf auf dem ersten Symbol der Eingabe
+- $K_i+1$ entsteht aus K_i durch die Anwendung einer Transition von M
+
+Die TM M akzeptiert das Wort x, falls die Berechnung von M auf x in einem akzeptierenden Zustand hält.
+
+\[
+L(M) = {w in Sigma^* | M akzeptiert w
+\]
+
+
+begin{definition
+Eine Sprache L heisst rekursiv aufzählbar (semi-entscheidbar), falls es eine TM M gibt, so dass
+\[
+L = L(M)
+\
+
+L_RE = {L(M) 7 M ist eine TM ist die Menge aller rekursiv aufzählbaren Sprachen.
+
 \end{document}
