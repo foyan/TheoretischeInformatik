@@ -4645,6 +4645,144 @@ Beobachtung: Eine Berechnung einer TM kann unendlich sein. Wenn das Wort nicht i
 
 \begin{definition}
 Eine Sprache heisst rekursiv (entscheidbar), wenn es eine TM $M$ gibt mit $L= L(M)$, die auf jeder Eingabe $w$ hält, und zwar in einem akzeptierenden Zustand für alle $w \in L$ und in einem nichtakzeptierenden Zustand für alle $w \notin L$.
+
+\[
+\mathcal{L}_\textrm{R} = \textrm{Menge aller rekursiven Sprachen. } \mathcal{L}_\textrm{R} \subseteq \mathcal{L}_\textrm{RE}
+\]
+\end{definition}
+
+\begin{beispiel} TM für $L = \{a^kb^kc^k | k \ge 0\}$. Idee: Wiederhole solange  es unmarkierte $a$s gibt: markiere das $a$, gehe nach rechts bis zum ersten nichtmarkierten $b$ und markiere es, gehe nach rechts bis zum ersten $c$ und markiere es, gehe links bis zum linksten unmarkierten $a$.
+
+Überprüfe von kinks nach rechts ob alle Eingaben markiert sind.
+
+\end{beispiel}
+
+Graphische Darstellung:
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (16.4,-28.6) circle (3);
+\draw (16.4,-28.6) node {$q_0$};
+\draw [black] (31.8,-28.6) circle (3);
+\draw (31.8,-28.6) node {$q_1$};
+\draw [black] (46.1,-28.6) circle (3);
+\draw (46.1,-28.6) node {$q_2$};
+\draw [black] (63.8,-28.6) circle (3);
+\draw (63.8,-28.6) node {$q_3$};
+\draw [black] (16.4,-44.4) circle (3);
+\draw (16.4,-44.4) node {$q_4$};
+\draw [black] (31.8,-44.4) circle (3);
+\draw (31.8,-44.4) node {$q_5$};
+\draw [black] (31.8,-44.4) circle (2.4);
+\draw [black] (9.9,-28.6) -- (13.4,-28.6);
+\fill [black] (13.4,-28.6) -- (12.6,-28.1) -- (12.6,-29.1);
+\draw [black] (19.4,-28.6) -- (28.8,-28.6);
+\fill [black] (28.8,-28.6) -- (28,-28.1) -- (28,-29.1);
+\draw (24.1,-29.1) node [below] {$a\mapsto a',R$};
+\draw [black] (30.477,-25.92) arc (234:-54:2.25);
+\draw (31.8,-21.35) node [above] {$a->a,R$ / b'->b',R};
+\fill [black] (33.12,-25.92) -- (34,-25.57) -- (33.19,-24.98);
+\draw [black] (34.8,-28.6) -- (43.1,-28.6);
+\fill [black] (43.1,-28.6) -- (42.3,-28.1) -- (42.3,-29.1);
+\draw (38.95,-29.1) node [below] {$b\mapsto b',R$};
+\draw [black] (44.777,-25.92) arc (234:-54:2.25);
+\draw (46.1,-21.35) node [above] {$c'\mapsto c',R$/$b->b,R$};
+\fill [black] (47.42,-25.92) -- (48.3,-25.57) -- (47.49,-24.98);
+\draw [black] (49.1,-28.6) -- (60.8,-28.6);
+\fill [black] (60.8,-28.6) -- (60,-28.1) -- (60,-29.1);
+\draw (54.95,-29.1) node [below] {$c\mapsto c',L$};
+\draw [black] (62.477,-25.92) arc (234:-54:2.25);
+\draw (63.8,-21.35) node [above] {$c'\mapsto c',L$/$b\mapsto b,L$/$b'\mapsto b',L$/$a\mapsto a,L$};
+\fill [black] (65.12,-25.92) -- (66,-25.57) -- (65.19,-24.98);
+\draw [black] (61.475,-30.495) arc (-53.22372:-126.77628:35.703);
+\fill [black] (18.72,-30.49) -- (19.07,-31.37) -- (19.66,-30.57);
+\draw (40.1,-38.1) node [below] {$a'\mapsto a',R$};
+\draw [black] (16.4,-31.6) -- (16.4,-41.4);
+\fill [black] (16.4,-41.4) -- (16.9,-40.6) -- (15.9,-40.6);
+\draw (15.9,-36.5) node [left] {$b'->b',R$};
+\draw [black] (17.723,-47.08) arc (54:-234:2.25);
+\draw (16.4,-51.65) node [below] {$b'\mapsto b',R$/$c'\mapsto c',R$};
+\fill [black] (15.08,-47.08) -- (14.2,-47.43) -- (15.01,-48.02);
+\draw [black] (19.4,-44.4) -- (28.8,-44.4);
+\fill [black] (28.8,-44.4) -- (28,-43.9) -- (28,-44.9);
+\draw (24.1,-44.9) node [below] {$\textvisiblespace->\textvisiblespace,N$};
+\end{tikzpicture}
+\end{center}
+
+\begin{theorem}
+Eine TM mit mehreren Bändern kann simuliert werden durch eine TM mit einem Band.
+\end{theorem}
+
+\begin{beweis}
+Idee: Grösseres Alphabet, das ale Bänder und Kopfpositionen beschreibt.
+\end{beweis}
+
+\section{Universelle Turingmaschine}
+
+Ziel: Konstruktion einer TM, die alle anderen Turingmaschinen simulieren kann.
+
+Sei $M$ eine beliebige TM mit einem Band. $M$ kann vollständig beschrieben werden durch die Transitionstabelle:
+
+Jede Transition ist darstellbar als ein Wort
+\[
+\underbrace{p}_{\textrm{aktueller Zustand}}
+\underbrace{A}_{\textrm{Arbeitssymbol}}
+\underbrace{q}_{\textrm{neuer Zustand}}
+\underbrace{B}_{\textrm{neues Bandsymbol}}
+\underbrace{S}_{\textrm{Kopfbewegung}}
+\]
+
+Die Turingmaschine $M$ ist darstellbar als Wort:
+\[
+\operatorname{Kod}(M) = q_0\textrm{\#}q_\textrm{accept}\textrm{\#}q_\textrm{reject}\#t_1\#t_2\#\dots\#t_n
+\]
+
+über dem Alphabet $Q \cup \Gamma \cup \{L,R,N\}\cup \{\#\}$, wobei $t_i$ die wie oben codierte Transitionen von $M$ sind.
+
+\begin{bemerkung}
+Im Prinzip ist auch eine Binärcodierung möglich.
+\end{bemerkung}
+
+Konstruktion einer universellen Turingmaschine $U$:
+
+Eingabe: $\operatorname{Kod}(M)\#\#w$ für eine TM $M$, die auf dem Wort $w$ simuliert werden soll.
+
+Arbeitsweise von $U$:
+\begin{enumerate}
+\item $U$ überprüft, ob $\operatorname{Kod}(M)$ eine gültige Codierung einer TM ist. Falls nicht, verwirft sie die Eingabe.
+\item $U$ schreibt die Anfangskonfiguration von $M$ auf $w$ auf das Band.
+\item $M$ simuliert die Berechnung von $M$ auf $w$ wie folgt:
+Solange der Zustand in der aktuellen Konfiguration von $M$ nicht $q_\textrm{accept}$ oder $q_\textrm{reject}$ ist, generiere die Nachfolgekonfiguration von $M$ auf $w$ auf dem Band (suche passende Transition in der Eingabe und führe diese Änderung durch).
+\item Wenn der Zustand von $M$ $q_\textrm{accept}$ ist, dann akzeptiere die Eingabe, sonst verwerfe.
+\end{enumerate}
+
+\begin{bemerkung}
+Falls $M$ auf $w$ unendlich lange läuft, dann auch $U$.
+\end{bemerkung}
+
+Behauptung: Turingmaschinen sind ein geeignetes formales Modell zur Beschreibung der Rechenstärke realer Computer.
+
+Hierfür: Zeige, wie man ein Programm einer beliebigen Programmiersprache durch eine äquivalente TM darstellt.
+
+Beobachtung: Es reicht, eine solche Transformation für Assembler-Programme anzugeben.
+
+Idee der Transformation:
+
+\begin{itemize}
+\item Eingabeband mit Programmzeile 1\#Programmzeile 2\#...\#letzte Programmzeile
+
+\item Arbeitsband mit Register 1\#Register 2\#...
+
+\item Hauptspeicherband
+
+\item Arbeitsband zum Rechnen (Adressberechnungen etc)
+\end{itemize}
+
+Beobachtung: Alle bisher entwickelten Modelle zur Beschreibung der algorithmischen Lösbarkeit sind äquivalent zum Modell der Turingmaschine.
+
+\begin{definition}[Church'sche These]
+Das Modell der TM, die immer hält, ist eine geeignete Formalisierung des intuitiven Begriffs "Algorithmus", d.h. die Klasse der rekursiven (entscheidbaren) Sprachen stimmt mit der Klasse der algorithmisch erkennbaren Sprachen überein.
 \end{definition}
 
 \end{document}
