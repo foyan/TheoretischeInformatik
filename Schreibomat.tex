@@ -4582,6 +4582,116 @@ Länge & $b$   & $b$   & $a$   & $a$ \\
 \end{enumerate}
 \end{beispiel}
 
+\section{Kellerautomaten (Pushdown Automata, PDA)}
+
+Ziel: Automatenmodell für kontextfreie Sprachen.
+
+Idee: Nichtdeterministischer EA mit Zusatzspeicher in Form eines Stacks.
+
+Arbeitsschritte (Übergänge):
+
+Abhängig von Zustand, gelesenem Eingabesymbol und oberstem Symbol auf dem Stack:
+\begin{itemize}
+\item Bestimme neuen Zustand
+\item Entferne oberstes Symbol des Stacks und werfe beliebig viele Symbole auf den Stack.
+\end{itemize}
+
+\begin{definition}[Kellerautomat]
+Ein Kellerautomat wird beschrieben durch
+\[
+A = (Q, \Sigma, \Gamma, \delta, q_0, \perp, F),
+\]
+wobei:
+\begin{itemize}
+\item $Q$: Menge der Zustände,
+\item $\Sigma$: Eingabealphabet (wer hätte das gedacht),
+\item $\Gamma$: Kelleralphabet,
+\item $\delta$: Übergangsfunktion,
+\item $q_0 \in Q$: Startsymbol,
+\item $\perp$: Kellerbodensymbol ($\perp \in \Gamma, \perp \notin \Sigma$),
+\item $F$: Menge der akzeptierenden Zustände.
+\end{itemize}
+
+Die Übergangsfunktion ist definiert als
+\[
+\delta: Q\times \Sigma \cup \{\varepsilon\}\times \Gamma \mapsto \mathcal{P}(Q\times \Gamma^*)
+\]
+
+Ein Kellerautomat akzeptiert ein Wort $w$, falls es eine Berechnung auf $w$ gibt, die die gesamte Eingabe liest und in einem akzeptierenden Zustand endet.
+
+\end{definition}
+
+\begin{beispiel}
+Kellerautomat für die Sprache $L = \{ a^kb^k | k \ge 0 \}$. Idee der Arbeitsweise: Der PDA liest alle $a$s und speichert sie auf dem Keller, dann entfernt er für jedes gelesene $b$ ein $a$ aus dem Keller. Bei gleicher Anzahl $a$s und $b$s akzeptiert er, sonst hat er keine Möglichkeit zum Weiterarbeiten, also verwirft er.
+\[
+A = (\{q_0, q_1, q_2\}, \{a,b\}, \{A, \perp\}, \delta, q_0, \perp, \{q_2\}
+\]
+mit
+\begin{eqnarray*}
+\delta(q_0, \varepsilon, \perp) &=& \{(q_2, \perp)\} \\
+\delta(q_0, a, \perp) &=& \{(q_0, a)\} \\
+\delta(q_0, a, a) &=& \{(q_0, aa)\} \\
+\delta(q_0, b, a) &=& \{(q_1, \varepsilon)\} \\
+\delta(q_1, b, a) &=& \{(q_1, \varepsilon)\} \\
+\delta(q_1, \varepsilon, \perp) &=& \{(q_2, \perp)\}
+\end{eqnarray*}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.2]
+\tikzstyle{every node}+=[inner sep=0pt]
+\draw [black] (15.8,-29.1) circle (3);
+\draw (15.8,-29.1) node {$q_0$};
+\draw [black] (49.6,-29.1) circle (3);
+\draw (49.6,-29.1) node {$q_1$};
+\draw [black] (33.9,-48.2) circle (3);
+\draw (33.9,-48.2) node {$q_2$};
+\draw [black] (33.9,-48.2) circle (2.4);
+\draw [black] (8.7,-29.1) -- (12.8,-29.1);
+\fill [black] (12.8,-29.1) -- (12,-28.6) -- (12,-29.6);
+\draw [black] (18.8,-29.1) -- (46.6,-29.1);
+\fill [black] (46.6,-29.1) -- (45.8,-28.6) -- (45.8,-29.6);
+\draw (32.7,-29.6) node [below] {$b,a\rightarrow\varepsilon$};
+\draw [black] (14.477,-26.42) arc (234:-54:2.25);
+\draw (15.8,-21.85) node [above] {$a,\perp\rightarrow a\perp / a,a\rightarrow aa$};
+\fill [black] (17.12,-26.42) -- (18,-26.07) -- (17.19,-25.48);
+\draw [black] (48.277,-26.42) arc (234:-54:2.25);
+\draw (49.6,-21.85) node [above] {$b,a \rightarrow\varepsilon$};
+\fill [black] (50.92,-26.42) -- (51.8,-26.07) -- (50.99,-25.48);
+\draw [black] (47.7,-31.42) -- (35.8,-45.88);
+\fill [black] (35.8,-45.88) -- (36.7,-45.58) -- (35.93,-44.95);
+\draw (42.31,-40.08) node [right] {$\varepsilon,\perp\rightarrow \perp$};
+\draw [black] (17.86,-31.28) -- (31.84,-46.02);
+\fill [black] (31.84,-46.02) -- (31.65,-45.1) -- (30.92,-45.79);
+\draw (24.32,-40.12) node [left] {$\varepsilon,\perp\rightarrow \perp$};
+\end{tikzpicture}
+\end{center}
+
+Berechnung von $A$ auf dem Wort $aaabbb$:
+\begin{eqnarray*}
+&& (q_0, aaabbb, \perp) \rightarrow (q_0, aabbb, a\perp) \rightarrow (q_0, abbb, aa\perp) \rightarrow \\
+&& (q_0, bbb, aaa\perp) \rightarrow (q_1, bb, aa\perp) \rightarrow (q_1, b, a\perp) \rightarrow \\
+&& (q_1, \varepsilon, \perp) \rightarrow (q_2, \varepsilon, \perp)
+\end{eqnarray*}
+
+\end{beispiel}
+
+\section{Äquivalenz von kontextfreier Grammatik und PDA}
+
+\begin{theorem}
+Sei $G$ eine kontextfreie Grammatik. Dann gibt es einen PDA $A$, so dass $L(A) = L(G)$.
+\end{theorem}
+
+Idee des Beweises: Simuliere die Schritte einer Ableitung von $G$ auf dem Keller $A$. Beobachtung: Sei $G$ eine kontextfreie Grammatik, sei $w \in L(G)$. Dann gibt es eine Ableitung von $w$ in $G$, in der in jedem Ableitungsschritt das jeweils am weitesten links stehende Nichtterminal abgeleitet wird (sogenannte Linksableitung).
+
+\begin{proof}[Beweis]
+Der zu $G$ äquivalente PDA $A$ arbeitet wie folgt:
+\begin{itemize}
+\item Falls das oberste Symbol auf dem Stack gleich dem nächsten Eingabesymbol ist, werden beide Symbole weggelesen.
+\item Falls das oberste Symbol auf dem Stack ein Nichtterminal ist, wird es durch die rechte Seite einer passenden Regel ersetzt. Dabei wird nichts von der Eingabe gelesen ($\varepsilon$-Übergang).
+\end{itemize}
+\end{proof}
+
+
 \section{Turingmaschine}
 
 Motivation:
