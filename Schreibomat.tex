@@ -4895,4 +4895,108 @@ Beobachtung: Alle bisher entwickelten Modelle zur Beschreibung der algorithmisch
 Das Modell der TM, die immer hält, ist eine geeignete Formalisierung des intuitiven Begriffs "Algorithmus", d.h. die Klasse der rekursiven (entscheidbaren) Sprachen stimmt mit der Klasse der algorithmisch erkennbaren Sprachen überein.
 \end{definition}
 
+\section{Aufzählung von Wörtern}
+
+\begin{definition}[Kanonische Reihenfolge]
+Sei $\Sigma = \{a_1, a_2, \dots, a_n\}$ ein Alphabet. Es sei $a_1 < a_2 < \dots < a_n$. Dann ist die kanonische Reihenfolge auf $\Sigma^*$ definiert durch 
+\[
+w <_{\textrm{kan}} u
+\]
+genau dann, wenn
+\begin{itemize}
+\item $|w| < |u|$
+\item $|w| = |u| = k, w = a_1\dots a_k, u = b_1\dots b_k$: Es gibt ein $i$ mit $1\le i \le k$, so dass $a_j = b_j$ für $j < i$ und $a_i < b_i$.
+\end{itemize}
+
+\end{definition}
+
+\begin{beispiel}
+$ba <_{\textrm{kan}} aba$ und $abb <_{\textrm{kan}} aca$
+\end{beispiel}
+
+\section{Aufzählung von Turingmaschinen}
+
+Sei $\mathcal{M}$ die Menge aller TM. Dann ist die kanonische Reihenfolge auf $\mathcal{M}$ definiert durch $M_1 <_\textrm{kan} M_2$ genau dann, wenn $\operatorname{Kod}(M_1) <_\textrm{kan} \operatorname{Kod}(M_2)$.
+
+\section{Berechenbarkeit}
+
+Ziel: Zeigen, dass es keine TM $U$ gibt, die hält, die für eine gegebene TM $M$ und ein gegebenes Wort $W$ entscheidet, ob $w \in L(M)$ gilt.
+
+Motivation: Gemäss der Church'schen These bedeutet dies, dass es nicht möglich ist, ein Programm zu schreiben, das beliebige andere Programme verifiziert.
+
+\section{Die Diagonalisierungssprache}
+
+Idee: Wir zeigen, dass es mehr Sprachen als TMs gibt. Das heisst, es gibt (unendlich viele) Sprachen, für die es keine TM gibt.
+
+\subsection{Methode der Diagonalisierung}
+
+Wir haben gesehen, dass wir alle Wörter und TMs aufzählen können.
+
+Sei $w_i$ das $i$-te Wort in kanonischer Reihenfolge, sei $M_i$ die $i$-te Turingmaschine in kanonischer Reihenfolge. Wir konstruieren eine (unendlich grosse) Tabelle $D$ mit Einträgen $\{0,1\}$, so dass
+\[
+D(i,j) = 1
+\]
+genau dann, wenn $M_i$ das Wort $w_j$ akzeptiert. Beispielsweise:
+
+\begin{center}
+\begin{tabular}{c|cccccccc}
+\toprule
+$D$ & $w_1$ &  $w_2$ & $w_3$ & $\dots$ & $w_i$ & $\dots$ \\
+\midrule
+$M_1$ & 0 & 1 & 0 &$\cdots$& 0 & $\vdots$ \\
+$M_2$ & 1 & 1 & 0 &$\cdots$& 1 & $\vdots$ \\
+$M_3$ & 0 & 0 & 1 &$\cdots$& 1 & $\vdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\vdots$ & $\ddots$ & $\vdots$ & $\vdots$\\
+$M_i$ & 0 & 0 & 0 & $\cdots$ & 0 & $\vdots$ \\
+$\vdots$ & $\vdots$ & $\vdots$ & $\cdots$ & $\vdots$ & $\vdots$ & $\ddots$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Wir betrachten die Diagonaleinträge $D(i,i)$:
+
+$D(i,i)$ beschreibt, ob die TM $M_i$ das Wort $w_i$ mit gleichem Index der Aufzählung akzeptiert.
+
+Wir definieren nun die Sprache:
+\begin{eqnarray*}
+L_\textrm{d} &=& \{ w \in \{0,1\}^* | w = w_i \textrm{ und $M_i$ akzeptiert $w_i$ nicht} \} \\
+&=& \{ w\in \{0,1\}^* | w = w_\textrm{ und $D(i,i = 0$} \}
+\end{eqnarray*}
+
+In der Tabelle: Alle Spalten mit einer 0 in der Diagonalen.
+
+\begin{theorem}
+Es gibt keine TM, die $L_\textrm{d}$ akzeptiert.
+\end{theorem}
+\begin{proof}[Beweis]
+Angenommen, es gibt eine TM $M$, die $L_\textrm{d}$ akzeptiert. Da wir in der Tabelle $D$ alle TMs aufgezählt haben, gibt es einen Index $j$, so dass $M = M_j$, also gilt, dass
+\[
+L_\textrm{d} = L(M_j)
+\]
+
+Für den gewünschten Widerspruch betrachten wir das entsprechende Wort $w_j$. Es gilt:
+\[
+w_j \in L(M_j) \Leftrightarrow D(j,j) = 1
+\]
+nach Definition von $D$. Aber ebenfalls gilt:
+\[
+w_j \in L_\textrm{d} \Leftrightarrow D(j,j) = 0
+\]
+nach Definition von $L_\textrm{d}$.
+
+Es kann also nicht $L_\textrm{d} = L(M_j)$ gelten, also war die Annahme falsch, somit gibt es keine TM, die $L_\textrm{d}$ akzeptiert.
+
+\end{proof}
+
+Wiederholung:
+\begin{itemize}
+\item Eine Sprache $L$ heisst rekursiv aufzählbar, wenn es eine TM $M$ gibt, die $L$ akzeptiert. (Wenn $w \notin L$, darf $M$ unendlich lange laufen.)
+\item Eine Sprache $L$ heisst rekursiv (entscheidbar), wenn es eine TM $M$ gibt, die $L$ entscheidet:
+\begin{itemize}
+\item für alle $w\in L$: akzeptiert
+\item für alle $w \notin L$: verworfen.
+\end{itemize}
+$M$ darf nicht unendlich lange laufen.
+\end{itemize}
+
 \end{document}
