@@ -4999,4 +4999,83 @@ Wiederholung:
 $M$ darf nicht unendlich lange laufen.
 \end{itemize}
 
+\section{Reduktion}
+
+Wir wollen die Unlösbarkeit von Sprachen auf andere Sprachen ausweiten. Die Idee ist: eine Reduktion "leichter oder gleich schwer" bezüglich der algorithmischen Lösbarkeit einführen.
+
+\begin{definition}
+Seien $L_1$ und $L_2$ zwei Sprachen. $L_1$ ist auf $L_2$ rekursiv reduzierbar, geschrieben:
+\[
+L_1 \le_\textrm{R} L_2,
+\]
+falls es eine immer-haltende Turingmaschine $A$ gibt, die $L_2$ entscheidet und man daraus eine TM $B$ bauen kann, die $L_1$ entscheidet.
+
+Existiert eine Reduktion $L_1 \le\textrm{R} L_2$, dann gilt
+\begin{itemize}
+\item Ist $L_1$ unentscheidbar, dann ist $L_2$ unentscheidbar.
+\item Ist $L_1$ nicht rekursiv aufzählbar, dann ist $L_2$ ebenfalls nicht rekursiv aufzählbar.
+\end{itemize}
+\end{definition}
+
+\section{Komplemente rekursiver Sprachen}
+
+Sei $\bar{L} = \Sigma^* - L$ das Komplement von $L$.
+
+\begin{theorem}
+$L$ ist rekursiv. Daraus folgt, dass $\bar{L}$ rekursiv ist.
+\end{theorem}
+\begin{proof}[Beweis]
+Wir zeigen, dass $\bar{L} \le_\textrm{R} L$.
+
+Sei $A$ eine TM, die $L$ entscheidet. Eine TM $B$, die $\bar{L}$ entscheidet, lässt sich nach folgendem Schema bauen:
+
+(Biltli)
+\end{proof}
+
+\begin{theorem}
+$\bar{L\textrm{d}}$ ist rekursiv aufzählbar.
+\[
+\bar{L\textrm{d}} = \{w \in \{0,1\}^* | w = w_i \textrm{ und $M_i$ akzeptiert $w_i$ } \}
+\]
+Eine TM $D$, die $\bar{L_\textrm{d}}$ akzeptiert, kann wie folgt arbeiten:
+\begin{enumerate}
+\item Berechne $i$, so dass $w$ das $i$-te Wort $w_i$ in der kanonischen Reihenfolge ist
+\item Generiere die $\operatorname{Kod}(M_i)$ der $i$-ten TM $M_i$
+\item Simuliere die Berechnung von $M_i$ auf dem Wort $w_i$:
+\begin{itemize}
+\item Falls $M_i$ das Wort $w_i$ akzeptiert, dann akzeptiert auch $D$.
+\item Falls $M_i$ das Wort $w_i$ verwirft, dann verwirft auch $D$.
+\item Falls $M_i$ auf $w_i$ unendlich lange arbeitet, dann auch $D$.
+\end{itemize}
+\end{enumerate}
+\end{theorem}
+
+\section{Die universelle Sprache}
+
+Zeigen, dass eine generelle Programmverifikation nicht möglich ist.
+
+Sei $L_\textrm{u} = \{\operatorname{Kod}(M)\# | M $ ist eine TM, die $w$ akzeptiert $\}$ die universelle Sprache.
+
+Wir haben bereits gesehen, dass es eine universelle TM gibt, also ist $L_\textrm{u}$ rekursiv aufzählbar: $L_\textrm{u} \in \mathcal{L}_\textrm{RE}$.
+
+\begin{theorem}
+$L_\textrm{u} \notin \mathcal{L}_\textrm{R}$.
+\end{theorem}
+
+\begin{proof}[Beweis]
+Idee: wir zeigen, dass wir eine TM, die $L_\textrm{u}$ entscheidet, verwenden können, um $\bar{L_\textrm{d}}$ zu entscheiden.
+Da wir bereits wissen, dass $\bar{L_\textrm{d}} \notin \mathcal{L}_\textrm{R}$, kann $L_\textrm{u}$ nicht rekursiv sein.
+
+Anders formuliert: Wir zeigen $\bar{L_\textrm{d}} \le_\textrm{R} L_\textrm{u}$, d.h. wir zeigen, dass $L_\textrm{u}$ mindestens so schwer ist wie $\bar{L_\textrm{d}}$.
+
+Sei $A$ eine TM, die $L_\textrm{u}$ entscheidet. Wir bauen daraus eine TM $B$, die $\bar{L_\textrm{d}}$ akzeptiert.
+
+Die TM $B$ hält immer, weil wir angenommen haben, dass $A$ immer hält. Daraus folgt $B$ entscheidet $\bar{L_\textrm{d}}$.
+
+Dies ist ein Widerspruch, da wir schon gezeigt haben, dass $\bar{L_\textrm{d}} \notin \mathcal{L}_\textrm{R}$. Da die TM $C$ offenbar existiert, muss die Annahme falsch gewesen sein, dass es eine TM $A$ gibt, die $L_\textrm{u}$ entscheidet.
+
+Daraus folgt $\bar{L_\textrm{u}} \notin \mathcal{L}_\textrm{R}$.
+
+\end{proof}
+
 \end{document}

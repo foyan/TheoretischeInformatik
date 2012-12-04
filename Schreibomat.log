@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.11.27)  4 DEC 2012 19:16
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.11.27)  4 DEC 2012 21:01
 entering extended mode
 **Schreibomat.tex
 (C:\code\TheoretischeInformatik\Schreibomat.tex
@@ -1064,8 +1064,7 @@ File: p2e-pdftex.def 2011/04/05 v0.1t Driver-dependant file (RN,HjG,JT)
 )
 \c@definition=\count149
 \c@theorem=\count150
-
-No file Schreibomat.aux.
+ (C:\code\TheoretischeInformatik\Schreibomat.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
@@ -1080,6 +1079,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
 LaTeX Font Info:    ... okay on input line 77.
+
 ABD: EveryShipout initializing macros
 ("C:\Dokumente und Einstellungen\flo\Anwendungsdaten\MiKTeX\2.9\tex\context\bas
 e\supp-pdf.mkii"
@@ -1147,6 +1147,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 77.
 LaTeX Info: Redefining \pageref on input line 77.
 LaTeX Info: Redefining \nameref on input line 77.
+
+(C:\code\TheoretischeInformatik\Schreibomat.out)
+(C:\code\TheoretischeInformatik\Schreibomat.out)
 \@outlinefile=\write4
 LaTeX Font Info:    Try loading font information for U+msa on input line 79.
 
@@ -1417,30 +1420,23 @@ Overfull \hbox (9.13141pt too wide) in paragraph at lines 4895--4896
 e der al-go-rith-misch erkennbaren
  []
 
-[61] [62] [63]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5002.
- [64]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5002.
+[61] [62] [63] [64]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5081.
+ [65]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5081.
  (C:\code\TheoretischeInformatik\Schreibomat.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5002.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5002.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5081.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5081.
 
-
-
-Package rerunfilecheck Warning: File `Schreibomat.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Schreibomat.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  DB135E007BA8BAD11A518F10ACA8FF1C;2570.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5002.
+Package rerunfilecheck Info: File `Schreibomat.out' has not changed.
+(rerunfilecheck)             Checksum: 5595147B288E235500A4698162A747A9;2747.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5081.
  ) 
 Here is how much of TeX's memory you used:
- 20576 strings out of 494045
- 366340 string characters out of 3149938
- 401223 words of memory out of 3000000
- 23280 multiletter control sequences out of 15000+200000
+ 20634 strings out of 494045
+ 367217 string characters out of 3149938
+ 401203 words of memory out of 3000000
+ 23321 multiletter control sequences out of 15000+200000
  17854 words of font info for 69 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  56i,12n,68p,660b,790s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1461,9 +1457,9 @@ ype1/public/amsfonts/cm/cmti10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/
 amsfonts/cm/cmtt10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/
 cmu10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msam10.p
 fb><C:/Programme/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Schreibomat.pdf (64 pages, 525804 bytes).
+Output written on Schreibomat.pdf (65 pages, 541950 bytes).
 PDF statistics:
- 622 PDF objects out of 1000 (max. 8388607)
- 269 named destinations out of 1000 (max. 500000)
- 13 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 759 PDF objects out of 1000 (max. 8388607)
+ 280 named destinations out of 1000 (max. 500000)
+ 333 words of extra memory for PDF output out of 10000 (max. 10000000)
 
