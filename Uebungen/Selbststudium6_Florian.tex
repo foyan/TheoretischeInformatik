@@ -1,0 +1,186 @@
+% !TEX TS-program = pdflatex
+% !TEX encoding = UTF-8 Unicode
+
+% This is a simple template for a LaTeX document using the "article" class.
+% See "book", "report", "letter" for other types of document.
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage[utf8]{inputenc} % set input encoding (not needed with XeLaTeX)
+\usepackage{tikz}
+%%% Examples of Article customizations
+% These packages are optional, depending whether you want the features they provide.
+% See the LaTeX Companion or other references for full information.
+
+%%% PAGE DIMENSIONS
+\usepackage{geometry} % to change the page dimensions
+\geometry{a4paper} % or letterpaper (US) or a5paper or....
+% \geometry{margins=2in} % for example, change the margins to 2 inches all round
+% \geometry{landscape} % set up the page for landscape
+%   read geometry.pdf for detailed page layout information
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+% \usepackage[parfill]{parskip} % Activate to begin paragraphs with an empty line rather than an indent
+
+%%% PACKAGES
+\usepackage{booktabs} % for much better looking tables
+\usepackage{array} % for better arrays (eg matrices) in maths
+\usepackage{paralist} % very flexible & customisable lists (eg. enumerate/itemize, etc.)
+\usepackage{verbatim} % adds environment for commenting out blocks of text & for better verbatim
+\usepackage{subfig} % make it possible to include more than one captioned figure/table in a single float
+% These packages are all incorporated in the memoir class to one degree or another...
+\usepackage{url}
+\usepackage{hyperref}
+
+%%% HEADERS & FOOTERS
+\usepackage{fancyhdr} % This should be set AFTER setting up the page geometry
+\pagestyle{fancy} % options: empty , plain , fancy
+\renewcommand{\headrulewidth}{0pt} % customise the layout...
+\lhead{}\chead{}\rhead{}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+
+%%% SECTION TITLE APPEARANCE
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\mdseries\upshape} % (See the fntguide.pdf for font help)
+% (This matches ConTeXt defaults)
+
+%%% ToC (table of contents) APPEARANCE
+\usepackage[nottoc,notlof,notlot]{tocbibind} % Put the bibliography in the ToC
+\usepackage[titles,subfigure]{tocloft} % Alter the style of the Table of Contents
+\renewcommand{\cftsecfont}{\rmfamily\mdseries\upshape}
+\renewcommand{\cftsecpagefont}{\rmfamily\mdseries\upshape} % No bold!
+
+\renewcommand{\d}{\operatorname{d}}
+
+%%% END Article customizations
+
+%%% The "real" document content comes below...
+
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{wasysym}
+
+\theoremstyle{definition}
+\newtheorem*{beispiel}{Beispiel}
+\newtheorem{definition}{Definition}
+\newtheorem*{bemerkung}{Bemerkung}
+\newtheorem*{beweis}{Beweis}
+\newtheorem*{ubung}{Übung}
+
+\title{Selbststudium 6}
+\author{Florian Lüthi}
+%\date{} % Activate to display a given date or no date (if empty),
+         % otherwise the current date is printed 
+
+\begin{document}
+\maketitle
+
+\section*{Aufgabe 1}
+
+Gelesen.
+
+\section*{Aufgabe 2}
+
+\begin{enumerate}[(a)]
+
+\item Dasdada:
+\[
+3n \cdot \sqrt{n} \in \mathcal{O}(n^2)
+\]
+
+ist äquivalent zu
+\[
+3n \cdot \sqrt{n} \in \{ r: \mathbb{N} \rightarrow \mathbb{R}^+ | \exists c, n_0 \in \mathbb{N} \textrm{, so dass für alle $n > n_0$: } r(n) \le c \cdot n^2 \}.
+\]
+
+Also suchen wir entsprechende $c$ und $n_0$. Wenn wir $c = 3$ wählen und $r(n_0)$ mit $f(n_0)$ gleichsetzen, bekommen wir:
+\[
+3n_0 \cdot \sqrt{n_0} = 3\cdot {n_0}^2
+\]
+und damit
+\[
+n \cdot \sqrt{n_0} = {n_0}^2.
+\]
+Die Lösung ist $n_0 \in \{0, 1\}$, das heisst ab $n = 1$ würde die Bedingung gelten.
+
+Da offensichtlich ab $n = 1$ $n^2$ schneller wächst als $n\cdot \sqrt{n} = n^1 \cdot n^{0.5} = n^{1.5}$, haben wir $c =3$ und $n_0 = 0$ gefunden und das eingangs Behauptete gezeigt.
+
+\item Nun...
+\begin{itemize}
+
+\item ${\mathbf{f_1(n) = 2^{n+3} \in \mathcal{O}(3^n)}}$, denn äquivalent wäre $2^{n+3} = o(3^n)$ und darum
+\[
+\lim_{n\rightarrow \infty} \frac{2^{n+3}}{3^n} = 0.
+\]
+
+Formen wir ein wenig um, bekommen wir
+\[
+\lim_{n\rightarrow \infty} \frac{2^{n+3}}{2^{n\cdot \log_2(3)}}  = \lim_{n\rightarrow \infty} 2^{n + 3 - n\cdot \log_2(3)} = \lim_{n\rightarrow \infty} 2^{3-0.58n} = 0.
+%= \lim_{n\rightarrow \infty} \frac{n + 3}{n\cdot \log_2(3)}
+\]
+
+\item ${\mathbf{f_2(n) = n\cdot 2^n \in \mathcal{O}(3^n)}}$, denn äquivalent wäre $n \cdot 2^n = o(3^n)$ und darum
+\[
+\lim_{n\rightarrow \infty} \frac{n \cdot 2^n}{3^n} = 0.
+\]
+
+Formen wir ein wenig um, bekommen wir
+\[
+\lim_{n\rightarrow \infty} \left[n \cdot \left(\frac{2}{3}\right)^n\right]
+\]
+
+Und nach Anwendung der de l'Hospital'schen Regel (wegen $\lim_{x\rightarrow\infty} f(x) = \infty$ und $\lim_{x\rightarrow\infty} g(x) = \infty$ gilt $\lim_{x\rightarrow\infty} [f(x)\cdot g(x)] = \lim_{x\rightarrow\infty} [f(x)'\cdot g(x)']$)
+\[
+\lim_{n\rightarrow \infty} \left[1 \cdot \left(\frac{2}{3}\right)^n \cdot \ln\frac{2}{3} \right] = 0.
+\]
+
+\item ${\mathbf{f_3(n) = 2^{2n} \notin \mathcal{O}(3^n)}}$. Denn angenommen, es gälte tatsächlich ${{2^{2n} \in \mathcal{O}(3^n)}}$, gälte ebenso
+\[
+\lim_{n\rightarrow \infty} \frac{2^{2n}}{3^n} = 0.
+\]
+Ein paar Takte Algebra und Infinitesimalrechnung zeigen aber:
+\[
+\lim_{n\rightarrow \infty} \frac{2^{2n}}{3^n} = \lim_{n\rightarrow \infty} \frac{2^{2n}}{2^{n\cdot \log_2(3)}} = \lim_{n \rightarrow \infty} 2^{2n - n\cdot \log_2(3)} = \lim_{n\rightarrow \infty} 2^{0.42n} = \infty,
+\]
+was im Widerspruch zur Annahme steht, also muss die Annahme falsch sein.
+
+\end{itemize}
+
+\item Dasdada:
+\[
+n - \log_2(n) \in \Omega(n)
+\]
+gilt, weil sich problemlos $n_0 = 4, d = 2$ finden lassen.
+
+\end{enumerate}
+
+\section*{Aufgabe 3 = Aufgabe 6.2}
+
+\begin{enumerate}[(a)]
+
+\item $2^n \in \Theta(2^{n+a})$. Die obere Schranke funktioniert offensichtlich, die untere Schranke genau dann, wenn $d \ge 2^a$ gesetzt wird:
+\begin{eqnarray*}
+2^{n_0} &=& \frac{1}{d} \cdot 2^{n_0 + a} \\
+&=& \frac{1}{d} \cdot 2^{n_0}\cdot 2^a\\
+\Rightarrow d\cdot 2^{n_0} &=& 2^{n_0}\cdot 2^a \\
+d &=& 2^a
+\end{eqnarray*}
+
+\item $2^{b\cdot n} \notin \Theta(2^n)$. Die untere Schranke funktioniert offensichtlich, für die obere Schranke gilt leider im Allgemeinen (für $b = 0$ wäre die Lösung $1 \neq 0$):
+\begin{eqnarray*}
+\lim_{n \rightarrow \infty} \frac{2^{b\cdot n}}{2^n} = \lim_{n \rightarrow \infty} \frac{\left(2^n\right)^b}{2^n} = \lim_{n \rightarrow \infty} \left(2^n\right)^{b-1} = \infty
+\end{eqnarray*}
+
+\item $\log_b n \in \Theta(\log_a n)$\footnote{$c$ umbenannt in $a$, damit es kein Durcheinander mit der Konstanten in der Definition der oberen Schranke gibt.}, weil $\log_a n = \log_b n \cdot \frac 1 {\log_b a}$. Also kann für die obere Schranke $c  = \lceil\frac 1 {\log_b a} \rceil$ und für die untere Schranke $d = \lfloor\frac 1 {\log_b a} \rfloor$ gesetzt werden (gerundet deshalb, weil von der in der Lektüre verwendeten Definition $c, d \in \mathbb{N}$ gefordert wird).
+
+\item $(n+1)! \notin \mathcal{O}(n!)$, denn es gilt
+\[
+\lim_{n \rightarrow \infty} \frac{(n+1)!}{n!} = \lim_{n \rightarrow \infty} \frac{(n+1)n!}{n!} = \lim_{n \rightarrow \infty} (n+1) = \infty.
+\]
+
+\end{enumerate}
+
+\end{document}
