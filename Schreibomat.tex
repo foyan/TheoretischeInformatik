@@ -55,11 +55,13 @@
 
 %%% The "real" document content comes below...
 
+\usepackage{complexity}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{qtree}
+\usepackage{wasysym}
 
 \theoremstyle{definition}
 \newtheorem*{beispiel}{Beispiel}
@@ -5077,5 +5079,192 @@ Dies ist ein Widerspruch, da wir schon gezeigt haben, dass $\bar{L_\textrm{d}} \
 Daraus folgt $\bar{L_\textrm{u}} \notin \mathcal{L}_\textrm{R}$.
 
 \end{proof}
+
+\renewcommand{\O}{\mathcal{O}}
+
+\section{Asymptotische Komplexitätsmessung}
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+ $ zwei Funktionen. Dann gilt
+\[
+f(n) \in \O(g(n)),
+\]
+falls ein $n \in \mathbb{N}$ und ein $c \in \mathbb{N}$ existiert, so dass für $n \ge n_0$ gilt:
+\[
+f(n) \le c\cdot g(n).
+\]
+\end{definition}
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+ $ zwei Funktionen. Dann gilt
+\[
+f(n) \in \Omega(g(n)),
+\]
+falls ein $n \in \mathbb{N}$ und ein $d \in \mathbb{N}$ existiert, so dass für $n \ge n_0$ gilt:
+\[
+f(n) \ge \frac 1 d \cdot g(n).
+\]
+\end{definition}
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+ $ zwei Funktionen. Dann gilt
+\[
+f(n) \in \Theta(g(n)),
+\]
+falls $f(n) \in \mathcal{O}(g(n))$ und $f(n) \in \Omega(g(n))$ gilt.
+\end{definition}
+
+\begin{bemerkung}[Allgemeine Beobachtung]
+\begin{itemize}
+\item Kostante Vorfaktoren kann man weglassen.
+\item Bei Polynomen ist nur die höchste Potenz entscheidend.
+\item $\mathcal{O}$-Notation ist transitiv: Aus
+\[
+	f \in \mathcal{O}(g) \land g \in \mathcal{O}(h)
+\]
+folgt
+\[
+	f \in \mathcal{O}(h).
+\]
+\end{itemize}
+\end{bemerkung}
+
+\section{Komplexitätstheorie}
+
+Ziel: Klassifizierung von (entscheidbaren) Problemen nach ihrer Schwierigkeit (Komplexität). Die Komplexitätstheorie ist die Theorie der quantitativen Gesetze und Grenzen der algorithmischen Informationsverarbeitung.
+
+\newcommand{\Time}{\operatorname{Time}}
+
+\section{Verschiedene Komplexitätsmasse}
+
+\begin{description}
+\item[Zeitkomplexität] Laufzeit des besten Programms, das das Problem löst
+\item[Platzkomplexität] Speicherplatzbedarf des besten Programms
+\item[Beschreibungskomplexität] Länge des kürzesten Programms
+\end{description}
+
+\begin{definition}
+
+Im Formalismus der Turingmaschine: Sei $M$ eine TM mit Eingabealphabet $\Sigma$, die immer hält und sei $w \in \Sigma^*$.
+
+Dann ist der Zeitbedarf von $M$ auf der Eingabe $w$ definiert als:
+\[
+\Time_M(w) = \textrm{ Anzahl der Konfigurationsübergänge in der Berechnung von $M$ auf $w$.}
+\]
+
+Verallgemeinerung: Zeitkomplexität in Abhängigkeit der Eingabelänge: Für $n \in \mathbb{N}$ ist:
+\[
+\Time_M(n) = \operatorname{max}\{ \Time_M(w) | |w| = n \}
+\]
+der Zeitbedarf von $M$ auf Eingaben der Länge genau $n$ im schlechtesten Fall.
+
+\end{definition}
+
+\section{Exkurs: Alternatives Modell einer Turingmaschine}
+
+$\cent, \$$: Endmarkierungen. Eingabeband: Nur Lesekopf, Arbeitsband: Lese-/Schreibkopf.
+
+\[
+M = (Q, \Sigma, \Gamma, \delta, q_0, q_\textrm{accept}, q_\textrm{reject})
+\]
+mit
+\begin{itemize}
+\item $Q$: Zustandsmenge,
+\item $\Sigma$: Eingabealphabet, $\textvisiblespace, \cent, \$ \notin \Sigma$
+\item $\Gamma$: Arbeitsalphabet, $\textvisiblespace, \cent, \$ \notin \Sigma$
+\item $q_0$: Anfangszustand
+\item $q_\textrm{accept}$: akzeptierender Zustand
+\item $q_\textrm{reject}$: verwerfender Zustand
+\item $\delta$: Transitionsfunktion, definiert als:
+\[
+\delta: Q \times (\Sigma \cup \{\cent, \$\}) \times (\Lambda \cup \{\cent\}) \rightarrow Q \times \{L, R, N \} \times \Lambda \times \{L,R,N\}
+\]
+\end{itemize}
+
+\begin{beispiel}[Zeitkomplexität einer TM zum Vergleich von zwei Wörtern $x$ und $y$ der Länge jeweils $n$]
+
+Nun:
+\begin{itemize}
+\item $x$ auf Arbeitsband kopieren: $\O(n)$
+\item Lesekopf auf dem Arbeitsband an den Anfang zurückverschieben: $\O(n)$
+\item Vergleiche Zeichen für Zeichen: $\O(n)$
+\end{itemize}
+Also Total: $\O(n)$.
+
+\end{beispiel}
+
+\section{Zeitkomplexität auf Problemen}
+
+im Allgemeinen nicht exakt bestimmbar.
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+$. Sei $U$ ein (entscheidbares) Problem.
+\begin{itemize}
+\item $\O(f(n))$ ist eine obere Schranke für die Zeitkomplexität von $U$, falls eine TM $M$ existiert, die $U$ löst und eine Zeitkomplexität $\in \O(f(n))$ hat.
+\item $\Omega(g(n))$ ist eine untere Schranke für die Zeitkomplexität von $U$, falls für alle TM $M$, die $U$ lösen, gilt, dass $\Time_M(n) \in \Omega(f(n))$.
+\end{itemize}
+\end{definition}
+
+\begin{bemerkung}
+Eine obere Schranke zu finden, ist einigermassen einfach, wogegen das Finden einer unteren Schranke sehr kompliziert ist.
+\end{bemerkung}
+
+Idee: Zur Klassifizierung von Problemen nach Schwierigkeit -> verwende relative Schwierigkeit. "Wenn Problem $A$ schnell lösbar wäre, dann auch tausend andere Probleme."
+
+Was heisst "schnell lösbar"? Üblicher Ansatz: Problem $U$ heisst in Polynomzeit lösbar, wenn es eine obere Schranke $\O(n^c)$ gibt für eine Konstante $c \ge 1$.
+
+\begin{definition}
+Die Klasse der in Polynomzeit entscheidbaren Sprachen nennen wir \P.
+\end{definition}
+
+\section{Nichtdeterministische Turingmaschine}
+
+Prinzipieller Aufbau:
+
+Eingabeband, Arbeitsband gleich wie vorher.
+
+\[
+M = (Q, \Sigma, \Gamma, \delta, q_0, q_\textrm{accept}, q_\textrm{reject})
+\]
+
+wobei
+\[
+\delta: Q\times (\Sigma \cup \{\cent, \$\}) \times (\Gamma \cup \{\cent\}) \rightarrow 2^{Q\times \{L,R,N\} \times \Gamma \times \{L,R,N\}}
+\]
+
+Die Menge aller Berechnungen einer NTM kann dargestellt werden als Berechnungsbaum.
+
+Wurzel: Anfangskonfiguration, Blätter: akzeptierende oder verwerfende Berechnungen.
+
+Eine NTM akzeptiert, wenn es einen Pfad im Baum gibt von der Wurzel zu einem akzeptierenden Blatt.
+
+\begin{bemerkung}
+Wichtig! Eine NTM ist nicht ausdrucksstärker als eine deterministische TM.
+\end{bemerkung}
+
+\begin{theorem}
+Sei $M$ eine NTM. Dann gibt es eine äquivalente deterministische Turingmaschine $A$, also eine DTM $A$ mit $L(A) = L(M)$.
+\end{theorem}
+
+\begin{proof}[Beweis]
+Idee: Breitensuche auf dem Berechnungsbam. $A$ arbeitet wie folgt:
+
+\begin{enumerate}
+\item $A$ schreibt Anfangskonfiguration auf das erste Arbeitsband.
+\item prüft, ob eine akzeptierende Konfiguration auf dem ersten Band ist. Falls ja: halten, akzeptieren.
+\item auf das zweite Band: alle Nachfolgekonfigurationen. Falls es keine Nachfolgekonfigurationen gibt, hält $A$ und verwirft
+\item $A$ löscht erstes Band, kopiert Inhalt des zweiten Bands auf das erste, löscht dann das zweite Band und geht zu Schritt 2.
+\end{enumerate}
+
+Falls $M$ eine akzeptierende Konfiguration erreicht, akzeptiert natürlich auch $A$. Falls jede Berechnung von $M$ endlich ist, hält auch $A$.
+\end{proof}
+
+\begin{bemerkung}[Zeitkomplexität einer NTM] Länge der kürzesten akzeptierenden Berechnung.
+
+\end{bemerkung}
+
+\begin{definition}
+Die Klasse aller von einer NTM in Polynomzeit entscheidbaren Sprachen nennen wir $\NP$.
+\end{definition}
 
 \end{document}
