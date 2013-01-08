@@ -44,3 +44,7 @@
 \BOOKMARK [1][-]{section.39}{Exkurs: Alternatives Modell einer Turingmaschine}{}% 44
 \BOOKMARK [1][-]{section.40}{Zeitkomplexit\344t auf Problemen}{}% 45
 \BOOKMARK [1][-]{section.41}{Nichtdeterministische Turingmaschine}{}% 46
+\BOOKMARK [1][-]{section.42}{NP-Vollst\344ndigkeit}{}% 47
+\BOOKMARK [2][-]{subsection.42.1}{Polynomielle Reduktion}{section.42}% 48
+\BOOKMARK [2][-]{subsection.42.2}{Ein erstes NP-vollst\344ndiges Problem}{section.42}% 49
+\BOOKMARK [2][-]{subsection.42.3}{Nachweis der NP-Vollst\344ndigkeit weiterer Probleme durch Reduktion auf SAT}{section.42}% 50

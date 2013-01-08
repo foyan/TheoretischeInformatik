@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.11.27)  18 DEC 2012 21:46
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9) (preloaded format=pdflatex 2012.11.27)  8 JAN 2013 21:38
 entering extended mode
 **Schreibomat.tex
 (C:\Code\TheoretischeInformatik\Schreibomat.tex
@@ -1466,12 +1466,78 @@ den Berech-
  []
 
 [68]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5270.
- [69]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 5270.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5284.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5284.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5284.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5284.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5319.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5319.
+
+[69]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 5374.
+
+[70]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 5451.
+ [71]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 5451.
  (C:\Code\TheoretischeInformatik\Schreibomat.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5270.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5270.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 5451.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 5451.
 
 
 
@@ -1481,15 +1547,15 @@ Package rerunfilecheck Warning: File `Schreibomat.out' has changed.
 
 Package rerunfilecheck Info: Checksums for `Schreibomat.out':
 (rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  C57C07AFF2D66A2E5D1F8A606B2157A9;3182.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5270.
+(rerunfilecheck)             After:  3417EF5B32FBDB00E7E02750E913FD4E;3536.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 5451.
  ) 
 Here is how much of TeX's memory you used:
- 21250 strings out of 494045
- 372062 string characters out of 3149938
- 407199 words of memory out of 3000000
- 23896 multiletter control sequences out of 15000+200000
- 20681 words of font info for 81 fonts, out of 3000000 for 9000
+ 21278 strings out of 494045
+ 372361 string characters out of 3149938
+ 408199 words of memory out of 3000000
+ 23899 multiletter control sequences out of 15000+200000
+ 21286 words of font info for 83 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  56i,12n,68p,660b,790s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Programme/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Progra
@@ -1511,9 +1577,9 @@ cmtt10.pfb><C:/Programme/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmu10.pfb><C
 :/Programme/MiKTeX 2.9/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Dokum
 ente und Einstellungen/flo/Anwendungsdaten/MiKTeX/2.9/fonts/type1/public/wasy/w
 asy10.pfb>
-Output written on Schreibomat.pdf (69 pages, 550259 bytes).
+Output written on Schreibomat.pdf (71 pages, 562949 bytes).
 PDF statistics:
- 682 PDF objects out of 1000 (max. 8388607)
- 302 named destinations out of 1000 (max. 500000)
+ 718 PDF objects out of 1000 (max. 8388607)
+ 327 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
