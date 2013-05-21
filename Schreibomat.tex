@@ -55,11 +55,13 @@
 
 %%% The "real" document content comes below...
 
+\usepackage{complexity}
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{amssymb}
 \usepackage{qtree}
+\usepackage{wasysym}
 
 \theoremstyle{definition}
 \newtheorem*{beispiel}{Beispiel}
@@ -5078,4 +5080,395 @@ Daraus folgt $\bar{L_\textrm{u}} \notin \mathcal{L}_\textrm{R}$.
 
 \end{proof}
 
+\renewcommand{\O}{\mathcal{O}}
+
+\section{Asymptotische Komplexitätsmessung}
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+ $ zwei Funktionen. Dann gilt
+\[
+f(n) \in \O(g(n)),
+\]
+falls ein $n \in \mathbb{N}$ und ein $c \in \mathbb{N}$ existiert, so dass für $n \ge n_0$ gilt:
+\[
+f(n) \le c\cdot g(n).
+\]
+\end{definition}
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+ $ zwei Funktionen. Dann gilt
+\[
+f(n) \in \Omega(g(n)),
+\]
+falls ein $n \in \mathbb{N}$ und ein $d \in \mathbb{N}$ existiert, so dass für $n \ge n_0$ gilt:
+\[
+f(n) \ge \frac 1 d \cdot g(n).
+\]
+\end{definition}
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+ $ zwei Funktionen. Dann gilt
+\[
+f(n) \in \Theta(g(n)),
+\]
+falls $f(n) \in \mathcal{O}(g(n))$ und $f(n) \in \Omega(g(n))$ gilt.
+\end{definition}
+
+\begin{bemerkung}[Allgemeine Beobachtung]
+\begin{itemize}
+\item Kostante Vorfaktoren kann man weglassen.
+\item Bei Polynomen ist nur die höchste Potenz entscheidend.
+\item $\mathcal{O}$-Notation ist transitiv: Aus
+\[
+	f \in \mathcal{O}(g) \land g \in \mathcal{O}(h)
+\]
+folgt
+\[
+	f \in \mathcal{O}(h).
+\]
+\end{itemize}
+\end{bemerkung}
+
+\section{Komplexitätstheorie}
+
+Ziel: Klassifizierung von (entscheidbaren) Problemen nach ihrer Schwierigkeit (Komplexität). Die Komplexitätstheorie ist die Theorie der quantitativen Gesetze und Grenzen der algorithmischen Informationsverarbeitung.
+
+\newcommand{\Time}{\operatorname{Time}}
+
+\section{Verschiedene Komplexitätsmasse}
+
+\begin{description}
+\item[Zeitkomplexität] Laufzeit des besten Programms, das das Problem löst
+\item[Platzkomplexität] Speicherplatzbedarf des besten Programms
+\item[Beschreibungskomplexität] Länge des kürzesten Programms
+\end{description}
+
+\begin{definition}
+
+Im Formalismus der Turingmaschine: Sei $M$ eine TM mit Eingabealphabet $\Sigma$, die immer hält und sei $w \in \Sigma^*$.
+
+Dann ist der Zeitbedarf von $M$ auf der Eingabe $w$ definiert als:
+\[
+\Time_M(w) = \textrm{ Anzahl der Konfigurationsübergänge in der Berechnung von $M$ auf $w$.}
+\]
+
+Verallgemeinerung: Zeitkomplexität in Abhängigkeit der Eingabelänge: Für $n \in \mathbb{N}$ ist:
+\[
+\Time_M(n) = \operatorname{max}\{ \Time_M(w) | |w| = n \}
+\]
+der Zeitbedarf von $M$ auf Eingaben der Länge genau $n$ im schlechtesten Fall.
+
+\end{definition}
+
+\section{Exkurs: Alternatives Modell einer Turingmaschine}
+
+$\cent, \$$: Endmarkierungen. Eingabeband: Nur Lesekopf, Arbeitsband: Lese-/Schreibkopf.
+
+\[
+M = (Q, \Sigma, \Gamma, \delta, q_0, q_\textrm{accept}, q_\textrm{reject})
+\]
+mit
+\begin{itemize}
+\item $Q$: Zustandsmenge,
+\item $\Sigma$: Eingabealphabet, $\textvisiblespace, \cent, \$ \notin \Sigma$
+\item $\Gamma$: Arbeitsalphabet, $\textvisiblespace, \cent, \$ \notin \Sigma$
+\item $q_0$: Anfangszustand
+\item $q_\textrm{accept}$: akzeptierender Zustand
+\item $q_\textrm{reject}$: verwerfender Zustand
+\item $\delta$: Transitionsfunktion, definiert als:
+\[
+\delta: Q \times (\Sigma \cup \{\cent, \$\}) \times (\Lambda \cup \{\cent\}) \rightarrow Q \times \{L, R, N \} \times \Lambda \times \{L,R,N\}
+\]
+\end{itemize}
+
+\begin{beispiel}[Zeitkomplexität einer TM zum Vergleich von zwei Wörtern $x$ und $y$ der Länge jeweils $n$]
+
+Nun:
+\begin{itemize}
+\item $x$ auf Arbeitsband kopieren: $\O(n)$
+\item Lesekopf auf dem Arbeitsband an den Anfang zurückverschieben: $\O(n)$
+\item Vergleiche Zeichen für Zeichen: $\O(n)$
+\end{itemize}
+Also Total: $\O(n)$.
+
+\end{beispiel}
+
+\section{Zeitkomplexität auf Problemen}
+
+im Allgemeinen nicht exakt bestimmbar.
+
+\begin{definition}
+Seien $f, g : \mathbb{N} \rightarrow \mathbb{R}^+$. Sei $U$ ein (entscheidbares) Problem.
+\begin{itemize}
+\item $\O(f(n))$ ist eine obere Schranke für die Zeitkomplexität von $U$, falls eine TM $M$ existiert, die $U$ löst und eine Zeitkomplexität $\in \O(f(n))$ hat.
+\item $\Omega(g(n))$ ist eine untere Schranke für die Zeitkomplexität von $U$, falls für alle TM $M$, die $U$ lösen, gilt, dass $\Time_M(n) \in \Omega(f(n))$.
+\end{itemize}
+\end{definition}
+
+\begin{bemerkung}
+Eine obere Schranke zu finden, ist einigermassen einfach, wogegen das Finden einer unteren Schranke sehr kompliziert ist.
+\end{bemerkung}
+
+Idee: Zur Klassifizierung von Problemen nach Schwierigkeit -> verwende relative Schwierigkeit. "Wenn Problem $A$ schnell lösbar wäre, dann auch tausend andere Probleme."
+
+Was heisst "schnell lösbar"? Üblicher Ansatz: Problem $U$ heisst in Polynomzeit lösbar, wenn es eine obere Schranke $\O(n^c)$ gibt für eine Konstante $c \ge 1$.
+
+\begin{definition}
+Die Klasse der in Polynomzeit entscheidbaren Sprachen nennen wir \P.
+\end{definition}
+
+\section{Nichtdeterministische Turingmaschine}
+
+Prinzipieller Aufbau:
+
+Eingabeband, Arbeitsband gleich wie vorher.
+
+\[
+M = (Q, \Sigma, \Gamma, \delta, q_0, q_\textrm{accept}, q_\textrm{reject})
+\]
+
+wobei
+\[
+\delta: Q\times (\Sigma \cup \{\cent, \$\}) \times (\Gamma \cup \{\cent\}) \rightarrow 2^{Q\times \{L,R,N\} \times \Gamma \times \{L,R,N\}}
+\]
+
+Die Menge aller Berechnungen einer NTM kann dargestellt werden als Berechnungsbaum.
+
+Wurzel: Anfangskonfiguration, Blätter: akzeptierende oder verwerfende Berechnungen.
+
+Eine NTM akzeptiert, wenn es einen Pfad im Baum gibt von der Wurzel zu einem akzeptierenden Blatt.
+
+\begin{bemerkung}
+Wichtig! Eine NTM ist nicht ausdrucksstärker als eine deterministische TM.
+\end{bemerkung}
+
+\begin{theorem}
+Sei $M$ eine NTM. Dann gibt es eine äquivalente deterministische Turingmaschine $A$, also eine DTM $A$ mit $L(A) = L(M)$.
+\end{theorem}
+
+\begin{proof}[Beweis]
+Idee: Breitensuche auf dem Berechnungsbam. $A$ arbeitet wie folgt:
+
+\begin{enumerate}
+\item $A$ schreibt Anfangskonfiguration auf das erste Arbeitsband.
+\item prüft, ob eine akzeptierende Konfiguration auf dem ersten Band ist. Falls ja: halten, akzeptieren.
+\item auf das zweite Band: alle Nachfolgekonfigurationen. Falls es keine Nachfolgekonfigurationen gibt, hält $A$ und verwirft
+\item $A$ löscht erstes Band, kopiert Inhalt des zweiten Bands auf das erste, löscht dann das zweite Band und geht zu Schritt 2.
+\end{enumerate}
+
+Falls $M$ eine akzeptierende Konfiguration erreicht, akzeptiert natürlich auch $A$. Falls jede Berechnung von $M$ endlich ist, hält auch $A$.
+\end{proof}
+
+\begin{bemerkung}[Zeitkomplexität einer NTM] Länge der kürzesten akzeptierenden Berechnung.
+
+\end{bemerkung}
+
+\begin{definition}
+Die Klasse aller von einer NTM in Polynomzeit entscheidbaren Sprachen nennen wir $\NP$.
+\end{definition}
+
+\begin{theorem}
+$\NP$ = Menge aller Sprachen, für die ein Polynomzeit-Verifizierer existiert.
+\end{theorem}
+
+\begin{bemerkung}
+$\P$ entspricht: Lösung finden in Polynomzeit
+
+$\NP$ entspricht: Lösung verifizieren in Polynomzeit
+\end{bemerkung}
+
+\begin{bemerkung}
+Offene Frage: Gilt $\P = \NP$? Vermutung: $\P \ne \NP$
+\end{bemerkung}
+
+\section{$\NP$-Vollständigkeit}
+
+Konzept zum Beweis relativer Schwierigkeit von Problemen.
+
+\subsection{Polynomielle Reduktion}
+
+Seien $L_1 \subseteq \Sigma_1^*$ und $L_2 \subseteq \Sigma_2^*$ zwei Sprachen. $L_1$ ist polynomiell auf $L_2$ reduzierbar:
+\[
+L_1 \le_p L_2,
+\]
+falls eine TM $M$ existiert, mit $\Time_M(m) \in \mathcal{O}(n^k)$ für ein $k \in \mathbb{N}$, die für eine Eingabe $x \in \Sigma_1^*$ ein Wort $M(x) \in \Sigma_2^*$ berechnet mit
+\[
+x \in L_1 \Leftrightarrow M(x) \in L_2.
+\]
+
+$L_1 \le_p L_2$ bedeutet, dass $L_2$ mindestens so schwer ist (bezüglich der Lösbarkeit in polynomieller Zeit) wie $L_1$.
+
+Wenn $L_1 \le_p L_2$ gilt, dann könnte man eine polynomielle TM $B$ für $L_2$ dafür verwenden, eine polynomielle TM $A$ für $L_1$ zu bauen.
+
+\begin{definition}
+Eine Sprache $L$ heisst $\NP$-schwer, falls für alle Sprachen $L' \in \NP$ gilt, dass $L' \le_p L$.
+
+Eine Sprache $L$ heisst $\NP$-vollständig, falls
+\begin{enumerate}
+\item $L \in \NP$ und
+\item $L$ ist $\NP$-schwer.
+\end{enumerate}
+\end{definition}
+
+Die Menge der $\NP$-vollständigen Sprachen betrachten wir als die gesuchte Teilklasse von schwersten Entscheidungsproblemen in $\NP$.
+
+\begin{bemerkung}[Beobachtung]
+Wenn es gelingt, für ein $\NP$-schweres $L$ nachzuweisen, dass $L \in \P$, dann gilt $\P = \NP$.
+\end{bemerkung}
+
+\subsection{Ein erstes $\NP$-vollständiges Problem}
+
+\begin{definition}[Boole'sche Formel]
+Boole'sche Formeln sind induktiv definiert durch:
+\begin{enumerate}
+\item Die Konstanten $0$ und $1$ und die Variablen $x_1, x_2, \dots x_n$ sind Boole'sche Formeln.
+\item Negation: Wenn $\varphi$ eine Boole'sche Formel ist, dann auch $\neg \varphi$.
+\item Konjunktion: Wenn $\varphi$ und $\psi$ Boole'sche Formeln sind, dann auch $(\varphi \land \psi)$.
+\item Disjunktion: Wenn $\varphi$ und $\psi$ Boole'sche Formeln sind, dann auch $(\varphi \lor \psi)$.
+\end{enumerate}
+\end{definition}
+
+\begin{bemerkung}[Konvention zur Klammerersparnis] :
+\begin{itemize}
+\item $\neg$ bindet stärker als $\land$ und $\lor$
+\item $\land$ bindet stärker als $\lor$
+\item statt $\neg x_i$ schreiben wir $\bar{x_i}$.
+\end{itemize}
+\end{bemerkung}
+
+\begin{definition}
+Eine Boole'sche Formel ist in konjunktiver Normalform (KNF), wenn sie eine Konjunktion von Disjunktionen von einfachen und negierten Variablen ist.
+\end{definition}
+
+\begin{beispiel} KNF:
+\[
+(x_1 \lor x_2 \lor \bar{x_3}) \land  (x_5 \lor x_6)
+\]
+
+\end{beispiel}
+
+\begin{definition}[Belegung]
+
+Eine Belegung ist eine Funktion, die jeder Variablen einen Wert aus $\{0,1\}$ zuordnet. Eine Belegung erfüllt eine Formel $\varphi$, wenn die Auswertung der Formel nach den üblichen Regeln der Aussagelogik den Wert 1 ergibt.
+\end{definition}
+
+\begin{definition}[Erfüllbarkeit]
+Eine Formel ist erfüllbar, wenn es eine Belegung dafür gibt.
+\end{definition}
+
+\begin{definition}[$\SAT$]
+$\SAT$ ist das Problem, zu entscheiden, ob eine gegebene Formel in KNF erfüllbar ist.
+\end{definition}
+
+\begin{theorem}[Satz von Cook]
+$\SAT$ ist $\NP$-vollständig.
+\end{theorem}
+
+\begin{proof}[Beweisidee]
+\begin{itemize}
+\item $\SAT \in \NP$: P-Verifizierer für $\SAT$. Zeige $l_1l_2\dots l_n$ mit $l_i = 1$ falls $x_i = 1$ für eine erfüllbare Belegung und $l_i = 0$ analog. Die Prüfung ist dann polynomial.
+\item $\SAT$ ist $\NP$-schwer: $L \le_p \SAT$ für alle $L \in \NP$. Kodiere die Berechnung einer polynomialzeitbeschränkten NTM durch eine KNF-Formel.
+\end{itemize}
+\end{proof}
+
+\subsection{Nachweis der $\NP$-Vollständigkeit weiterer Probleme durch Reduktion auf $\SAT$}
+
+(oder andere Probleme, die $\NP$-vollständig sind)
+
+Satz: Wenn $P_1$ $\NP$-vollständig ist und $P_2$ in $\NP$ enthalten ist und eine polynomielle Reduktion von $P_1\le_p P_2$ existiert, dann ist $P_2$ $\NP$-vollständig.
+
+\newcommand{\CLIQUE}{\mathrm{CLIQUE}}
+
+\begin{theorem}
+$\CLIQUE$ ist $\NP$-vollständig.
+\end{theorem}
+
+\begin{proof}[Beweis]
+\begin{enumerate}
+\item $\CLIQUE \in \NP$. Siehe vorher.
+\item $\SAT \le_p \CLIQUE$. Sei $\varphi = F_1 \land F_2 \land \dots \land F_m$ mit $F_i = L_{i1} \lor L_{i2} \dots L_{ik}$, $k \in \mathbb{N}$ für $1 \le i < m$ eine Formel in KNF .
+
+Konstruiere eine Eingabe $(G, k)$ für $\CLIQUE$, so dass:
+\[
+\varphi \in \SAT \Leftrightarrow (G, k) \in \CLIQUE.
+\]
+Setze $k = m$. $G = (V,E)$ mit $V = \{ [i,j] | 1 \le i \le m, 1 \le j \le k \}.$ (ein Knoten für jedes Auftreten eines Literals in $\varphi$.)
+
+\[
+E = \{ \{ [ i,j ], [r,s] \} | [i,j], [r,s] \in V, i \ne r, l_{ij} \ne \bar{l_{rs}} \}
+\]
+
+(Kanten zwischen Knoten aus unterschiedlichen Klauseln, alls Literale nicht Negationen voneinander sind)
+
+
+Bleibt zu zeigen: $\varphi$ erfüllbar $\Leftrightarrow$ $G$ enthält $\CLIQUE$ der Grösse $k$.
+
+Idee: Keine Kante zwischen $x$ und $\bar{x}$. Daraus folgt: Jede Clique in $G$ entspricht einer Menge von gleichzeitig auf 1 setzbaren Literalen. Daraus folgt: eine Clique der Grösse $k$ enthält einen Knoten pro Klausel, also ist jede Klausel erfüllt.
+
+Umgekehrt: erfüllende Belegung definiert eine Clique der Grösse $k$.
+
+\end{enumerate}
+\end{proof}
+
+\begin{definition}[Vertex Cover-Problem (VC)]
+
+Gegeben ist ein ungerichteter Graph $G = (V, E)$ und eine natürliche Zahl $k \le |V|$.
+
+Frage ist: Gibt es eine Menge $S \subseteq V$ mit $|S| = k$, sodass jede Kante mindestens einen Endpunkt in $S$ hat?
+
+\end{definition}
+
+\begin{theorem}
+$\CLIQUE \le_p VC$.
+\end{theorem}
+
+\begin{proof}[Beweis]
+Sei $G = (V,E)$ und $k \in\mathbb{N}$ eine Eingabe des Clique-Problems. Wir konstruieren hieraus einen Eingabe für das VC wie folgt:
+
+$(G', m)$, wobei $G' = (V, E')$ ($E'$: Komplementärgraph) und $m = |V| - k$
+\end{proof}
+
+\begin{bemerkung}[Beobachtung]
+Falls $S$ eine Clique in $G$ ist, dann ist $V-S$ ein VC in $G'$ und umgekehrt.
+\end{bemerkung}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
